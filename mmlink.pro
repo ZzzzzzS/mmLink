@@ -26,10 +26,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     TCPConfig.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    mmwaveradar.cpp
 
 HEADERS += \
-    mainwindow.h
+    mainwindow.h \
+    mmwaveradar.h
 
 FORMS += \
     mainwindow.ui
