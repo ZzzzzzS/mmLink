@@ -36,6 +36,7 @@ Thumbs.db
 /.qmake.stash
 /debug/*
 /release/*
+/armeabi-v7a/*
 
 # qtcreator generated files
 *.pro.user*

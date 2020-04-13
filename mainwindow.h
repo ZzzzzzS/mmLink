@@ -2,6 +2,11 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QTcpSocket>
+#include <QAbstractSocket>
+#include <QDebug>
+#include <QHostAddress>
+#include <QMessageBox>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -17,5 +22,13 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    QTcpSocket *RadarSocket;
+
+private slots:
+    void TCPConnectSlot();
+    void TCPErrorSlot(QAbstractSocket::SocketError socketError);
+    void TCPConnectSuccessedSlot();
+    void TCPDisconnectSuccessedSlot();
+    void TCPReceiveSlot();
 };
 #endif // MAINWINDOW_H
