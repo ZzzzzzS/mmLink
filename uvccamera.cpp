@@ -40,10 +40,10 @@ void MainWindow::CameraConnectSlot()
 
         this->CurrentCamera->setViewfinder(this->CameraView);
         this->CurrentCameraFocus=this->CurrentCamera->focus();
-        if(this->CurrentCamera->isCaptureModeSupported(QCamera::CaptureVideo))
+        //if(this->CurrentCamera->isCaptureModeSupported(QCamera::CaptureVideo))
             this->CurrentCamera->setCaptureMode(QCamera::CaptureVideo);
-        else
-            QMessageBox::warning(this,"警告","此摄像头录像效果可能不佳");
+        //else
+            //QMessageBox::warning(this,"警告","此摄像头录像效果可能不佳");
         this->CurrentCamera->start();
 
         this->ui->CameraConnectButton->setText("断开");
@@ -64,8 +64,7 @@ void MainWindow::CameraConnectSlot()
         this->ui->RecordButton->setEnabled(false);
         if(this->ui->RecordButton->text()=="停止录制")
         {
-            this->SaveVideo();
-            this->ui->RecordButton->setText("录制视频");
+            CameraRecordSlot();
         }
     }
 }
@@ -93,11 +92,25 @@ void MainWindow::CameraRecordSlot()
     if(this->ui->RecordButton->text()=="录制视频")
     {
         this->CameraRecorder=new QMediaRecorder(this->CurrentCamera);
+
+        this->CameraRecorder->setOutputLocation(QUrl::fromLocalFile(QApplication::applicationDirPath()+"/mmlinkRecord.mp4"));
+        //this->CameraRecorder->setContainerFormat("mp4");
+        QVideoEncoderSettings settings;
+        settings.setCodec("video/mpeg2");
+        settings.setResolution(1920,1080);
+        this->CameraRecorder->setVideoSettings(settings);
+        this->CameraRecorder->record();
+        qDebug()<<this->CameraRecorder->status()<<this->CameraRecorder->state()<<this->CameraRecorder->error();
+
         this->ui->RecordButton->setText("停止录制");
     }
     else if(this->ui->RecordButton->text()=="停止录制")
     {
+        this->CameraRecorder->stop();
+        qDebug()<<this->CameraRecorder->status()<<this->CameraRecorder->state()<<this->CameraRecorder->error();
+
         this->SaveVideo();
         this->ui->RecordButton->setText("录制视频");
+        delete this->CameraRecorder;
     }
 }

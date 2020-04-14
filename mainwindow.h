@@ -6,6 +6,7 @@
 #include <QHostAddress>
 #include <QMessageBox>
 #include <QList>
+#include <QUrl>
 
 #include <QTcpSocket>
 #include <QAbstractSocket>
@@ -16,6 +17,7 @@
 #include <QCameraFocus>
 
 #include <QMediaRecorder>
+#include <QVideoEncoderSettings>
 
 
 QT_BEGIN_NAMESPACE
