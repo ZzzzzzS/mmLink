@@ -3,18 +3,23 @@
 
 void MainWindow::TCPConnectSlot()
 {
-    if(this->ui->ConnectButton->text()==QString("连接"))
+    if(this->ui->RadarConnectButton->text()==QString("连接雷达"))
     {
-        qDebug("ok");
+        if(ui->ServerPort->text().toUInt()>65535)
+        {
+            QMessageBox::critical(this,"错误","请填写正确的服务器地址");
+            return;
+        }
+
         RadarSocket->connectToHost(QHostAddress(ui->ServerIP->text()),ui->ServerPort->text().toUInt());
-        this->ui->ConnectButton->setText("正在连接");
-        this->ui->ConnectButton->setEnabled(false);
+        this->ui->RadarConnectButton->setText("正在连接");
+        this->ui->RadarConnectButton->setEnabled(false);
     }
-    else if(this->ui->ConnectButton->text()==QString("断开"))
+    else if(this->ui->RadarConnectButton->text()==QString("断开"))
     {
 
-        this->ui->ConnectButton->setText("正在断开");
-        this->ui->ConnectButton->setEnabled(false);
+        this->ui->RadarConnectButton->setText("正在断开");
+        this->ui->RadarConnectButton->setEnabled(false);
         RadarSocket->disconnectFromHost();
     }
 }
@@ -25,14 +30,14 @@ void MainWindow::TCPErrorSlot(QAbstractSocket::SocketError socketError)
     if(socketError==QAbstractSocket::ConnectionRefusedError)
     {
         QMessageBox::critical(this,"错误","远程服务器拒绝了连接");
-        this->ui->ConnectButton->setText("连接");
-        this->ui->ConnectButton->setEnabled(true);
+        this->ui->RadarConnectButton->setText("连接雷达");
+        this->ui->RadarConnectButton->setEnabled(true);
     }
     else if(socketError==QAbstractSocket::HostNotFoundError)
     {
         QMessageBox::critical(this,"错误","请填写正确的服务器地址");
-        this->ui->ConnectButton->setText("连接");
-        this->ui->ConnectButton->setEnabled(true);
+        this->ui->RadarConnectButton->setText("连接雷达");
+        this->ui->RadarConnectButton->setEnabled(true);
     }
     else if(socketError==QAbstractSocket::RemoteHostClosedError)
     {
@@ -42,14 +47,14 @@ void MainWindow::TCPErrorSlot(QAbstractSocket::SocketError socketError)
 
 void MainWindow::TCPConnectSuccessedSlot()
 {
-    this->ui->ConnectButton->setText("断开");
-    this->ui->ConnectButton->setEnabled(true);
+    this->ui->RadarConnectButton->setText("断开");
+    this->ui->RadarConnectButton->setEnabled(true);
 }
 
 void MainWindow::TCPDisconnectSuccessedSlot()
 {
-    this->ui->ConnectButton->setText("连接");
-    this->ui->ConnectButton->setEnabled(true);
+    this->ui->RadarConnectButton->setText("连接雷达");
+    this->ui->RadarConnectButton->setEnabled(true);
 }
 
 void MainWindow::TCPReceiveSlot()

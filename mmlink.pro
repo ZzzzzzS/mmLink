@@ -1,4 +1,4 @@
-QT       += core gui network
+QT       += core gui network multimedia multimediawidgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -25,9 +25,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     TCPConfig.cpp \
+    filemanagement.cpp \
     main.cpp \
     mainwindow.cpp \
-    mmwaveradar.cpp
+    mmwaveradar.cpp \
+    uvccamera.cpp
 
 HEADERS += \
     mainwindow.h \

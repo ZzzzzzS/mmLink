@@ -1,12 +1,22 @@
-#ifndef MAINWINDOW_H
+﻿#ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QTcpSocket>
-#include <QAbstractSocket>
 #include <QDebug>
 #include <QHostAddress>
 #include <QMessageBox>
+#include <QList>
+
+#include <QTcpSocket>
+#include <QAbstractSocket>
+
+#include <QCameraViewfinder>
+#include <QCameraInfo>
+#include <QCameraViewfinderSettings>
+#include <QCameraFocus>
+
+#include <QMediaRecorder>
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -24,11 +34,34 @@ private:
     Ui::MainWindow *ui;
     QTcpSocket *RadarSocket;
 
+    QCameraViewfinder *CameraView;
+    QList<QCameraInfo> AvailableCameras;
+    QCamera *CurrentCamera;
+    QCameraFocus *CurrentCameraFocus;
+
+    QMediaRecorder *CameraRecorder;
+
+    void SaveVideo();
+
+protected:
+    void resizeEvent(QResizeEvent *event);
+
+
 private slots:
     void TCPConnectSlot();
     void TCPErrorSlot(QAbstractSocket::SocketError socketError);
     void TCPConnectSuccessedSlot();
     void TCPDisconnectSuccessedSlot();
     void TCPReceiveSlot();
+
+    void UpdateAvailableCamerasSlot();
+    void CameraConnectSlot();
+    void CameraErrorSlot(QCamera::Error value);
+    void CameraZoomSlot(int value);
+    void CameraRecordSlot();
 };
+
+#if _MSC_VER >= 1600
+#pragma execution_character_set("utf-8")
+#endif
 #endif // MAINWINDOW_H

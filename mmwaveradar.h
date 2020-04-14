@@ -9,6 +9,8 @@ class mmWaveRadar : public QObject
 public:
     explicit mmWaveRadar(QObject *parent = nullptr);
 
+
+
 signals:
 
 
@@ -20,4 +22,7 @@ private:
 
 };
 
+#if _MSC_VER >= 1600
+#pragma execution_character_set("utf-8")
+#endif
 #endif // MMWAVERADAR_H
