@@ -9,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     this->RadarSocket=new QTcpSocket(this);
+    this->Radar=new mmWaveRadar(this);
 
     this->CameraView=new QCameraViewfinder(this->ui->CameraWidget);
     this->UpdateAvailableCamerasSlot();
@@ -29,6 +30,8 @@ MainWindow::MainWindow(QWidget *parent)
     QObject::connect(this->ui->Focurs,SIGNAL(sliderMoved(int)),this,SLOT(CameraZoomSlot(int)));
     QObject::connect(this->ui->CameraRenewButton,SIGNAL(clicked()),this,SLOT(UpdateAvailableCamerasSlot()));
     QObject::connect(this->ui->RecordButton,SIGNAL(clicked()),this,SLOT(CameraRecordSlot()));
+    //雷达参数相关信号
+    QObject::connect(this->ui->UpdateButton,SIGNAL(clicked()),this,SLOT(UpdateParameterSlot()));
 
 }
 
@@ -40,6 +43,22 @@ MainWindow::~MainWindow()
 void MainWindow::resizeEvent(QResizeEvent *event)
 {
     this->CameraView->resize(this->ui->CameraWidget->size());
+}
+
+void MainWindow::UpdateParameterSlot()
+{
+    mmWaveRadar::RadarParameter_t value;
+
+    value.SampleRate=this->ui->SampleRate->text().toInt();
+    value.SamplePoint=this->ui->SamplePoint->text().toInt();
+    value.ChirpNumber=this->ui->ChirpNumber->text().toInt();
+    value.Slope=this->ui->Slope->text().toInt();
+    this->Radar->SetRadarParameter(value);
+
+    if(this->Radar->isParameterLegal())
+        this->RadarSocket->write(this->Radar->UpdateRadarParameter());
+    else
+        QMessageBox::warning(this,"雷达参数错误","请填写正确的雷达参数");
 }
 
 

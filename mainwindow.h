@@ -11,6 +11,8 @@
 #include <QTcpSocket>
 #include <QAbstractSocket>
 
+#include "mmwaveradar.h"
+
 #include <QCameraViewfinder>
 #include <QCameraInfo>
 #include <QCameraViewfinderSettings>
@@ -35,6 +37,7 @@ public:
 private:
     Ui::MainWindow *ui;
     QTcpSocket *RadarSocket;
+    mmWaveRadar *Radar;
 
     QCameraViewfinder *CameraView;
     QList<QCameraInfo> AvailableCameras;
@@ -61,6 +64,8 @@ private slots:
     void CameraErrorSlot(QCamera::Error value);
     void CameraZoomSlot(int value);
     void CameraRecordSlot();
+
+    void UpdateParameterSlot();
 };
 
 #if _MSC_VER >= 1600
