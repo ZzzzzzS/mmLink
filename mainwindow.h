@@ -36,8 +36,7 @@ public:
 
 private:
     Ui::MainWindow *ui;
-    QTcpSocket *RadarSocket;
-    mmWaveRadar *Radar;
+    mmWaveRadar *RadarSocket;
 
     QCameraViewfinder *CameraView;
     QList<QCameraInfo> AvailableCameras;

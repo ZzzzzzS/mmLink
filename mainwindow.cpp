@@ -8,8 +8,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    this->RadarSocket=new QTcpSocket(this);
-    this->Radar=new mmWaveRadar(this);
+    this->RadarSocket=new mmWaveRadar(this);
 
     this->CameraView=new QCameraViewfinder(this->ui->CameraWidget);
     this->UpdateAvailableCamerasSlot();
@@ -53,10 +52,10 @@ void MainWindow::UpdateParameterSlot()
     value.SamplePoint=this->ui->SamplePoint->text().toInt();
     value.ChirpNumber=this->ui->ChirpNumber->text().toInt();
     value.Slope=this->ui->Slope->text().toInt();
-    this->Radar->SetRadarParameter(value);
+    this->RadarSocket->SetRadarParameter(value);
 
-    if(this->Radar->isParameterLegal())
-        this->RadarSocket->write(this->Radar->UpdateRadarParameter());
+    if(this->RadarSocket->isParameterLegal())
+        this->RadarSocket->write(this->RadarSocket->UpdateRadarParameter());
     else
         QMessageBox::warning(this,"雷达参数错误","请填写正确的雷达参数");
 }

@@ -59,6 +59,17 @@ void MainWindow::TCPDisconnectSuccessedSlot()
 
 void MainWindow::TCPReceiveSlot()
 {
-    qDebug()<<RadarSocket->readAll();
-    this->RadarSocket->write("receive");
+    bool ok=this->RadarSocket->ReadRadarData();
+    if(ok)
+    {
+        mmWaveRadar::RadarHead_t value=this->RadarSocket->GetRadarHead();
+        this->ui->CurrentSamplePoint->setText(QString::number(value.SamplePoint));
+        this->ui->CurrentSampleRate->setText(QString::number(value.SampleRate));
+        this->ui->CurrentSlope->setText(QString::number(value.Slope));
+        this->ui->CurrentChirp->setText(QString::number(value.ChirpNumber));
+    }
+    else
+    {
+        qDebug("receive not correct");
+    }
 }
