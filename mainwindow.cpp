@@ -8,6 +8,15 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    //设置UI
+    this->ui->CurrentChirp->setReadOnly(true);
+    this->ui->CurrentSampleRate->setReadOnly(true);
+    this->ui->CurrentFrameNumber->setReadOnly(true);
+    this->ui->CurrentSamplePoint->setReadOnly(true);
+    this->ui->ClinetIP->setReadOnly(true);
+    this->ui->ClinetPort->setReadOnly(true);
+    this->ui->ClinetIP->setText("连接后显示");
+    this->ui->ClinetPort->setText("不可用");
     //设置雷达
     this->RadarSocket=new mmWaveRadar(this);
     //设置相机
@@ -22,6 +31,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     //UI信号
     QObject::connect(this->ui->action_aboutQt,SIGNAL(triggered()),qApp,SLOT(aboutQt()));
+    QObject::connect(this->ui->CleanCacheButton,SIGNAL(clicked()),this,SLOT(CleanCacheSlot()));
     //TCP连接相关信号
     QObject::connect(this->ui->RadarConnectButton,SIGNAL(clicked()),this,SLOT(TCPConnectSlot()));
     QObject::connect(this->RadarSocket,SIGNAL(error(QAbstractSocket::SocketError)),this,SLOT(TCPErrorSlot(QAbstractSocket::SocketError)));
@@ -62,6 +72,15 @@ void MainWindow::UpdateParameterSlot()
         this->RadarSocket->write(this->RadarSocket->UpdateRadarParameter());
     else
         QMessageBox::warning(this,"雷达参数错误","请填写正确的雷达参数");
+}
+
+void MainWindow::CleanCacheSlot()
+{
+    qDebug()<<"clear cache";
+    this->RadarSocket->ClearRadarCache();
+    this->RadarFreqPlot->ClearSlot();
+    this->RadarTimePlot->ClearSlot();
+    this->RadarPhasePlot->ClearSlot();
 }
 
 

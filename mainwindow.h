@@ -17,6 +17,7 @@
 #include <QCameraInfo>
 #include <QCameraViewfinderSettings>
 #include <QCameraFocus>
+#include <opencv2/opencv.hpp>
 
 #include <QMediaRecorder>
 #include <QVideoEncoderSettings>
@@ -25,6 +26,7 @@
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
+using namespace cv;
 QT_END_NAMESPACE
 
 class MainWindow : public QMainWindow
@@ -70,6 +72,7 @@ private slots:
     void CameraRecordSlot();
 
     void UpdateParameterSlot();
+    void CleanCacheSlot();
 };
 
 #if _MSC_VER >= 1600

@@ -5,15 +5,15 @@ void MainWindow::TCPConnectSlot()
 {
     if(this->ui->RadarConnectButton->text()==QString("连接雷达"))
     {
-        if(ui->ServerPort->text().toUInt()>65535)
+        if(ui->ServerPort->text().toUInt()>65535||ui->ServerPort->text().toUInt()<=0)
         {
-            QMessageBox::critical(this,"错误","请填写正确的服务器地址");
+            QMessageBox::critical(this,"错误","请填写正确的服务器端口");
             return;
         }
-
-        RadarSocket->connectToHost(QHostAddress(ui->ServerIP->text()),ui->ServerPort->text().toUInt());
         this->ui->RadarConnectButton->setText("正在连接");
         this->ui->RadarConnectButton->setEnabled(false);
+        RadarSocket->connectToHost(QHostAddress(ui->ServerIP->text()),ui->ServerPort->text().toUInt());
+
     }
     else if(this->ui->RadarConnectButton->text()==QString("断开"))
     {
@@ -43,18 +43,33 @@ void MainWindow::TCPErrorSlot(QAbstractSocket::SocketError socketError)
     {
         QMessageBox::critical(this,"连接已断开","服务器断开连接");
     }
+    else if(socketError==QAbstractSocket::NetworkError)
+    {
+        this->ui->RadarConnectButton->setText("连接雷达");
+        this->ui->RadarConnectButton->setEnabled(true);
+        QMessageBox::critical(this,"错误","网络错误");
+    }
+    else
+    {
+        this->ui->RadarConnectButton->setText("连接雷达");
+        this->ui->RadarConnectButton->setEnabled(true);
+        QMessageBox::critical(this,"错误","错误代码："+QString::number(socketError));
+    }
 }
 
 void MainWindow::TCPConnectSuccessedSlot()
 {
     this->ui->RadarConnectButton->setText("断开");
     this->ui->RadarConnectButton->setEnabled(true);
+    this->ui->ClinetIP->setText(this->RadarSocket->localAddress().toString());
+    this->ui->ClinetPort->setText(QString::number(this->RadarSocket->localPort()));
 }
 
 void MainWindow::TCPDisconnectSuccessedSlot()
 {
     this->ui->RadarConnectButton->setText("连接雷达");
     this->ui->RadarConnectButton->setEnabled(true);
+    qDebug()<<this->RadarSocket->localPort()<<this->RadarSocket->localAddress();
 }
 
 void MainWindow::TCPReceiveSlot()
@@ -65,7 +80,7 @@ void MainWindow::TCPReceiveSlot()
         mmWaveRadar::RadarHead_t value=this->RadarSocket->GetRadarHead();
         this->ui->CurrentSamplePoint->setText(QString::number(value.SamplePoint));
         this->ui->CurrentSampleRate->setText(QString::number(value.SampleRate));
-        this->ui->CurrentSlope->setText(QString::number(value.Slope));
+        this->ui->CurrentFrameNumber->setText(QString::number(value.FrameNumber));
         this->ui->CurrentChirp->setText(QString::number(value.ChirpNumber));
     }
     else

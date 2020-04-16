@@ -65,3 +65,31 @@ mmWaveRadar::RadarHead_t mmWaveRadar::GetRadarHead()
 {
     return this->Data.RadarData.RadarHead;
 }
+
+bool mmWaveRadar::RadarBufferProcess()
+{
+    if(this->Data.RadarData.RadarHead.FirstFlag==1)
+    {
+
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+void mmWaveRadar::RadarFFT()
+{
+
+}
+
+void mmWaveRadar::ClearRadarCache()
+{
+    this->X.clear();
+    this->TimeData.clear();
+    this->FreqData.clear();
+    this->PhaseData.clear();
+
+    this->FrameDataBuffer.clear();
+}

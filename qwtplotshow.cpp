@@ -28,25 +28,31 @@ QwtPlotShow::QwtPlotShow(QwtPlot *Plot,QObject *parent) : QObject(parent)
     this->Grid->enableXMin(false);
     this->Grid->attach(Plot);
 
-    Plot->setAxisScale(QwtPlot::yRight,0,90);
-    Plot->setAxisScale(QwtPlot::xBottom,0,500);
-    this->CleanSlot();
+    this->CurrentPlot->setAxisScale(QwtPlot::xBottom,0,100);
+    this->CurrentPlot->setAxisScale(QwtPlot::yRight,0,1000);
 }
 
 QwtPlotShow::~QwtPlotShow()
 {
-    delete this->Curve;
-    delete this->Grid;
-    delete this->Panner;
-    delete this->Magnifer;
-}
-
-void QwtPlotShow::CleanSlot()
-{
 
 }
 
-void QwtPlotShow::addNewDataSlot()
+void QwtPlotShow::addNewDataSlot(QVector<double>  x,QVector<double> data)
 {
+    this->Curve->setSamples(x,data);
+    if(x.last()>=100)
+    {
+        this->CurrentPlot->setAxisScale(QwtPlot::xBottom,x.last()-100,x.last());
+    }
+    this->CurrentPlot->replot();
+}
 
+void QwtPlotShow::ClearSlot()
+{
+    QVector<QPointF> value;
+    value.clear();
+    this->Curve->setSamples(value);
+    this->CurrentPlot->setAxisScale(QwtPlot::xBottom,0,100);
+    this->CurrentPlot->setAxisScale(QwtPlot::yRight,0,1000);
+    this->CurrentPlot->replot();
 }

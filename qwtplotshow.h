@@ -8,6 +8,7 @@
 #include <Qwt/qwt_plot_item.h>
 #include <Qwt/qwt_plot_magnifier.h>
 #include <Qwt/qwt_plot_panner.h>
+#include <QPointF>
 
 class QwtPlotShow : public QObject
 {
@@ -20,9 +21,8 @@ public:
     QwtPlotCurve *Curve;
 
 public slots:
-    void CleanSlot();
-    void addNewDataSlot();
-
+    void addNewDataSlot(QVector<double> x,QVector<double> data);
+    void ClearSlot();
 signals:
 
 private:

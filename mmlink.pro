@@ -7,9 +7,18 @@ DEFINES += QWT_DLL
 
 win32 {
     INCLUDEPATH += C:\ProgramFiles\Qt\Qt5.14.0\5.14.0\msvc2017_64\include\Qwt
+    INCLUDEPATH += C:\ProgramFiles\opencv\include
+    LIBS += -l"C:\ProgramFiles\opencv\x64\vc16\lib"
+
+}
+win32:CONFIG（debug，debug|release):{
+    LIBS += -lopencv_world410d
     LIBS += -L"C:\ProgramFiles\Qt\Qt5.14.0\5.14.0\msvc2017_64\lib" -lqwtd
+}else{
+    LIBS += -lopencv_world410
     LIBS += -L"C:\ProgramFiles\Qt\Qt5.14.0\5.14.0\msvc2017_64\lib" -lqwt
 }
+
 
 
 # The following define makes your compiler emit warnings if you use
