@@ -8,19 +8,9 @@
 #include <QList>
 #include <QUrl>
 
-#include <QTcpSocket>
-#include <QAbstractSocket>
-
 #include "mmwaveradar.h"
 
-#include <QCameraViewfinder>
-#include <QCameraInfo>
-#include <QCameraViewfinderSettings>
-#include <QCameraFocus>
-#include <opencv2/opencv.hpp>
-
-#include <QMediaRecorder>
-#include <QVideoEncoderSettings>
+#include "uvccamera.h"
 
 #include "qwtplotshow.h"
 
@@ -41,12 +31,7 @@ private:
     Ui::MainWindow *ui;
     mmWaveRadar *RadarSocket;
 
-    QCameraViewfinder *CameraView;
-    QList<QCameraInfo> AvailableCameras;
-    QCamera *CurrentCamera;
-    QCameraFocus *CurrentCameraFocus;
-
-    QMediaRecorder *CameraRecorder;
+    UVCCamera *Camera;
 
     QwtPlotShow *RadarTimePlot;
     QwtPlotShow *RadarFreqPlot;
@@ -67,9 +52,9 @@ private slots:
 
     void UpdateAvailableCamerasSlot();
     void CameraConnectSlot();
-    void CameraErrorSlot(QCamera::Error value);
     void CameraZoomSlot(int value);
     void CameraRecordSlot();
+    void RenewImageSlot(QPixmap image);
 
     void UpdateParameterSlot();
     void CleanCacheSlot();

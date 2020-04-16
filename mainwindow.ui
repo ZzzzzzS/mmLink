@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1230</width>
-    <height>861</height>
+    <height>810</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -656,18 +656,25 @@
          <item row="0" column="0">
           <layout class="QVBoxLayout" name="verticalLayout_11">
            <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_17">
+            <layout class="QHBoxLayout" name="horizontalLayout_23">
              <item>
               <layout class="QVBoxLayout" name="verticalLayout_10">
                <item>
-                <widget class="QWidget" name="CameraWidget" native="true">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                </widget>
+                <layout class="QHBoxLayout" name="horizontalLayout_17">
+                 <item>
+                  <widget class="QLabel" name="CameraView">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="text">
+                    <string>TextLabel</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
                </item>
                <item>
                 <layout class="QHBoxLayout" name="horizontalLayout_8">

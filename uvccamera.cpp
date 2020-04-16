@@ -1,116 +1,85 @@
-﻿#include "mainwindow.h"
-#include "ui_mainwindow.h"
+﻿#include "uvccamera.h"
 
-void MainWindow::UpdateAvailableCamerasSlot()
+UVCCamera::UVCCamera(QObject *parent) : QObject(parent)
 {
-    AvailableCameras.clear();
-    AvailableCameras=QCameraInfo::availableCameras();
-    this->ui->CameraBox->clear();
-    QList<QCameraInfo>::iterator i;
-    for (i=this->AvailableCameras.begin();i!=this->AvailableCameras.end();i++)
-    {
-        qDebug()<<i->deviceName()<<endl<<i->description();
-        this->ui->CameraBox->addItem(i->description());
-    }
+    this->RefreshTimer=new QTimer(this);
+    QObject::connect(this->RefreshTimer,SIGNAL(timeout()),this,SLOT(TimerSlot()));
 }
 
-void MainWindow::CameraConnectSlot()
+UVCCamera::~UVCCamera()
 {
-    if(this->ui->CameraConnectButton->text()=="连接摄像头")
-    {
-        QObject::disconnect(this->CurrentCamera,SIGNAL(error(QCamera::Error)),this,SLOT(CameraErrorSlot(QCamera::Error)));
-        if(this->CurrentCamera!=nullptr)
-        {
-            delete this->CurrentCamera;
-            this->CurrentCamera=nullptr;
-        }
 
-        if(this->AvailableCameras.count()==0)
-            return;
+}
 
-        for (const QCameraInfo &cameraInfo : this->AvailableCameras)
+void UVCCamera::StartCamera(int number)
+{
+    this->Capture=new VideoCapture(number);
+    //this->FPS=this->Capture->get(CAP_PROP_FPS);
+    this->RefreshTimer->start(20);
+}
+
+void UVCCamera::StopCamera()
+{
+    this->RefreshTimer->stop();
+    this->Capture->release();
+}
+
+void UVCCamera::StartRecording()
+{
+
+}
+
+void UVCCamera::StopRecording()
+{
+
+}
+
+void UVCCamera::TimerSlot()
+{
+    this->Capture->read(this->CaptureBuffer);
+    QImage img = this->cvMat2QImage(this->CaptureBuffer);
+    QPixmap pix=QPixmap::fromImage(img);
+    emit this->RenewImage(pix);
+}
+
+QImage UVCCamera::cvMat2QImage(const Mat &mat)
+{
+    if (mat.type() == CV_8UC1)					// 单通道
         {
-            if (cameraInfo.description() == this->ui->CameraBox->currentText())
+            QImage image(mat.cols, mat.rows, QImage::Format_Indexed8);
+            image.setColorCount(256);				// 灰度级数256
+            for (int i = 0; i < 256; i++)
             {
-                qDebug()<<cameraInfo.description();
-                this->CurrentCamera=new QCamera(cameraInfo);
+                image.setColor(i, qRgb(i, i, i));
             }
+            uchar *pSrc = mat.data;					// 复制mat数据
+            for (int row = 0; row < mat.rows; row++)
+            {
+                uchar *pDest = image.scanLine(row);
+                memcpy(pDest, pSrc, mat.cols);
+                pSrc += mat.step;
+            }
+            return image;
         }
-        this->CameraView->resize(this->ui->CameraWidget->size());
 
-        this->CurrentCamera->setViewfinder(this->CameraView);
-        this->CurrentCameraFocus=this->CurrentCamera->focus();
-        //if(this->CurrentCamera->isCaptureModeSupported(QCamera::CaptureVideo))
-            this->CurrentCamera->setCaptureMode(QCamera::CaptureVideo);
-        //else
-            //QMessageBox::warning(this,"警告","此摄像头录像效果可能不佳");
-        this->CurrentCamera->start();
-
-        this->ui->CameraConnectButton->setText("断开");
-        this->ui->RecordButton->setEnabled(true);
-        this->ui->Focurs->setMaximum(this->CurrentCameraFocus->maximumDigitalZoom()*100);
-        this->ui->Focurs->setMinimum(0);
-    }
-    else if(this->ui->CameraConnectButton->text()=="断开")
-    {
-        QObject::connect(this->CurrentCamera,SIGNAL(error(QCamera::Error)),this,SLOT(CameraErrorSlot(QCamera::Error)));
-        this->CurrentCamera->stop();
-        if(this->CurrentCamera!=nullptr)
+        else if (mat.type() == CV_8UC3)				// 3通道
         {
-            delete this->CurrentCamera;
-            this->CurrentCamera=nullptr;
+            const uchar *pSrc = (const uchar*)mat.data;			// 复制像素
+            QImage image(pSrc, mat.cols, mat.rows, mat.step, QImage::Format_RGB888);	// R, G, B 对应 0,1,2
+            return image.rgbSwapped();				// rgbSwapped是为了显示效果色彩好一些。
         }
-        this->ui->CameraConnectButton->setText("连接摄像头");
-        this->ui->RecordButton->setEnabled(false);
-        if(this->ui->RecordButton->text()=="停止录制")
+        else if (mat.type() == CV_8UC4)
         {
-            CameraRecordSlot();
+            const uchar *pSrc = (const uchar*)mat.data;			// 复制像素
+                                                                // Create QImage with same dimensions as input Mat
+            QImage image(pSrc, mat.cols, mat.rows, mat.step, QImage::Format_ARGB32);		// B,G,R,A 对应 0,1,2,3
+            return image.copy();
         }
-    }
+        else
+        {
+            return QImage();
+        }
+
 }
 
 
-void MainWindow::CameraErrorSlot(QCamera::Error value)
-{
-    qDebug()<<"camera error"<<value;
-    QMessageBox::critical(this,"错误","摄像头发生了一个错误");
-    this->ui->CameraConnectButton->setText("断开");
-    CameraConnectSlot();
-}
-
-void MainWindow::CameraZoomSlot(int value)
-{
-    if(this->ui->CameraConnectButton->text()=="断开")
-    {
-        qDebug()<<value;
-        this->CurrentCameraFocus->zoomTo(1,value/100);
-    }
-}
-
-void MainWindow::CameraRecordSlot()
-{
-    if(this->ui->RecordButton->text()=="录制视频")
-    {
-        this->CameraRecorder=new QMediaRecorder(this->CurrentCamera);
-
-        this->CameraRecorder->setOutputLocation(QUrl::fromLocalFile(QApplication::applicationDirPath()+"/mmlinkRecord.mp4"));
-        //this->CameraRecorder->setContainerFormat("mp4");
-        QVideoEncoderSettings settings;
-        settings.setCodec("video/mpeg2");
-        settings.setResolution(1920,1080);
-        this->CameraRecorder->setVideoSettings(settings);
-        this->CameraRecorder->record();
-        qDebug()<<this->CameraRecorder->status()<<this->CameraRecorder->state()<<this->CameraRecorder->error();
-
-        this->ui->RecordButton->setText("停止录制");
-    }
-    else if(this->ui->RecordButton->text()=="停止录制")
-    {
-        this->CameraRecorder->stop();
-        qDebug()<<this->CameraRecorder->status()<<this->CameraRecorder->state()<<this->CameraRecorder->error();
-
-        this->SaveVideo();
-        this->ui->RecordButton->setText("录制视频");
-        delete this->CameraRecorder;
-    }
-}

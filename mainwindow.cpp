@@ -20,10 +20,7 @@ MainWindow::MainWindow(QWidget *parent)
     //设置雷达
     this->RadarSocket=new mmWaveRadar(this);
     //设置相机
-    this->CameraView=new QCameraViewfinder(this->ui->CameraWidget);
-    this->UpdateAvailableCamerasSlot();
-    this->CurrentCamera=nullptr;
-    this->ui->RecordButton->setEnabled(false);
+    this->Camera=new UVCCamera(this);
     //设置Qwt
     this->RadarTimePlot=new QwtPlotShow(this->ui->RadarTimeData,this);
     this->RadarFreqPlot=new QwtPlotShow(this->ui->RadarFrequentData,this);
@@ -43,6 +40,7 @@ MainWindow::MainWindow(QWidget *parent)
     QObject::connect(this->ui->Focurs,SIGNAL(sliderMoved(int)),this,SLOT(CameraZoomSlot(int)));
     QObject::connect(this->ui->CameraRenewButton,SIGNAL(clicked()),this,SLOT(UpdateAvailableCamerasSlot()));
     QObject::connect(this->ui->RecordButton,SIGNAL(clicked()),this,SLOT(CameraRecordSlot()));
+    QObject::connect(this->Camera,SIGNAL(RenewImage(QPixmap)),this,SLOT(RenewImageSlot(QPixmap)));
     //雷达参数相关信号
     QObject::connect(this->ui->UpdateButton,SIGNAL(clicked()),this,SLOT(UpdateParameterSlot()));
 
@@ -55,7 +53,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::resizeEvent(QResizeEvent *event)
 {
-    this->CameraView->resize(this->ui->CameraWidget->size());
+
 }
 
 void MainWindow::UpdateParameterSlot()
@@ -84,3 +82,37 @@ void MainWindow::CleanCacheSlot()
 }
 
 
+void MainWindow::UpdateAvailableCamerasSlot()
+{
+
+}
+
+void MainWindow::CameraConnectSlot()
+{
+    if(this->ui->CameraConnectButton->text()=="连接摄像头")
+    {
+        this->Camera->StartCamera(0);
+        this->ui->CameraConnectButton->setText("断开");
+    }
+    else if(this->ui->CameraConnectButton->text()=="断开")
+    {
+        this->Camera->StopCamera();
+        this->ui->CameraConnectButton->setText("连接摄像头");
+    }
+}
+
+
+void MainWindow::CameraZoomSlot(int value)
+{
+
+}
+
+void MainWindow::CameraRecordSlot()
+{
+
+}
+
+void MainWindow::RenewImageSlot(QPixmap image)
+{
+    this->ui->CameraView->setPixmap(image.scaled(this->ui->RadarPhaseData->size(),Qt::KeepAspectRatio));
+}
