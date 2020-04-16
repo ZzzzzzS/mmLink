@@ -29,11 +29,13 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     mmwaveradar.cpp \
+    qwtplotshow.cpp \
     uvccamera.cpp
 
 HEADERS += \
     mainwindow.h \
-    mmwaveradar.h
+    mmwaveradar.h \
+    qwtplotshow.h
 
 FORMS += \
     mainwindow.ui

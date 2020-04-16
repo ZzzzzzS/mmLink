@@ -8,15 +8,19 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    //设置雷达
     this->RadarSocket=new mmWaveRadar(this);
-
+    //设置相机
     this->CameraView=new QCameraViewfinder(this->ui->CameraWidget);
     this->UpdateAvailableCamerasSlot();
     this->CurrentCamera=nullptr;
     this->ui->RecordButton->setEnabled(false);
+    //设置Qwt
+    this->RadarTimePlot=new QwtPlotShow(this->ui->RadarTimeData,this);
+    this->RadarFreqPlot=new QwtPlotShow(this->ui->RadarFrequentData,this);
+    this->RadarPhasePlot=new QwtPlotShow(this->ui->RadarPhaseData,this);
 
-
-
+    //UI信号
     QObject::connect(this->ui->action_aboutQt,SIGNAL(triggered()),qApp,SLOT(aboutQt()));
     //TCP连接相关信号
     QObject::connect(this->ui->RadarConnectButton,SIGNAL(clicked()),this,SLOT(TCPConnectSlot()));

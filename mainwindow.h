@@ -21,6 +21,7 @@
 #include <QMediaRecorder>
 #include <QVideoEncoderSettings>
 
+#include "qwtplotshow.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -44,6 +45,10 @@ private:
     QCameraFocus *CurrentCameraFocus;
 
     QMediaRecorder *CameraRecorder;
+
+    QwtPlotShow *RadarTimePlot;
+    QwtPlotShow *RadarFreqPlot;
+    QwtPlotShow *RadarPhasePlot;
 
     void SaveVideo();
 
