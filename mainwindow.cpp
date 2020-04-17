@@ -23,7 +23,8 @@ MainWindow::MainWindow(QWidget *parent)
     //设置雷达
     this->RadarSocket=new mmWaveRadar(this);
     //设置相机
-    this->Camera=new UVCCamera(this);
+    this->Camera=new UVCCamera();
+    this->Camera->moveToThread(&CameraThread);
     //设置Qwt
     this->RadarTimePlot=new QwtPlotShow(this->ui->RadarTimeData,this);
     this->RadarFreqPlot=new QwtPlotShow(this->ui->RadarFrequentData,this);
@@ -44,6 +45,7 @@ MainWindow::MainWindow(QWidget *parent)
     QObject::connect(this->ui->CameraRenewButton,SIGNAL(clicked()),this,SLOT(UpdateAvailableCamerasSlot()));
     QObject::connect(this->ui->RecordButton,SIGNAL(clicked()),this,SLOT(CameraRecordSlot()));
     QObject::connect(this->Camera,SIGNAL(RenewImage(QPixmap)),this,SLOT(RenewImageSlot(QPixmap)));
+    QObject::connect(this,SIGNAL(CameraOperate()),this->Camera,SLOT(StartCamera()));
     //雷达参数相关信号
     QObject::connect(this->ui->UpdateButton,SIGNAL(clicked()),this,SLOT(UpdateParameterSlot()));
 
@@ -51,6 +53,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
+    this->CameraThread.terminate();
     delete ui;
 }
 
@@ -102,7 +105,8 @@ void MainWindow::CameraConnectSlot()
     this->ui->CameraView->resize(this->ui->RadarPhaseData->size());
     if(this->ui->CameraConnectButton->text()=="连接摄像头")
     {
-        this->Camera->StartCamera(0);
+        this->CameraThread.start();
+        emit CameraOperate();
         this->ui->CameraConnectButton->setText("断开");
     }
     else if(this->ui->CameraConnectButton->text()=="断开")

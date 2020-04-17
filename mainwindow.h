@@ -8,6 +8,7 @@
 #include <QList>
 #include <QUrl>
 #include <QImage>
+#include <QThread>
 
 #include "mmwaveradar.h"
 
@@ -33,6 +34,7 @@ private:
     mmWaveRadar *RadarSocket;
 
     UVCCamera *Camera;
+    QThread CameraThread;
 
     QwtPlotShow *RadarTimePlot;
     QwtPlotShow *RadarFreqPlot;
@@ -46,6 +48,8 @@ private:
 protected:
     void resizeEvent(QResizeEvent *event);
 
+signals:
+    void CameraOperate();
 
 private slots:
     void TCPConnectSlot();

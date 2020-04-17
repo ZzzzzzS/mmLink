@@ -1,10 +1,9 @@
 ﻿#include "uvccamera.h"
-
+#include <QApplication>
 UVCCamera::UVCCamera(QObject *parent) : QObject(parent)
 {
     this->RefreshTimer=new QTimer(this);
     this->recorder=new VideoWriter();
-    QObject::connect(this->RefreshTimer,SIGNAL(timeout()),this,SLOT(TimerSlot()));
 }
 
 UVCCamera::~UVCCamera()
@@ -12,17 +11,20 @@ UVCCamera::~UVCCamera()
 
 }
 
-void UVCCamera::StartCamera(int number)
+void UVCCamera::StartCamera()
 {
-    this->Capture=new VideoCapture(number);
+    this->Capture=new VideoCapture(0);
     this->FPS=this->Capture->get(CAP_PROP_FPS);
-    this->RefreshTimer->start(1000/this->FPS);
+    this->StopCapture=false;
+    qDebug("ok");
+    TimerSlot();
 }
 
 void UVCCamera::StopCamera()
 {
     this->RefreshTimer->stop();
     this->Capture->release();
+    this->StopCapture=true;
 }
 
 void UVCCamera::StartRecording()
@@ -42,14 +44,17 @@ void UVCCamera::StopRecording()
 
 void UVCCamera::TimerSlot()
 {
-    this->Capture->read(this->CaptureBuffer);
-    QImage img = this->cvMat2QImage(this->CaptureBuffer);
-    QPixmap pix=QPixmap::fromImage(img);
-    if(this->isCapturing)
+    while(!StopCapture)
     {
-        this->recorder->write(this->CaptureBuffer);
+        this->Capture->read(this->CaptureBuffer);
+        QImage img = this->cvMat2QImage(this->CaptureBuffer);
+        QPixmap pix=QPixmap::fromImage(img);
+        if(this->isCapturing)
+        {
+            this->recorder->write(this->CaptureBuffer);
+        }
+        emit this->RenewImage(pix);
     }
-    emit this->RenewImage(pix);
 }
 
 QImage UVCCamera::cvMat2QImage(const Mat &mat)
