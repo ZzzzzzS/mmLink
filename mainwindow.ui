@@ -137,18 +137,9 @@
                   </widget>
                  </item>
                  <item>
-                  <widget class="QComboBox" name="CameraBox"/>
-                 </item>
-                 <item>
-                  <widget class="QPushButton" name="CameraRenewButton">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
+                  <widget class="QLineEdit" name="CameraAddress">
                    <property name="text">
-                    <string>刷新</string>
+                    <string>输入摄像头编号或视频流地址</string>
                    </property>
                   </widget>
                  </item>

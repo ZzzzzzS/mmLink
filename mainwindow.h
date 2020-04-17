@@ -49,7 +49,7 @@ protected:
     void resizeEvent(QResizeEvent *event);
 
 signals:
-    void CameraOperate();
+    void CameraOperate(QString);
 
 private slots:
     void TCPConnectSlot();
@@ -58,13 +58,14 @@ private slots:
     void TCPDisconnectSuccessedSlot();
     void TCPReceiveSlot();
 
-    void UpdateAvailableCamerasSlot();
     void CameraConnectSlot();
     void CameraZoomSlot(int value);
     void CameraRecordSlot();
     void RenewImageSlot(QPixmap image);
     void CameraStartedSlot();
     void CameraStoppedSlot();
+    void CameraErrorSlot();
+    void CameraInputSlot(int oldPos, int newPos);
 
     void UpdateParameterSlot();
     void CleanCacheSlot();

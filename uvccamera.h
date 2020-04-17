@@ -3,7 +3,7 @@
 
 #include <QObject>
 #include <opencv2/opencv.hpp>
-#include <QTimer>
+#include <QTime>
 #include <QPixmap>
 
 using namespace cv;
@@ -26,8 +26,9 @@ signals:
     void RenewImage(QPixmap image);
     void CameraStarted();
     void CameraStopped();
+    void CameraStartFailed();
 public slots:
-    void StartCamera();
+    void StartCamera(QString);
 private slots:
 private:
     int FPS;

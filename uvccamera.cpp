@@ -1,8 +1,11 @@
 ﻿#include "uvccamera.h"
 #include <QApplication>
+#include <time.h>
+
 UVCCamera::UVCCamera(QObject *parent) : QObject(parent)
 {
     this->recorder=new VideoWriter();
+    this->Capture=new VideoCapture();
 }
 
 UVCCamera::~UVCCamera()
@@ -10,9 +13,23 @@ UVCCamera::~UVCCamera()
 
 }
 
-void UVCCamera::StartCamera()
+void UVCCamera::StartCamera(QString name)
 {
-    this->Capture=new VideoCapture(0);
+    bool ok;
+    int number=name.toInt(&ok);
+    if(ok)
+    {
+        ok=this->Capture->open(number);
+    }
+    else
+    {
+        ok=this->Capture->open(name.toStdString());
+    }
+    if(!ok)
+    {
+        emit CameraStartFailed();
+        return;
+    }
     this->FPS=this->Capture->get(CAP_PROP_FPS);
     this->StopCapture=false;
     qDebug("ok");
@@ -41,8 +58,11 @@ void UVCCamera::StopRecording()
 
 void UVCCamera::TimerSlot()
 {
+    //time_t start,end;
+    //int t=0;
     while(!StopCapture)
     {
+        //start=clock();
         this->Capture->read(this->CaptureBuffer);
         QImage img = this->cvMat2QImage(this->CaptureBuffer);
         QPixmap pix=QPixmap::fromImage(img);
@@ -51,6 +71,9 @@ void UVCCamera::TimerSlot()
             this->recorder->write(this->CaptureBuffer);
         }
         emit this->RenewImage(pix);
+        //end=clock();
+        //t=end-start;
+        //cv::waitKey(1000/FPS-t);
     }
     if(isCapturing)
     {
