@@ -28,7 +28,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-
+    void SetLogo();
 private:
     Ui::MainWindow *ui;
     mmWaveRadar *RadarSocket;
@@ -41,7 +41,7 @@ private:
     QwtPlotShow *RadarPhasePlot;
 
     QImage *logo;
-    void SetLogo();
+
 
     void SaveVideo();
 
@@ -63,6 +63,8 @@ private slots:
     void CameraZoomSlot(int value);
     void CameraRecordSlot();
     void RenewImageSlot(QPixmap image);
+    void CameraStartedSlot();
+    void CameraStoppedSlot();
 
     void UpdateParameterSlot();
     void CleanCacheSlot();

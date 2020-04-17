@@ -24,11 +24,12 @@ public:
     QImage cvMat2QImage(const Mat& mat);
 signals:
     void RenewImage(QPixmap image);
+    void CameraStarted();
+    void CameraStopped();
 public slots:
     void StartCamera();
 private slots:
 private:
-    QTimer *RefreshTimer;
     int FPS;
     Mat CaptureBuffer;
     bool isCapturing;

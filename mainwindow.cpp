@@ -46,6 +46,8 @@ MainWindow::MainWindow(QWidget *parent)
     QObject::connect(this->ui->RecordButton,SIGNAL(clicked()),this,SLOT(CameraRecordSlot()));
     QObject::connect(this->Camera,SIGNAL(RenewImage(QPixmap)),this,SLOT(RenewImageSlot(QPixmap)));
     QObject::connect(this,SIGNAL(CameraOperate()),this->Camera,SLOT(StartCamera()));
+    QObject::connect(this->Camera,SIGNAL(CameraStarted()),this,SLOT(CameraStartedSlot()));
+    QObject::connect(this->Camera,SIGNAL(CameraStopped()),this,SLOT(CameraStoppedSlot()));
     //雷达参数相关信号
     QObject::connect(this->ui->UpdateButton,SIGNAL(clicked()),this,SLOT(UpdateParameterSlot()));
 
@@ -65,7 +67,7 @@ void MainWindow::resizeEvent(QResizeEvent *event)
 void MainWindow::SetLogo()
 {
     QPixmap value=QPixmap::fromImage(*(this->logo));
-    this->ui->CameraView->setPixmap(value.scaled(this->ui->CameraView->size(),Qt::KeepAspectRatio));
+    this->ui->CameraView->setPixmap(value.scaled(this->ui->RadarPhaseData->size(),Qt::KeepAspectRatio));
 
 }
 
@@ -107,16 +109,35 @@ void MainWindow::CameraConnectSlot()
     {
         this->CameraThread.start();
         emit CameraOperate();
-        this->ui->CameraConnectButton->setText("断开");
+        this->ui->CameraConnectButton->setText("正在连接");
+        this->ui->CameraConnectButton->setEnabled(false);
     }
     else if(this->ui->CameraConnectButton->text()=="断开")
     {
         this->Camera->StopCamera();
-        this->SetLogo();
         this->ui->CameraConnectButton->setText("连接摄像头");
+        this->ui->CameraConnectButton->setText("正在断开");
+        this->ui->CameraConnectButton->setEnabled(false);
     }
 }
 
+void MainWindow::CameraStartedSlot()
+{
+    this->ui->CameraConnectButton->setText("断开");
+    this->ui->CameraConnectButton->setEnabled(true);
+    this->ui->CameraView->resize(this->ui->RadarPhaseData->size());
+    this->ui->RecordButton->setEnabled(true);
+    this->ui->RecordButton->setText("录制视频");
+}
+
+void MainWindow::CameraStoppedSlot()
+{
+    this->ui->CameraConnectButton->setText("连接摄像头");
+    this->ui->CameraConnectButton->setEnabled(true);
+    this->SetLogo();
+    this->ui->RecordButton->setEnabled(false);
+    this->ui->RecordButton->setText("录制视频");
+}
 
 void MainWindow::CameraZoomSlot(int value)
 {
