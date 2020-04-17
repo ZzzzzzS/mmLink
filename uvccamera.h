@@ -16,6 +16,7 @@ public:
     ~UVCCamera();
     VideoCapture *Capture;
     VideoWriter *recorder;
+    cv::Size CaptureSize;
     void StartCamera(int number);
     void StopCamera();
     void StartRecording();
@@ -29,6 +30,7 @@ private:
     QTimer *RefreshTimer;
     int FPS;
     Mat CaptureBuffer;
+    bool isCapturing;
 
 };
 

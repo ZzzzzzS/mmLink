@@ -17,6 +17,9 @@ MainWindow::MainWindow(QWidget *parent)
     this->ui->ClinetPort->setReadOnly(true);
     this->ui->ClinetIP->setText("连接后显示");
     this->ui->ClinetPort->setText("不可用");
+    this->logo=new QImage("hitlogo.png");
+    this->ui->CameraView->resize(this->ui->RadarPhaseData->size());
+    this->SetLogo();
     //设置雷达
     this->RadarSocket=new mmWaveRadar(this);
     //设置相机
@@ -53,6 +56,13 @@ MainWindow::~MainWindow()
 
 void MainWindow::resizeEvent(QResizeEvent *event)
 {
+    this->ui->CameraView->resize(this->ui->RadarPhaseData->size());
+}
+
+void MainWindow::SetLogo()
+{
+    QPixmap value=QPixmap::fromImage(*(this->logo));
+    this->ui->CameraView->setPixmap(value.scaled(this->ui->CameraView->size(),Qt::KeepAspectRatio));
 
 }
 
@@ -89,6 +99,7 @@ void MainWindow::UpdateAvailableCamerasSlot()
 
 void MainWindow::CameraConnectSlot()
 {
+    this->ui->CameraView->resize(this->ui->RadarPhaseData->size());
     if(this->ui->CameraConnectButton->text()=="连接摄像头")
     {
         this->Camera->StartCamera(0);
@@ -97,6 +108,7 @@ void MainWindow::CameraConnectSlot()
     else if(this->ui->CameraConnectButton->text()=="断开")
     {
         this->Camera->StopCamera();
+        this->SetLogo();
         this->ui->CameraConnectButton->setText("连接摄像头");
     }
 }
@@ -109,10 +121,19 @@ void MainWindow::CameraZoomSlot(int value)
 
 void MainWindow::CameraRecordSlot()
 {
-
+    if(this->ui->RecordButton->text()=="录制视频")
+    {
+        this->Camera->StartRecording();
+        this->ui->RecordButton->setText("停止录制");
+    }
+    else if(this->ui->RecordButton->text()=="停止录制")
+    {
+        this->Camera->StopRecording();
+        this->ui->RecordButton->setText("录制视频");
+    }
 }
 
 void MainWindow::RenewImageSlot(QPixmap image)
 {
-    this->ui->CameraView->setPixmap(image.scaled(this->ui->RadarPhaseData->size(),Qt::KeepAspectRatio));
+    this->ui->CameraView->setPixmap(image.scaled(this->ui->CameraView->size(),Qt::KeepAspectRatio));
 }

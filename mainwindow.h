@@ -7,6 +7,7 @@
 #include <QMessageBox>
 #include <QList>
 #include <QUrl>
+#include <QImage>
 
 #include "mmwaveradar.h"
 
@@ -36,6 +37,9 @@ private:
     QwtPlotShow *RadarTimePlot;
     QwtPlotShow *RadarFreqPlot;
     QwtPlotShow *RadarPhasePlot;
+
+    QImage *logo;
+    void SetLogo();
 
     void SaveVideo();
 
