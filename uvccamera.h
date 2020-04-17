@@ -17,20 +17,24 @@ public:
     VideoCapture *Capture;
     VideoWriter *recorder;
     cv::Size CaptureSize;
-    void StartCamera(int number);
+
     void StopCamera();
     void StartRecording();
     void StopRecording();
     QImage cvMat2QImage(const Mat& mat);
 signals:
     void RenewImage(QPixmap image);
+    void CameraStarted();
+    void CameraStopped();
+public slots:
+    void StartCamera();
 private slots:
-    void TimerSlot();
 private:
-    QTimer *RefreshTimer;
     int FPS;
     Mat CaptureBuffer;
     bool isCapturing;
+    bool StopCapture;
+    void TimerSlot();
 
 };
 

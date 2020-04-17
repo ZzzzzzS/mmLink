@@ -8,6 +8,7 @@
 #include <QList>
 #include <QUrl>
 #include <QImage>
+#include <QThread>
 
 #include "mmwaveradar.h"
 
@@ -27,25 +28,28 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-
+    void SetLogo();
 private:
     Ui::MainWindow *ui;
     mmWaveRadar *RadarSocket;
 
     UVCCamera *Camera;
+    QThread CameraThread;
 
     QwtPlotShow *RadarTimePlot;
     QwtPlotShow *RadarFreqPlot;
     QwtPlotShow *RadarPhasePlot;
 
     QImage *logo;
-    void SetLogo();
+
 
     void SaveVideo();
 
 protected:
     void resizeEvent(QResizeEvent *event);
 
+signals:
+    void CameraOperate();
 
 private slots:
     void TCPConnectSlot();
@@ -59,6 +63,8 @@ private slots:
     void CameraZoomSlot(int value);
     void CameraRecordSlot();
     void RenewImageSlot(QPixmap image);
+    void CameraStartedSlot();
+    void CameraStoppedSlot();
 
     void UpdateParameterSlot();
     void CleanCacheSlot();
