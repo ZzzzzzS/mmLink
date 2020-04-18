@@ -63,6 +63,8 @@ MainWindow::~MainWindow()
 void MainWindow::resizeEvent(QResizeEvent *event)
 {
     this->ui->CameraView->resize(this->ui->RadarPhaseData->size());
+    if(this->ui->CameraConnectButton->text()!="断开")
+        this->SetLogo();
 }
 
 void MainWindow::SetLogo()

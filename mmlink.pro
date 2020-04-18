@@ -5,20 +5,15 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 CONFIG += c++11 qwt
 DEFINES += QWT_DLL
 
+win32:{
+    INCLUDEPATH += C:\ProgramFiles\Qt\Qt5.14.0\5.14.0\msvc2017_64\include\Qwt
+    INCLUDEPATH += C:\ProgramFiles\opencv\include
+    CONFIG(debug, debug|release) LIBS += -L"C:\ProgramFiles\Qt\Qt5.14.0\5.14.0\msvc2017_64\lib" -lqwtd
+    CONFIG(release, debug|release) LIBS += -L"C:\ProgramFiles\Qt\Qt5.14.0\5.14.0\msvc2017_64\lib" -lqwt
+    CONFIG(debug, debug|release) LIBS += -L"C:\ProgramFiles\opencv\x64\vc16\lib" -lopencv_world410d
+    CONFIG(release, debug|release) LIBS += -L"C:\ProgramFiles\opencv\x64\vc16\lib" -lopencv_world410
+}
 
-INCLUDEPATH += C:\ProgramFiles\Qt\Qt5.14.0\5.14.0\msvc2017_64\include\Qwt
-INCLUDEPATH += C:\ProgramFiles\opencv\include
-
-LIBS += -L"C:\ProgramFiles\Qt\Qt5.14.0\5.14.0\msvc2017_64\lib" -lqwtd
-LIBS += -L"C:\ProgramFiles\opencv\x64\vc16\lib" -lopencv_world410d
-
-#win32:CONFIG（debug，debug|release):{
-#    #LIBS += -L"C:\ProgramFiles\opencv\x64\vc16\lib\opencv_world410d"
-#    #LIBS += -L"C:\ProgramFiles\Qt\Qt5.14.0\5.14.0\msvc2017_64\lib" -lqwtd
-#}else{
-#    #LIBS += -L"C:\ProgramFiles\opencv\x64\vc16\lib\opencv_world410"
-#    #LIBS += -L"C:\ProgramFiles\Qt\Qt5.14.0\5.14.0\msvc2017_64\lib" -lqwt
-#}
 
 
 
