@@ -110,5 +110,3 @@ QImage UVCCamera::cvMat2QImage(const Mat &mat)
         }
 
 }
-
-
