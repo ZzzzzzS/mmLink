@@ -31,7 +31,7 @@ MainWindow::MainWindow(QWidget *parent)
     this->RadarPhasePlot=new QwtPlotShow(this->ui->RadarPhaseData,this);
 
     //UI信号
-    QObject::connect(this->ui->action_aboutQt,SIGNAL(triggered()),qApp,SLOT(aboutQt()));
+    QObject::connect(this->ui->action_aboutQt,SIGNAL(triggered()),this,SLOT(AboutSlot()));
     QObject::connect(this->ui->CleanCacheButton,SIGNAL(clicked()),this,SLOT(CleanCacheSlot()));
     QObject::connect(this->ui->CameraAddress,SIGNAL(cursorPositionChanged(int,int)),this,SLOT(CameraInputSlot(int,int)));
     //TCP连接相关信号
@@ -185,4 +185,12 @@ void MainWindow::CameraRecordSlot()
 void MainWindow::RenewImageSlot(QPixmap image)
 {
     this->ui->CameraView->setPixmap(image.scaled(this->ui->CameraView->size(),Qt::KeepAspectRatio));
+}
+
+
+void MainWindow::AboutSlot()
+{
+    AboutWindow *WindowBase=new AboutWindow(this);
+    WindowBase->exec();
+    delete WindowBase;
 }

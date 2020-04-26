@@ -30,6 +30,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     TCPConfig.cpp \
+    aboutwindow.cpp \
     filemanagement.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -38,12 +39,14 @@ SOURCES += \
     uvccamera.cpp
 
 HEADERS += \
+    aboutwindow.h \
     mainwindow.h \
     mmwaveradar.h \
     qwtplotshow.h \
     uvccamera.h
 
 FORMS += \
+    aboutwindow.ui \
     mainwindow.ui
 
 TRANSLATIONS += \

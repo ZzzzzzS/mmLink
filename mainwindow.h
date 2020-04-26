@@ -9,6 +9,7 @@
 #include <QUrl>
 #include <QImage>
 #include <QThread>
+#include "aboutwindow.h"
 
 #include "mmwaveradar.h"
 
@@ -69,6 +70,7 @@ private slots:
 
     void UpdateParameterSlot();
     void CleanCacheSlot();
+    void AboutSlot();
 };
 
 #if _MSC_VER >= 1600
