@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QDesktopServices>
 #include <QProcess>
+#include <QMediaPlayer>
 
 namespace Ui {
 class AboutWindow;
@@ -23,6 +24,7 @@ private slots:
 private:
     Ui::AboutWindow *ui;
     QProcess *MODMusic;
+    QMediaPlayer *Music;
 };
 
 
