@@ -17,7 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
     this->ui->ClinetPort->setReadOnly(true);
     this->ui->ClinetIP->setText("连接后显示");
     this->ui->ClinetPort->setText("不可用");
-    this->logo=new QImage("hitlogo.png");
+    this->logo=new QImage("://image/hitlogo.png");
     this->ui->CameraView->resize(this->ui->RadarPhaseData->size());
     this->SetLogo();
     //设置雷达

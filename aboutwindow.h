@@ -3,7 +3,6 @@
 
 #include <QDialog>
 #include <QDesktopServices>
-#include <QProcess>
 #include <QMediaPlayer>
 
 namespace Ui {
@@ -19,12 +18,15 @@ public:
     ~AboutWindow();
 
 private slots:
-    void BlogSlot();
+    void OpenCVSlot();
     void FeedBackSlot();
+    void OpenSourceSlot();
+    void CUDASlot();
 private:
     Ui::AboutWindow *ui;
-    QProcess *MODMusic;
     QMediaPlayer *Music;
+    void SetLogo();
+    void SetInformation();
 };
 
 

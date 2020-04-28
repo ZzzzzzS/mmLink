@@ -32,6 +32,7 @@ SOURCES += \
     TCPConfig.cpp \
     aboutwindow.cpp \
     filemanagement.cpp \
+    license.cpp \
     main.cpp \
     mainwindow.cpp \
     mmwaveradar.cpp \
@@ -40,6 +41,7 @@ SOURCES += \
 
 HEADERS += \
     aboutwindow.h \
+    license.h \
     mainwindow.h \
     mmwaveradar.h \
     qwtplotshow.h \
@@ -56,3 +58,6 @@ TRANSLATIONS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    resource.qrc
