@@ -21,7 +21,6 @@ private slots:
     void OpenCVSlot();
     void FeedBackSlot();
     void OpenSourceSlot();
-    void CUDASlot();
 private:
     Ui::AboutWindow *ui;
     QMediaPlayer *Music;

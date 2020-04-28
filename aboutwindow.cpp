@@ -14,19 +14,20 @@ AboutWindow::AboutWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     this->setWindowFlags(this->windowFlags()&~Qt::WindowContextHelpButtonHint);
+    this->setWindowTitle(tr("关于mmLink"));
+    this->setFixedSize(this->size());
 
     QObject::connect(ui->ExitButton,SIGNAL(clicked(bool)),this,SLOT(close()));
     QObject::connect(ui->OpenCVButton,SIGNAL(clicked(bool)),this,SLOT(OpenCVSlot()));
     QObject::connect(ui->QtButton,SIGNAL(clicked(bool)),qApp,SLOT(aboutQt()));
     QObject::connect(ui->FeedBackButton,SIGNAL(clicked(bool)),this,SLOT(FeedBackSlot()));
-    QObject::connect(ui->CUDAButton,SIGNAL(clicked(bool)),this,SLOT(CUDASlot()));
     QObject::connect(ui->OpenSourceButton,SIGNAL(clicked(bool)),this,SLOT(OpenSourceSlot()));
 
     this->Music=new QMediaPlayer(this);
     this->Music->setMedia(QUrl("qrc:/sound/aboutwindow"));
     this->SetLogo();
     this->SetInformation();
-    //this->Music->play();
+    this->Music->play();
 }
 
 AboutWindow::~AboutWindow()
@@ -42,9 +43,6 @@ void AboutWindow::SetLogo()
     tmp.load("://image/qt.png");
     value=QPixmap::fromImage(tmp);
     this->ui->QtImage->setPixmap(value.scaled(this->ui->QtImage->size(),Qt::KeepAspectRatio));
-    tmp.load("://image/cuda.png");
-    value=QPixmap::fromImage(tmp);
-    this->ui->CUDAImage->setPixmap(value.scaled(this->ui->CUDAImage->size(),Qt::KeepAspectRatio));
 }
 
 void AboutWindow::OpenCVSlot()
@@ -55,11 +53,6 @@ void AboutWindow::OpenCVSlot()
 void AboutWindow::FeedBackSlot()
 {
     QDesktopServices::openUrl(QUrl(QLatin1String("https://github.com/ZzzzzzS/mmLink")));
-}
-
-void AboutWindow::CUDASlot()
-{
-    QDesktopServices::openUrl(QUrl(QLatin1String("https://developer.nvidia.com/about-cuda")));
 }
 
 void AboutWindow::OpenSourceSlot()
@@ -73,12 +66,13 @@ void AboutWindow::OpenSourceSlot()
 void AboutWindow::SetInformation()
 {
     QString QtVersion;
-    QtVersion=tr("    主机名：")+QSysInfo::machineHostName()+"\n";
-    QtVersion+=tr("    Qt版本：")+tr(qVersion())+"\n";
-    QtVersion+=(tr("    操作系统版本：")+QSysInfo::productType()+" "+QSysInfo::productVersion()+" "+QSysInfo::currentCpuArchitecture());
-    QtVersion+=("\n"+tr("    内核版本：")+QSysInfo::kernelType()+" "+QSysInfo::kernelVersion());
+    QtVersion=tr("主机名：")+QSysInfo::machineHostName()+"\n";
+    QtVersion+=tr("Qt版本：")+tr(qVersion())+"\n";
+    QtVersion+=tr("OpenCV版本:")+QString::fromStdString(cv::getVersionString())+"\n";
+    QtVersion+=(tr("操作系统版本：")+QSysInfo::productType()+" "+QSysInfo::productVersion()+" "+QSysInfo::currentCpuArchitecture());
+    QtVersion+=("\n"+tr("内核版本：")+QSysInfo::kernelType()+" "+QSysInfo::kernelVersion());
     this->ui->QtVersion->setText(QtVersion);
-    QString OpenCVVersion;
-    OpenCVVersion=tr("   OpenCV构建版本:")+QString::fromStdString(cv::getVersionString());
-    this->ui->OpenCVVersion->setText(OpenCVVersion);
+    QString mmLinkVersion;
+    mmLinkVersion=tr("mmLink1.0\n")+tr("Powered By 周子顺\n")+tr("Copyright©2020 All Rights Reserved")+"\n"+tr("哈尔滨工业大学(威海) 信息科学与工程学院");
+    this->ui->mmLinkVersion->setText(mmLinkVersion);
 }
