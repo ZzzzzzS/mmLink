@@ -6,6 +6,8 @@ UVCCamera::UVCCamera(QObject *parent) : QObject(parent)
 {
     this->recorder=new VideoWriter();
     this->Capture=new VideoCapture();
+    cv::cuda::DeviceInfo a;
+    qDebug("%s",a.name());
 }
 
 UVCCamera::~UVCCamera()

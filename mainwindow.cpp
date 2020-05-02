@@ -121,8 +121,15 @@ void MainWindow::CameraConnectSlot()
     {
         if(this->ui->CameraAddress->text()=="输入摄像头编号或视频流地址")
         {
-            QMessageBox::warning(this,"将使用默认摄像头","未指定输入设备,将使用默认设备");
-            this->ui->CameraAddress->setText("0");
+            if(QMessageBox::warning(this,"将使用默认摄像头","未指定输入设备,将使用默认设备",QMessageBox::Yes|QMessageBox::No)==QMessageBox::Yes)
+            {
+                this->ui->CameraAddress->setText("0");
+                qDebug("ok");
+            }
+            else
+            {
+                return;
+            }
         }
         this->CameraThread.start();
         emit CameraOperate(this->ui->CameraAddress->text());
