@@ -1,13 +1,17 @@
 ﻿#include "uvccamera.h"
 #include <QApplication>
 #include <time.h>
+#include <opencv2/core/cuda.hpp>
 
 UVCCamera::UVCCamera(QObject *parent) : QObject(parent)
 {
     this->recorder=new VideoWriter();
     this->Capture=new VideoCapture();
-    cv::cuda::DeviceInfo a;
-    qDebug("%s",a.name());
+
+#if defined (USE_CUDA) && defined (Q_OS_WINDOWS)
+    cuda::DeviceInfo info;
+    this->isCUDASupport=info.isCompatible();
+#endif
 }
 
 UVCCamera::~UVCCamera()
@@ -34,6 +38,7 @@ void UVCCamera::StartCamera(QString name)
     }
     this->FPS=this->Capture->get(CAP_PROP_FPS);
     this->StopCapture=false;
+    this->isCapturing=false;
     qDebug("ok");
     emit CameraStarted();
     TimerSlot();
@@ -46,16 +51,38 @@ void UVCCamera::StopCamera()
 
 void UVCCamera::StartRecording()
 {
+#if defined (USE_CUDA) && defined (Q_OS_WINDOWS)
+    if(!isCUDASupport)
+    {
+        this->CaptureSize.width=this->Capture->get(cv::CAP_PROP_FRAME_WIDTH);
+        this->CaptureSize.height=this->Capture->get(cv::CAP_PROP_FRAME_HEIGHT);
+        this->recorder->open("CameraCapture.avi",VideoWriter::fourcc('D', 'I', 'V', 'X'),this->FPS,this->CaptureSize);
+        this->isCapturing=true;
+    }
+    else
+    {
+        this->CaptureSize.width=this->Capture->get(cv::CAP_PROP_FRAME_WIDTH);
+        this->CaptureSize.height=this->Capture->get(cv::CAP_PROP_FRAME_HEIGHT);
+        const cv::String name="CameraCapture.avi";
+        this->CUDARecorder=cudacodec::createVideoWriter(name,this->CaptureSize,this->FPS);
+        this->isCapturing=true;
+    }
+#else
     this->CaptureSize.width=this->Capture->get(cv::CAP_PROP_FRAME_WIDTH);
     this->CaptureSize.height=this->Capture->get(cv::CAP_PROP_FRAME_HEIGHT);
     this->recorder->open("CameraCapture.avi",VideoWriter::fourcc('D', 'I', 'V', 'X'),this->FPS,this->CaptureSize);
     this->isCapturing=true;
+#endif
 }
 
 void UVCCamera::StopRecording()
 {
     this->isCapturing=false;
     this->recorder->release();
+#if defined (USE_CUDA) && defined (Q_OS_WINDOWS)
+    if(isCUDASupport)
+        this->CUDARecorder.release();
+#endif
 }
 
 void UVCCamera::TimerSlot()
@@ -70,7 +97,18 @@ void UVCCamera::TimerSlot()
         QPixmap pix=QPixmap::fromImage(img);
         if(this->isCapturing)
         {
+#if defined (USE_CUDA) && defined (Q_OS_WINDOWS)
+            if(isCUDASupport)
+            {
+                this->CUDARecorder->write(this->CaptureBuffer);
+            }
+            else
+            {
+                this->recorder->write(this->CaptureBuffer);
+            }
+#else
             this->recorder->write(this->CaptureBuffer);
+#endif
         }
         emit this->RenewImage(pix);
         //end=clock();

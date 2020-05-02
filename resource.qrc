@@ -3,8 +3,12 @@
         <file>hitlogo.png</file>
         <file>qt.png</file>
         <file>opencv.png</file>
+        <file>cuda.png</file>
     </qresource>
     <qresource prefix="/sound">
         <file>aboutwindow</file>
+    </qresource>
+    <qresource prefix="/LICENSE">
+        <file>LICENSE</file>
     </qresource>
 </RCC>

@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <opencv2/opencv.hpp>
+#include <opencv2/cudacodec.hpp>
 #include <QTime>
 #include <QPixmap>
 
@@ -16,8 +17,16 @@ public:
     ~UVCCamera();
     VideoCapture *Capture;
     VideoWriter *recorder;
-    cv::Size CaptureSize;
+    Size CaptureSize;
 
+#if defined (USE_CUDA) && defined (Q_OS_WINDOWS)
+public:
+    Ptr<cudacodec::VideoWriter> CUDARecorder;
+private:
+    bool isCUDASupport;
+#endif
+
+public:
     void StopCamera();
     void StartRecording();
     void StopRecording();
