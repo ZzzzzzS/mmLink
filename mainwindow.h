@@ -30,12 +30,13 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void SetLogo();
+
 private:
     Ui::MainWindow *ui;
     mmWaveRadar *RadarSocket;
 
     UVCCamera *Camera;
-    QThread CameraThread;
+    QThread *CameraThread;
 
     QwtPlotShow *RadarTimePlot;
     QwtPlotShow *RadarFreqPlot;
@@ -43,14 +44,11 @@ private:
 
     QImage *logo;
 
-
-    void SaveVideo();
-
 protected:
     void resizeEvent(QResizeEvent *event);
 
 signals:
-    void CameraOperate(QString);
+    void CameraInit(QString);
 
 private slots:
     void TCPConnectSlot();
@@ -60,7 +58,6 @@ private slots:
     void TCPReceiveSlot();
 
     void CameraConnectSlot();
-    void CameraZoomSlot(int value);
     void CameraRecordSlot();
     void RenewImageSlot(QPixmap image);
     void CameraStartedSlot();
@@ -69,6 +66,7 @@ private slots:
     void CameraInputSlot(int oldPos, int newPos);
 
     void UpdateParameterSlot();
+
     void CleanCacheSlot();
     void AboutSlot();
 };

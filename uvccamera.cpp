@@ -5,13 +5,8 @@
 
 UVCCamera::UVCCamera(QObject *parent) : QObject(parent)
 {
-    this->recorder=new VideoWriter();
-    this->Capture=new VideoCapture();
-
-#if defined (USE_CUDA) && defined (Q_OS_WINDOWS)
-    cuda::DeviceInfo info;
-    this->isCUDASupport=info.isCompatible();
-#endif
+    this->recorder=new VideoWriter(); //初始化视频编码器
+    this->Capture=new VideoCapture(); //初始化视频采集器
 }
 
 UVCCamera::~UVCCamera()
@@ -37,90 +32,60 @@ void UVCCamera::StartCamera(QString name)
         return;
     }
     this->FPS=this->Capture->get(CAP_PROP_FPS);
-    this->StopCapture=false;
-    this->isCapturing=false;
-    qDebug("ok");
+    this->isRecording=false; //设置没有开始录制视频
+    this->isCapturing=true; //设置开始采集的标志位
+    qDebug("Camera start");
     emit CameraStarted();
-    TimerSlot();
+    CameraLoop();
 }
 
 void UVCCamera::StopCamera()
 {
-    this->StopCapture=true;
+    this->isCapturing=false;
 }
 
 void UVCCamera::StartRecording()
 {
-#if defined (USE_CUDA) && defined (Q_OS_WINDOWS)
-    if(!isCUDASupport)
-    {
-        this->CaptureSize.width=this->Capture->get(cv::CAP_PROP_FRAME_WIDTH);
-        this->CaptureSize.height=this->Capture->get(cv::CAP_PROP_FRAME_HEIGHT);
-        this->recorder->open("CameraCapture.avi",VideoWriter::fourcc('D', 'I', 'V', 'X'),this->FPS,this->CaptureSize);
-        this->isCapturing=true;
-    }
-    else
-    {
-        this->CaptureSize.width=this->Capture->get(cv::CAP_PROP_FRAME_WIDTH);
-        this->CaptureSize.height=this->Capture->get(cv::CAP_PROP_FRAME_HEIGHT);
-        const cv::String name="CameraCapture.avi";
-        this->CUDARecorder=cudacodec::createVideoWriter(name,this->CaptureSize,this->FPS);
-        this->isCapturing=true;
-    }
-#else
     this->CaptureSize.width=this->Capture->get(cv::CAP_PROP_FRAME_WIDTH);
     this->CaptureSize.height=this->Capture->get(cv::CAP_PROP_FRAME_HEIGHT);
     this->recorder->open("CameraCapture.avi",VideoWriter::fourcc('D', 'I', 'V', 'X'),this->FPS,this->CaptureSize);
-    this->isCapturing=true;
-#endif
+    this->isRecording=true;
 }
 
 void UVCCamera::StopRecording()
 {
-    this->isCapturing=false;
+    this->isRecording=false;
     this->recorder->release();
-#if defined (USE_CUDA) && defined (Q_OS_WINDOWS)
-    if(isCUDASupport)
-        this->CUDARecorder.release();
-#endif
 }
 
-void UVCCamera::TimerSlot()
+void UVCCamera::CameraLoop()
 {
     //time_t start,end;
     //int t=0;
-    while(!StopCapture)
+    QImage img;
+    QPixmap pix;
+    while(isCapturing)//一直在循环里采集图像
     {
         //start=clock();
         this->Capture->read(this->CaptureBuffer);
-        QImage img = this->cvMat2QImage(this->CaptureBuffer);
-        QPixmap pix=QPixmap::fromImage(img);
-        if(this->isCapturing)
+        img = this->cvMat2QImage(this->CaptureBuffer);
+        pix = QPixmap::fromImage(img);
+        if(this->isRecording)
         {
-#if defined (USE_CUDA) && defined (Q_OS_WINDOWS)
-            if(isCUDASupport)
-            {
-                this->CUDARecorder->write(this->CaptureBuffer);
-            }
-            else
-            {
-                this->recorder->write(this->CaptureBuffer);
-            }
-#else
             this->recorder->write(this->CaptureBuffer);
-#endif
         }
         emit this->RenewImage(pix);
         //end=clock();
         //t=end-start;
         //cv::waitKey(1000/FPS-t);
     }
-    if(isCapturing)
+
+    if(isRecording)//检查是否还在录像
     {
         StopRecording();
     }
-    this->Capture->release();
-    emit CameraStopped();
+    this->Capture->release();//释放摄像头
+    emit CameraStopped(); //摄像头已停止信号
 }
 
 QImage UVCCamera::cvMat2QImage(const Mat &mat)
