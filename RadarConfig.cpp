@@ -88,3 +88,28 @@ void MainWindow::TCPReceiveSlot()
         qDebug("receive not correct");
     }
 }
+
+void MainWindow::UpdateParameterSlot()
+{
+    mmWaveRadar::RadarParameter_t value;
+
+    value.SampleRate=this->ui->SampleRate->text().toInt();
+    value.SamplePoint=this->ui->SamplePoint->text().toInt();
+    value.ChirpNumber=this->ui->ChirpNumber->text().toInt();
+    value.Slope=this->ui->Slope->text().toInt();
+    this->RadarSocket->SetRadarParameter(value);
+
+    if(this->RadarSocket->isParameterLegal())
+        this->RadarSocket->write(this->RadarSocket->UpdateRadarParameter());
+    else
+        QMessageBox::warning(this,"雷达参数错误","请填写正确的雷达参数");
+}
+
+void MainWindow::CleanCacheSlot()
+{
+    qDebug()<<"clear cache";
+    this->RadarSocket->ClearRadarCache();
+    this->RadarFreqPlot->ClearSlot();
+    this->RadarTimePlot->ClearSlot();
+    this->RadarPhasePlot->ClearSlot();
+}

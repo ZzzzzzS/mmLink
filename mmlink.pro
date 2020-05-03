@@ -5,14 +5,30 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 CONFIG += c++11 qwt
 DEFINES += QWT_DLL
 
+DEFINES +=USE_CUDA #如果不需要cuda就删除这个
+
 win32:{
     INCLUDEPATH += C:\ProgramFiles\Qt\Qt5.14.0\5.14.0\msvc2017_64\include\Qwt
-    INCLUDEPATH += C:\ProgramFiles\opencv\include
+    INCLUDEPATH += C:\ProgramFiles\OpenCV\opencv4.3.0\include
     CONFIG(debug, debug|release) LIBS += -L"C:\ProgramFiles\Qt\Qt5.14.0\5.14.0\msvc2017_64\lib" -lqwtd
     CONFIG(release, debug|release) LIBS += -L"C:\ProgramFiles\Qt\Qt5.14.0\5.14.0\msvc2017_64\lib" -lqwt
-    CONFIG(debug, debug|release) LIBS += -L"C:\ProgramFiles\opencv\x64\vc16\lib" -lopencv_world410d
-    CONFIG(release, debug|release) LIBS += -L"C:\ProgramFiles\opencv\x64\vc16\lib" -lopencv_world410
 }
+
+win32:{
+    CONFIG(debug, debug|release) LIBS += -L"C:\ProgramFiles\OpenCV\opencv4.3.0\x64\vc16\lib" \
+    -lopencv_core430d \
+    -lopencv_videoio430d
+
+    contains(DEFINES,USE_CUDA){
+        message("将使用CUDA加速")
+        CONFIG(debug, debug|release) LIBS += -L"C:\ProgramFiles\OpenCV\opencv4.3.0\x64\vc16\lib" \
+        -lopencv_cudev430d \
+        -lopencv_cudacodec430d
+    }else{
+        message("不会使用CUDA加速")
+    }
+}
+
 
 
 
@@ -29,8 +45,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    TCPConfig.cpp \
-    filemanagement.cpp \
+    CameraConfig.cpp \
+    FileConfig.cpp \
+    RadarConfig.cpp \
+    aboutwindow.cpp \
+    license.cpp \
     main.cpp \
     mainwindow.cpp \
     mmwaveradar.cpp \
@@ -38,12 +57,15 @@ SOURCES += \
     uvccamera.cpp
 
 HEADERS += \
+    aboutwindow.h \
+    license.h \
     mainwindow.h \
     mmwaveradar.h \
     qwtplotshow.h \
     uvccamera.h
 
 FORMS += \
+    aboutwindow.ui \
     mainwindow.ui
 
 TRANSLATIONS += \
@@ -53,3 +75,6 @@ TRANSLATIONS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    resource.qrc

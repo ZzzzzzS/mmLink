@@ -926,7 +926,7 @@
   <widget class="QStatusBar" name="statusbar"/>
   <action name="action_aboutQt">
    <property name="text">
-    <string>关于Qt</string>
+    <string>关于</string>
    </property>
   </action>
  </widget>
