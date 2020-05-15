@@ -27,6 +27,19 @@ win32:{
     }else{
         message("不会使用CUDA加速")
     }
+
+    CONFIG(release, debug|release) LIBS += -L"C:\ProgramFiles\opencv\x64\vc16\lib" \
+    -lopencv_core430 \
+    -lopencv_videoio430
+
+    contains(DEFINES,USE_CUDA){
+        message("将使用CUDA加速")
+        CONFIG(release, debug|release) LIBS += -L"C:\ProgramFiles\opencv\x64\vc16\lib" \
+        -lopencv_cudev430 \
+        -lopencv_cudacodec430
+    }else{
+        message("不会使用CUDA加速")
+    }
 }
 
 
@@ -49,7 +62,6 @@ SOURCES += \
     FileConfig.cpp \
     RadarConfig.cpp \
     aboutwindow.cpp \
-    license.cpp \
     main.cpp \
     mainwindow.cpp \
     mmwaveradar.cpp \
@@ -58,7 +70,6 @@ SOURCES += \
 
 HEADERS += \
     aboutwindow.h \
-    license.h \
     mainwindow.h \
     mmwaveradar.h \
     qwtplotshow.h \
@@ -69,7 +80,8 @@ FORMS += \
     mainwindow.ui
 
 TRANSLATIONS += \
-    mmlink_zh_CN.ts
+    mmlink_zh_CN.ts\
+    mmlink_us_EN.ts
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -78,3 +90,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     resource.qrc
+
+DISTFILES += \
+    mmlink_us_EN.ts

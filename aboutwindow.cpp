@@ -1,11 +1,12 @@
 ﻿#include "aboutwindow.h"
 #include "ui_aboutwindow.h"
-#include "license.h"
 #include <QUrl>
 #include <QStringList>
 #include <QPixmap>
 #include <QMessageBox>
 #include <QSysInfo>
+#include <QFile>
+#include <QTextStream>
 
 using namespace cv::cuda;
 
@@ -76,20 +77,28 @@ void AboutWindow::OpenSourceSlot()
 {
     QMessageBox LicenseBox;
     LicenseBox.setWindowTitle(tr("开源声明"));
-    LicenseBox.setText(license);
+    LicenseBox.setWindowTitle(tr("开源声明"));
+
+    QFile license;
+    license.setFileName(":/LICENSE/LICENSE");
+    license.open(QIODevice::ReadOnly);
+    QTextStream buffer(&license);
+
+    LicenseBox.setText(buffer.readAll());
     LicenseBox.exec();
 }
 
 void AboutWindow::SetInformation()
 {
     QString QtVersion;
+    QtVersion=tr("此软件授权给")+QSysInfo::machineHostName()+tr("使用")+"\n";
     QtVersion+=tr("Qt版本：")+tr(qVersion())+"\n";
     QtVersion+=tr("OpenCV版本:")+QString::fromStdString(cv::getVersionString())+"\n";
     QtVersion+=(tr("操作系统版本：")+QSysInfo::productType()+" "+QSysInfo::productVersion()+" "+QSysInfo::currentCpuArchitecture());
     QtVersion+=("\n"+tr("内核版本：")+QSysInfo::kernelType()+" "+QSysInfo::kernelVersion());
     this->ui->QtVersion->setText(QtVersion);
     QString mmLinkVersion;
-    mmLinkVersion=tr("mmLink1.0\n")+tr("Powered By 周子顺\n")+tr("Copyright©2020\nAll Rights Reserved")+"\n"+tr("哈尔滨工业大学(威海)\n信息科学与工程学院");
+    mmLinkVersion=tr("mmLink1.0\n")+tr("Powered By 周子顺")+"\n"+tr("Copyright©2020\nAll Rights Reserved")+"\n"+tr("哈尔滨工业大学(威海)\n信息科学与工程学院");
     this->ui->mmLinkVersion->setText(mmLinkVersion);
 }
 

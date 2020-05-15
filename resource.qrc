@@ -11,4 +11,8 @@
     <qresource prefix="/LICENSE">
         <file>LICENSE</file>
     </qresource>
+    <qresource prefix="/Language">
+        <file>mmlink_us_EN.qm</file>
+        <file>mmlink_zh_CN.qm</file>
+    </qresource>
 </RCC>

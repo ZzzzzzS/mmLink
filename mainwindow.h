@@ -9,6 +9,7 @@
 #include <QUrl>
 #include <QImage>
 #include <QThread>
+#include <QTranslator>
 #include "aboutwindow.h"
 
 #include "mmwaveradar.h"
