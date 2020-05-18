@@ -17,7 +17,8 @@ win32:{
 win32:{
     CONFIG(debug, debug|release) LIBS += -L"C:\ProgramFiles\opencv\x64\vc16\lib" \
     -lopencv_core430d \
-    -lopencv_videoio430d
+    -lopencv_videoio430d \
+    -lopencv_highgui430d
 
     contains(DEFINES,USE_CUDA){
         message("将使用CUDA加速")
@@ -30,7 +31,8 @@ win32:{
 
     CONFIG(release, debug|release) LIBS += -L"C:\ProgramFiles\opencv\x64\vc16\lib" \
     -lopencv_core430 \
-    -lopencv_videoio430
+    -lopencv_videoio430 \
+    -lopencv_highgui430
 
     contains(DEFINES,USE_CUDA){
         message("将使用CUDA加速")
@@ -65,6 +67,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     mmwaveradar.cpp \
+    mmwaveradarFFT.cpp \
     qwtplotshow.cpp \
     uvccamera.cpp
 

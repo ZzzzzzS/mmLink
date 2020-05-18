@@ -5,13 +5,13 @@ mmWaveRadar::mmWaveRadar(QObject *parent) : QTcpSocket(parent)
 
 }
 
-QByteArray mmWaveRadar::UpdateRadarParameter()
+void mmWaveRadar::UpdateRadarParameter()
 {
     qDebug("%s",this->Parameter.TranscodeParameter);
     QByteArray data(this->Parameter.TranscodeParameter,16);
     char head=0xBB;
     QByteArray headArray(&head,1);
-    return QByteArray(headArray+data);
+    this->write(QByteArray(headArray+data));
 }
 
 bool mmWaveRadar::isParameterLegal()
@@ -79,10 +79,6 @@ bool mmWaveRadar::RadarBufferProcess()
     }
 }
 
-void mmWaveRadar::RadarFFT()
-{
-
-}
 
 void mmWaveRadar::ClearRadarCache()
 {

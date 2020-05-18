@@ -100,7 +100,7 @@ void MainWindow::UpdateParameterSlot()
     this->RadarSocket->SetRadarParameter(value);
 
     if(this->RadarSocket->isParameterLegal())
-        this->RadarSocket->write(this->RadarSocket->UpdateRadarParameter());
+        this->RadarSocket->UpdateRadarParameter();
     else
         QMessageBox::warning(this,tr("雷达参数错误"),tr("请填写正确的雷达参数"));
 }
