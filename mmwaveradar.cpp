@@ -39,10 +39,10 @@ void mmWaveRadar::SetRadarParameter(RadarParameter_t value)
 
 bool mmWaveRadar::ReadRadarData()
 {
-    QByteArray value=this->readAll();
+    QByteArray value=this->readAll();//读取收到的所有数据
     qDebug()<<value;
-    std::string receive=value.toStdString();
-    receive.copy(this->Data.ReceiveBuffer,receive.size());
+    std::string receive(value.toStdString());
+    receive.copy(this->Data.ReceiveBuffer,receive.size());//把这些数据复制到接受缓冲区内
     qDebug()<<receive.length()<<this->Data.RadarData.RadarHead.Length;
     for(int i=0;i<=50;i++)
     {
@@ -66,26 +66,44 @@ mmWaveRadar::RadarHead_t mmWaveRadar::GetRadarHead()
     return this->Data.RadarData.RadarHead;
 }
 
-bool mmWaveRadar::RadarBufferProcess()
+bool mmWaveRadar::RadarBufferCompress()
 {
     if(this->Data.RadarData.RadarHead.FirstFlag==1)
     {
-
+        this->TimeData.clear();
+        for(int i=0;i<ReceiveBuffer.size();i++)//将buffer中的数据取出并转换类型
+        {
+            this->TimeData.push_back((float)this->ReceiveBuffer[i]);
+        }
+        this->AllReceivedData.push_back(this->ReceiveBuffer);//将时域数据保存到存储全部数据的容器中
+        this->ReceiveBuffer.clear();//清除缓冲区
         return true;
     }
     else
     {
+        for(int i=0;(i<Data.RadarData.RadarHead.Length-20)/2;i++)//重新组合多帧数据到buffer
+        {
+            this->ReceiveBuffer.push_back(*(this->Data.RadarData.RadarPayload+i));
+        }
         return false;
     }
 }
 
+void mmWaveRadar::ProcessRadarData()
+{
+    bool getFullFlame=this->RadarBufferCompress();
+    if(getFullFlame==true)
+    {
+        this->RadarFFT(this->TimeData);
+    }
+}
 
 void mmWaveRadar::ClearRadarCache()
 {
-    this->X.clear();
     this->TimeData.clear();
-    this->FreqData.clear();
-    this->PhaseData.clear();
-
-    this->FrameDataBuffer.clear();
+    this->FFTMagnitude.clear();
+    this->FFTPhase.clear();
+    this->ReceiveBuffer.clear();
+    this->AllReceivedData.clear();
+    this->FFTData.clear();
 }

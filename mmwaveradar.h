@@ -63,8 +63,9 @@ public:
         float real;
         float imaginary;
     };
-    std::vector<float> FFTMagnitude;
-    std::vector<float> FFTPhase;
+    std::vector<float> FFTMagnitude;//幅度数据
+    std::vector<float> FFTPhase;//相位数据
+    std::vector<float> TimeData;//时域数据
 
 
     mmWaveRadar(QObject *parent = nullptr);
@@ -74,25 +75,22 @@ public:
     void SetRadarParameter(RadarParameter_t value);//设置雷达参数
     bool ReadRadarData();
     RadarHead_t GetRadarHead();
-    bool RadarBufferProcess();
-    void RadarFFT(std::vector<float> &TimeData,bool angleInDegrees=false);
-    std::vector<float> GetFFTRealPart();
-    std::vector<float> GetFFTImaginaryPart();
+    void ProcessRadarData();//处理雷达数据(合并+fft)
+    std::vector<float> GetFFTRealPart();//获得实部数据
+    std::vector<float> GetFFTImaginaryPart();//获得虚部数据
 
 signals:
 
 private:
-    UnionParamter_t Parameter;
-    UnionData_t Data;
+    bool RadarBufferCompress();//压缩合并多帧雷达数据
+    void RadarFFT(std::vector<float> &TimeData,bool angleInDegrees=false);//计算fft
 
-    QVector<double> FrameDataBuffer;
+    UnionParamter_t Parameter; //设定的雷达参数
+    UnionData_t Data;//接收的雷达数据
 
-    QVector<double> X;
-    QVector<double> TimeData;
-
-    QVector<double> FreqData;
-    QVector<double> PhaseData;
-    std::vector<cv::Mat> FFTData;
+    std::vector<short> ReceiveBuffer;//接收缓冲区
+    std::vector<std::vector<short>> AllReceivedData;//保存所有的时域数据
+    std::vector<cv::Mat> FFTData;//原始fft数据(分离到两个Mat，实部0，虚部1)
 
 };
 
