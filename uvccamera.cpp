@@ -2,11 +2,13 @@
 #include <QApplication>
 #include <time.h>
 #include <opencv2/core/cuda.hpp>
+#include <QThread>
+#include <Windows.h>
 
 UVCCamera::UVCCamera(QObject *parent) : QObject(parent)
 {
-    this->recorder=new VideoWriter(); //初始化视频编码器
-    this->Capture=new VideoCapture(); //初始化视频采集器
+    this->recorder=new cv::VideoWriter(); //初始化视频编码器
+    this->Capture=new cv::VideoCapture(); //初始化视频采集器
 }
 
 UVCCamera::~UVCCamera()
@@ -31,7 +33,7 @@ void UVCCamera::StartCamera(QString name)
         emit CameraStartFailed();
         return;
     }
-    this->FPS=this->Capture->get(CAP_PROP_FPS);
+    this->FPS=this->Capture->get(cv::CAP_PROP_FPS);
     this->isRecording=false; //设置没有开始录制视频
     this->isCapturing=true; //设置开始采集的标志位
     qDebug("Camera start");
@@ -48,7 +50,7 @@ void UVCCamera::StartRecording()
 {
     this->CaptureSize.width=this->Capture->get(cv::CAP_PROP_FRAME_WIDTH);
     this->CaptureSize.height=this->Capture->get(cv::CAP_PROP_FRAME_HEIGHT);
-    this->recorder->open("CameraCapture.avi",VideoWriter::fourcc('D', 'I', 'V', 'X'),this->FPS,this->CaptureSize);
+    this->recorder->open("CameraCapture.avi",cv::VideoWriter::fourcc('D', 'I', 'V', 'X'),this->FPS,this->CaptureSize);
     this->isRecording=true;
 }
 
@@ -60,15 +62,13 @@ void UVCCamera::StopRecording()
 
 void UVCCamera::CameraLoop()
 {
-    cv::TickMeter timer;
-    int interval;
+    clock_t start=clock();
+    clock_t stop;
     QImage img;
     QPixmap pix;
     while(isCapturing)//一直在循环里采集图像
     {
-        timer.reset();
-        timer.start();
-
+        start=clock();
         this->Capture->read(this->CaptureBuffer);
         img = this->cvMat2QImage(this->CaptureBuffer);
         pix = QPixmap::fromImage(img);
@@ -77,10 +77,9 @@ void UVCCamera::CameraLoop()
             this->recorder->write(this->CaptureBuffer);
         }
         emit this->RenewImage(pix);
-        cv::waitKey(10);
-        interval=timer.getTimeMilli();
-        qDebug("%d",1000/FPS-interval);
-        cv::waitKey(1000/FPS-interval);
+        stop=clock();
+        //qDebug("%d",1000/FPS-stop+start);
+        qDebug("%d",stop-start);
     }
 
     if(isRecording)//检查是否还在录像
@@ -91,7 +90,7 @@ void UVCCamera::CameraLoop()
     emit CameraStopped(); //摄像头已停止信号
 }
 
-QImage UVCCamera::cvMat2QImage(const Mat &mat)
+QImage UVCCamera::cvMat2QImage(const cv::Mat &mat)
 {
     if (mat.type() == CV_8UC1)					// 单通道
         {
