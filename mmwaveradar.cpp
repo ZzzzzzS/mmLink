@@ -2,7 +2,12 @@
 
 mmWaveRadar::mmWaveRadar(QObject *parent) : QTcpSocket(parent)
 {
-
+    //将费时间的fft计算移到另一个线程里
+    this->FFTThread=new QThread();
+    this->FreqDomain=new mmWaveRadarFFT(this->TimeData);
+    this->FreqDomain->moveToThread(this->FFTThread);
+    this->FFTThread->start();
+    QObject::connect(this,SIGNAL(GetFullFrame()),this->FreqDomain,SLOT(ProcessFFT()));
 }
 
 void mmWaveRadar::UpdateRadarParameter()
@@ -66,18 +71,18 @@ mmWaveRadar::RadarHead_t mmWaveRadar::GetRadarHead()
     return this->Data.RadarData.RadarHead;
 }
 
-bool mmWaveRadar::RadarBufferCompress()
+void mmWaveRadar::RadarBufferCompress()
 {
     if(this->Data.RadarData.RadarHead.FirstFlag==1)
     {
         this->TimeData.clear();
         for(int i=0;i<ReceiveBuffer.size();i++)//将buffer中的数据取出并转换类型
         {
-            this->TimeData.push_back((float)this->ReceiveBuffer[i]);
+            this->TimeData.push_back((double)this->ReceiveBuffer[i]);
         }
         this->AllReceivedData.push_back(this->ReceiveBuffer);//将时域数据保存到存储全部数据的容器中
         this->ReceiveBuffer.clear();//清除缓冲区
-        return true;
+        emit(this->GetFullFrame());
     }
     else
     {
@@ -85,25 +90,14 @@ bool mmWaveRadar::RadarBufferCompress()
         {
             this->ReceiveBuffer.push_back(*(this->Data.RadarData.RadarPayload+i));
         }
-        return false;
     }
 }
 
-void mmWaveRadar::ProcessRadarData()
-{
-    bool getFullFlame=this->RadarBufferCompress();
-    if(getFullFlame==true)
-    {
-        this->RadarFFT(this->TimeData);
-    }
-}
 
 void mmWaveRadar::ClearRadarCache()
 {
     this->TimeData.clear();
-    this->FFTMagnitude.clear();
-    this->FFTPhase.clear();
     this->ReceiveBuffer.clear();
     this->AllReceivedData.clear();
-    this->FFTData.clear();
+    this->FreqDomain->ClearCache();
 }

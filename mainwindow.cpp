@@ -51,6 +51,7 @@ MainWindow::MainWindow(QWidget *parent)
     QObject::connect(this->Camera,SIGNAL(CameraStartFailed()),this,SLOT(CameraErrorSlot()));
     //雷达参数相关信号
     QObject::connect(this->ui->UpdateButton,SIGNAL(clicked()),this,SLOT(UpdateParameterSlot()));
+    QObject::connect(this->RadarSocket->FreqDomain,SIGNAL(FFTComplete()),this,SLOT(RenewRadarDataSlot()));
 }
 
 MainWindow::~MainWindow()

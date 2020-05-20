@@ -67,7 +67,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     mmwaveradar.cpp \
-    mmwaveradarFFT.cpp \
+    mmwaveradarfft.cpp \
     qwtplotshow.cpp \
     uvccamera.cpp
 
@@ -75,6 +75,7 @@ HEADERS += \
     aboutwindow.h \
     mainwindow.h \
     mmwaveradar.h \
+    mmwaveradarfft.h \
     qwtplotshow.h \
     uvccamera.h
 

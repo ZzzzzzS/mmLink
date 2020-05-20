@@ -82,6 +82,7 @@ void MainWindow::TCPReceiveSlot()
         this->ui->CurrentSampleRate->setText(QString::number(value.SampleRate));
         this->ui->CurrentFrameNumber->setText(QString::number(value.FrameNumber));
         this->ui->CurrentChirp->setText(QString::number(value.ChirpNumber));
+        this->RadarSocket->RadarBufferCompress();//分析收到的数据，并组合成一个雷达帧
     }
     else
     {
@@ -112,4 +113,9 @@ void MainWindow::CleanCacheSlot()
     this->RadarFreqPlot->ClearSlot();
     this->RadarTimePlot->ClearSlot();
     this->RadarPhasePlot->ClearSlot();
+}
+
+void MainWindow::RenewRadarDataSlot()
+{
+    //this->RadarTimePlot->addNewDataSlot()
 }

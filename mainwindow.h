@@ -57,6 +57,7 @@ private slots:
     void TCPConnectSuccessedSlot();
     void TCPDisconnectSuccessedSlot();
     void TCPReceiveSlot();
+    void RenewRadarDataSlot();
 
     void CameraConnectSlot();
     void CameraRecordSlot();
