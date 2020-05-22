@@ -21,7 +21,7 @@ public:
     QwtPlotCurve *Curve;//qwt画笔
 
 public slots:
-    void addNewDataSlot(QVector<double> &x,QVector<double> &data);
+    void addNewDataSlot(QVector<double> &x,QVector<double> &data,bool AutoScale=true);
     void ClearSlot();
 signals:
 

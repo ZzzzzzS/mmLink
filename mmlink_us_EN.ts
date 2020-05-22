@@ -169,12 +169,22 @@ HIT at WeiHai</translation>
         <translation>Remote IP</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="90"/>
+        <location filename="mainwindow.ui" line="87"/>
+        <source>127.0.0.1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="94"/>
         <source>远程端口</source>
         <translation>Remote Port</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="115"/>
+        <location filename="mainwindow.ui" line="113"/>
+        <source>7</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="122"/>
         <location filename="RadarConfig.cpp" line="6"/>
         <location filename="RadarConfig.cpp" line="33"/>
         <location filename="RadarConfig.cpp" line="39"/>
@@ -185,19 +195,19 @@ HIT at WeiHai</translation>
         <translation>Connect Radar</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="135"/>
+        <location filename="mainwindow.ui" line="142"/>
         <source>摄像头选择</source>
         <translation>Select Camera</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="142"/>
+        <location filename="mainwindow.ui" line="149"/>
         <location filename="CameraConfig.cpp" line="10"/>
-        <location filename="mainwindow.cpp" line="85"/>
+        <location filename="mainwindow.cpp" line="86"/>
         <source>输入摄像头编号或视频流地址</source>
         <translation type="unfinished">Enter camera number or video stream address</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="151"/>
+        <location filename="mainwindow.ui" line="158"/>
         <location filename="CameraConfig.cpp" line="8"/>
         <location filename="CameraConfig.cpp" line="29"/>
         <location filename="CameraConfig.cpp" line="48"/>
@@ -206,7 +216,7 @@ HIT at WeiHai</translation>
         <translation>Connect Camera</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="171"/>
+        <location filename="mainwindow.ui" line="178"/>
         <source>参数控制</source>
         <translation>Parameter Settings</translation>
     </message>
@@ -215,34 +225,33 @@ HIT at WeiHai</translation>
         <translation type="vanished">Sample Rate(MHz)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="219"/>
-        <location filename="mainwindow.ui" line="485"/>
+        <location filename="mainwindow.ui" line="226"/>
+        <location filename="mainwindow.ui" line="499"/>
         <source>采样点数</source>
         <translation>Sample Point</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="253"/>
-        <location filename="mainwindow.ui" line="519"/>
+        <location filename="mainwindow.ui" line="260"/>
+        <location filename="mainwindow.ui" line="533"/>
         <source>chirp个数</source>
         <translation>Chirp Number</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="287"/>
+        <location filename="mainwindow.ui" line="294"/>
         <source>调频斜率(Mhz/us)</source>
         <translation>FM Slope(Mhz/us)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="329"/>
+        <location filename="mainwindow.ui" line="336"/>
         <source>更新</source>
         <translation>Update</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="341"/>
         <source>文件管理</source>
-        <translation>File Management</translation>
+        <translation type="vanished">File Management</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="355"/>
+        <location filename="mainwindow.ui" line="362"/>
         <location filename="CameraConfig.cpp" line="42"/>
         <location filename="CameraConfig.cpp" line="52"/>
         <location filename="CameraConfig.cpp" line="66"/>
@@ -251,69 +260,79 @@ HIT at WeiHai</translation>
         <translation>Record Video</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="377"/>
+        <location filename="mainwindow.ui" line="384"/>
         <source>清除缓存</source>
         <translation>Clean Cache</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="386"/>
+        <location filename="mainwindow.ui" line="400"/>
         <source>转换帧率</source>
         <translation>Flame Rate</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="427"/>
+        <location filename="mainwindow.ui" line="441"/>
         <source>保存数据</source>
         <translation>Save Data</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="441"/>
+        <location filename="mainwindow.ui" line="455"/>
         <source>雷达实时参数</source>
         <translation>Radar Current Parameter</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="185"/>
-        <location filename="mainwindow.ui" line="451"/>
+        <location filename="mainwindow.ui" line="192"/>
+        <location filename="mainwindow.ui" line="465"/>
         <source>采样率(Mhz)</source>
         <translation>SampleRate(MHz)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="553"/>
+        <location filename="mainwindow.ui" line="348"/>
+        <source>数据管理</source>
+        <translation type="unfinished">Data Management</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="391"/>
+        <source>自动缩放坐标轴</source>
+        <translation type="unfinished">Auto Scale Axis</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="567"/>
         <source>当前帧编号</source>
         <translation>Current Frame Number</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="592"/>
+        <location filename="mainwindow.ui" line="606"/>
         <source>数据</source>
         <translation>Data</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="625"/>
+        <location filename="mainwindow.ui" line="639"/>
         <source>TextLabel</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="668"/>
+        <location filename="mainwindow.ui" line="682"/>
         <source>视频数据</source>
         <translation>Camera Data</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="719"/>
+        <location filename="mainwindow.ui" line="733"/>
         <source>时域图</source>
         <translation>Radar Time Data</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="774"/>
+        <location filename="mainwindow.ui" line="788"/>
         <source>频域图</source>
         <translation>Radar Frequency Data</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="825"/>
+        <location filename="mainwindow.ui" line="839"/>
         <source>相位图</source>
         <translation>Radar Phase Data</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="868"/>
-        <location filename="mainwindow.ui" line="877"/>
+        <location filename="mainwindow.ui" line="882"/>
+        <location filename="mainwindow.ui" line="891"/>
         <source>关于</source>
         <translation>About</translation>
     </message>
@@ -338,7 +357,7 @@ HIT at WeiHai</translation>
         <location filename="CameraConfig.cpp" line="38"/>
         <location filename="RadarConfig.cpp" line="18"/>
         <location filename="RadarConfig.cpp" line="62"/>
-        <location filename="mainwindow.cpp" line="65"/>
+        <location filename="mainwindow.cpp" line="66"/>
         <source>断开</source>
         <translation>disconnect</translation>
     </message>
@@ -409,12 +428,12 @@ HIT at WeiHai</translation>
         <translation>error number:</translation>
     </message>
     <message>
-        <location filename="RadarConfig.cpp" line="105"/>
+        <location filename="RadarConfig.cpp" line="106"/>
         <source>雷达参数错误</source>
         <translation>radar parameter error</translation>
     </message>
     <message>
-        <location filename="RadarConfig.cpp" line="105"/>
+        <location filename="RadarConfig.cpp" line="106"/>
         <source>请填写正确的雷达参数</source>
         <translation>Please fill in the correct radar parameters</translation>
     </message>
@@ -429,7 +448,7 @@ HIT at WeiHai</translation>
         <translation>N/A</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="90"/>
+        <location filename="mainwindow.cpp" line="91"/>
         <source>输入摄像头编号或视频流地</source>
         <translation>Enter camera number or video stream addres</translation>
     </message>

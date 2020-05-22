@@ -7,6 +7,7 @@ mmWaveRadarFFT::mmWaveRadarFFT(std::vector<double> &TimeData, QObject *parent) :
 
 void mmWaveRadarFFT::ProcessFFT()
 {
+    QMutexLocker locker(&FFTlock);
     this->RadarFFT(this->TimeData,false);
 }
 

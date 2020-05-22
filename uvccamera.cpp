@@ -3,7 +3,6 @@
 #include <time.h>
 #include <opencv2/core/cuda.hpp>
 #include <QThread>
-#include <Windows.h>
 
 UVCCamera::UVCCamera(QObject *parent) : QObject(parent)
 {
