@@ -117,5 +117,11 @@ void MainWindow::CleanCacheSlot()
 
 void MainWindow::RenewRadarDataSlot()
 {
-    //this->RadarTimePlot->addNewDataSlot()
+    QVector<double> Xaxis(this->RadarSocket->TimeData.size());
+    for(int i=0;i<Xaxis.size();i++)
+    {
+        Xaxis[i]=i;
+    }
+    QVector<double> Temp=QVector<double>::fromStdVector(this->RadarSocket->TimeData);
+    this->RadarTimePlot->addNewDataSlot(Xaxis,Temp);
 }

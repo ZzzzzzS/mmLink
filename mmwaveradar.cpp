@@ -49,9 +49,9 @@ bool mmWaveRadar::ReadRadarData()
     std::string receive(value.toStdString());
     receive.copy(this->Data.ReceiveBuffer,receive.size());//把这些数据复制到接受缓冲区内
     qDebug()<<receive.length()<<this->Data.RadarData.RadarHead.Length;
-    for(int i=0;i<=50;i++)
+    for(int i=0;i<=10;i++)
     {
-        qDebug("%c",this->Data.ReceiveBuffer[i]);
+        qDebug("%d",this->Data.ReceiveBuffer[i]);
     }
     if(receive.length()==this->Data.RadarData.RadarHead.Length) //验证长度正确
     {
@@ -73,7 +73,7 @@ mmWaveRadar::RadarHead_t mmWaveRadar::GetRadarHead()
 
 void mmWaveRadar::RadarBufferCompress()
 {
-    if(this->Data.RadarData.RadarHead.FirstFlag==1)
+    if(this->Data.RadarData.RadarHead.FirstFlag!=0)
     {
         this->TimeData.clear();
         for(int i=0;i<ReceiveBuffer.size();i++)//将buffer中的数据取出并转换类型

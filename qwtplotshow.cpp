@@ -37,7 +37,7 @@ QwtPlotShow::~QwtPlotShow()
 
 }
 
-void QwtPlotShow::addNewDataSlot(QVector<double>  x,QVector<double> data)
+void QwtPlotShow::addNewDataSlot(QVector<double>  &x,QVector<double> &data)
 {
     this->Curve->setSamples(x,data);
     if(x.last()>=100)

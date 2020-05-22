@@ -37,7 +37,7 @@ public:
     //接收的参数
     typedef struct
     {
-        int Length;
+        uint Length;
         int Slope;
         short DataID;
         short FirstFlag;
