@@ -10,8 +10,8 @@ QwtPlotShow::QwtPlotShow(QwtPlot *Plot,QObject *parent) : QObject(parent)
 
     Plot->enableAxis(QwtPlot::xTop,false);
     Plot->enableAxis(QwtPlot::xBottom,true);
-    Plot->enableAxis(QwtPlot::yLeft,false);
-    Plot->enableAxis(QwtPlot::yRight,true);
+    Plot->enableAxis(QwtPlot::yLeft,true);
+    Plot->enableAxis(QwtPlot::yRight,false);
     Plot->setAxisAutoScale(QwtPlot::yLeft,true);
     Plot->setAxisAutoScale(QwtPlot::xBottom,true);
 
