@@ -8,6 +8,7 @@
 #include <vector>
 #include <opencv2/opencv.hpp>
 #include <QThread>
+#include <QtEndian>
 
 #include "mmwaveradarfft.h"
 
@@ -37,7 +38,7 @@ public:
     //接收的参数
     typedef struct
     {
-        uint Length;
+        int Length;
         int Slope;
         short DataID;
         short FirstFlag;
@@ -84,6 +85,8 @@ private:
     std::vector<std::vector<short>> AllReceivedData;//保存所有的时域数据
 
     QThread *FFTThread;
+
+    void ConvertEndian(); //处理大小端问题
 
 };
 

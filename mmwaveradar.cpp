@@ -42,17 +42,32 @@ void mmWaveRadar::SetRadarParameter(RadarParameter_t value)
     this->Parameter.RadarParameter.Slope=value.Slope;
 }
 
+//转换大小端模式，默认接收数据是大端模式，但是在x86系统上是使用的小端模式，所以需要转换
+void mmWaveRadar::ConvertEndian()
+{
+    this->Data.RadarData.RadarHead.Length=qFromBigEndian(this->Data.RadarData.RadarHead.Length);
+    this->Data.RadarData.RadarHead.Slope=qFromBigEndian(this->Data.RadarData.RadarHead.Slope);
+    this->Data.RadarData.RadarHead.DataID=qFromBigEndian(this->Data.RadarData.RadarHead.DataID);
+    this->Data.RadarData.RadarHead.FirstFlag=qFromBigEndian(this->Data.RadarData.RadarHead.FirstFlag);
+    this->Data.RadarData.RadarHead.SampleRate=qFromBigEndian(this->Data.RadarData.RadarHead.SampleRate);
+    this->Data.RadarData.RadarHead.SamplePoint=qFromBigEndian(this->Data.RadarData.RadarHead.SamplePoint);
+    this->Data.RadarData.RadarHead.ChirpNumber=qFromBigEndian(this->Data.RadarData.RadarHead.ChirpNumber);
+    this->Data.RadarData.RadarHead.FrameNumber=qFromBigEndian(this->Data.RadarData.RadarHead.FrameNumber);
+    for(int i=0;i<(this->Data.RadarData.RadarHead.Length-20)/2;i++)
+    {
+        this->Data.RadarData.RadarPayload[i]=qFromBigEndian(this->Data.RadarData.RadarPayload[i]);
+        qDebug("%d",this->Data.RadarData.RadarPayload[i]);
+    }
+}
+
 bool mmWaveRadar::ReadRadarData()
 {
     QByteArray value=this->readAll();//读取收到的所有数据
     qDebug()<<value;
     std::string receive(value.toStdString());
     receive.copy(this->Data.ReceiveBuffer,receive.size());//把这些数据复制到接受缓冲区内
+    this->ConvertEndian();
     qDebug()<<receive.length()<<this->Data.RadarData.RadarHead.Length;
-    for(int i=0;i<=10;i++)
-    {
-        qDebug("%d",this->Data.ReceiveBuffer[i]);
-    }
     if(receive.length()==this->Data.RadarData.RadarHead.Length) //验证长度正确
     {
         char ok=0xaa;
@@ -82,15 +97,24 @@ void mmWaveRadar::RadarBufferCompress()
         }
         this->AllReceivedData.push_back(this->ReceiveBuffer);//将时域数据保存到存储全部数据的容器中
         this->ReceiveBuffer.clear();//清除缓冲区
-        emit(this->GetFullFrame());
-    }
-    else
-    {
-        for(int i=0;(i<Data.RadarData.RadarHead.Length-20)/2;i++)//重新组合多帧数据到buffer
+        if(!this->TimeData.empty())//判断一下到底接收到数据没有，以便后续显示不出错
         {
-            this->ReceiveBuffer.push_back(*(this->Data.RadarData.RadarPayload+i));
+            emit(this->GetFullFrame());
         }
+        else
+        {
+            qDebug("TimeData is empty");
+        }
+
     }
+    int number=(Data.RadarData.RadarHead.Length-20)/2;
+    for(int i=0;i<number;i++)//重新组合多帧数据到buffer
+    {
+        this->ReceiveBuffer.push_back(*(this->Data.RadarData.RadarPayload+i));
+        qDebug("%d",this->ReceiveBuffer.back());
+    }
+    qDebug("%d",this->ReceiveBuffer.size());
+
 }
 
 

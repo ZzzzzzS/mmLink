@@ -82,7 +82,11 @@
                   </widget>
                  </item>
                  <item>
-                  <widget class="QLineEdit" name="ServerIP"/>
+                  <widget class="QLineEdit" name="ServerIP">
+                   <property name="text">
+                    <string>127.0.0.1</string>
+                   </property>
+                  </widget>
                  </item>
                  <item>
                   <widget class="QLabel" name="label_11">
@@ -104,6 +108,9 @@
                      <width>38</width>
                      <height>16777215</height>
                     </size>
+                   </property>
+                   <property name="text">
+                    <string>7</string>
                    </property>
                   </widget>
                  </item>
