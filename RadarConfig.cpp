@@ -125,8 +125,9 @@ void MainWindow::RenewRadarDataSlot()
     QVector<double> Time=QVector<double>::fromStdVector(this->RadarSocket->TimeData);
     QVector<double> Freq=QVector<double>::fromStdVector(this->RadarSocket->FreqDomain->FFTMagnitude);
     QVector<double> Phase=QVector<double>::fromStdVector(this->RadarSocket->FreqDomain->FFTPhase);
-    this->RadarTimePlot->addNewDataSlot(Xaxis,Time);
-    this->RadarFreqPlot->addNewDataSlot(Xaxis,Freq);
-    this->RadarPhasePlot->addNewDataSlot(Xaxis,Phase);
+    bool AutoScale=this->ui->AxisBox->isChecked();//判断是否需要自动缩放坐标轴
+    this->RadarTimePlot->addNewDataSlot(Xaxis,Time,AutoScale);
+    this->RadarFreqPlot->addNewDataSlot(Xaxis,Freq,AutoScale);
+    this->RadarPhasePlot->addNewDataSlot(Xaxis,Phase,AutoScale);
     qDebug()<<"时域:"<<Time<<"幅度:"<<Freq<<"相位:"<<Phase;
 }

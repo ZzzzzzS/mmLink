@@ -37,15 +37,17 @@ QwtPlotShow::~QwtPlotShow()
 
 }
 
-void QwtPlotShow::addNewDataSlot(QVector<double>  &x,QVector<double> &data)
+void QwtPlotShow::addNewDataSlot(QVector<double>  &x, QVector<double> &data, bool AutoScale)
 {
     this->Curve->setSamples(x,data);
-    /*if(x.last()>=100)
+    if(AutoScale==true)
     {
-        this->CurrentPlot->setAxisScale(QwtPlot::xBottom,x.last()-100,x.last());
-    }*/
+        this->CurrentPlot->setAxisAutoScale(QwtPlot::yLeft,true);
+        this->CurrentPlot->setAxisAutoScale(QwtPlot::xBottom,true);
+        this->CurrentPlot->updateAxes();
+    }
     this->CurrentPlot->replot();
-    this->CurrentPlot->updateAxes();
+
 }
 
 void QwtPlotShow::ClearSlot()

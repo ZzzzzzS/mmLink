@@ -97,3 +97,5 @@ RESOURCES += \
 
 DISTFILES += \
     mmlink_us_EN.ts
+
+RC_ICONS=logo.ico

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1230</width>
-    <height>810</height>
+    <width>1136</width>
+    <height>741</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -345,7 +345,7 @@
         <item>
          <widget class="QGroupBox" name="groupBox_2">
           <property name="title">
-           <string>文件管理</string>
+           <string>数据管理</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_5">
            <item row="0" column="0">
@@ -382,6 +382,16 @@
                  </property>
                  <property name="text">
                   <string>清除缓存</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="AxisBox">
+                 <property name="text">
+                  <string>自动缩放坐标轴</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
                  </property>
                 </widget>
                </item>
@@ -866,7 +876,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1230</width>
+     <width>1136</width>
      <height>23</height>
     </rect>
    </property>
