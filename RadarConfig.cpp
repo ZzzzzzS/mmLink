@@ -122,6 +122,11 @@ void MainWindow::RenewRadarDataSlot()
     {
         Xaxis[i]=i;
     }
-    QVector<double> Temp=QVector<double>::fromStdVector(this->RadarSocket->TimeData);
-    this->RadarTimePlot->addNewDataSlot(Xaxis,Temp);
+    QVector<double> Time=QVector<double>::fromStdVector(this->RadarSocket->TimeData);
+    QVector<double> Freq=QVector<double>::fromStdVector(this->RadarSocket->FreqDomain->FFTMagnitude);
+    QVector<double> Phase=QVector<double>::fromStdVector(this->RadarSocket->FreqDomain->FFTPhase);
+    this->RadarTimePlot->addNewDataSlot(Xaxis,Xaxis);
+    this->RadarFreqPlot->addNewDataSlot(Xaxis,Xaxis);
+    this->RadarPhasePlot->addNewDataSlot(Xaxis,Phase);
+    qDebug()<<"时域:"<<Time<<"幅度:"<<Freq<<"相位:"<<Phase;
 }
