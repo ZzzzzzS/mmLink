@@ -5,7 +5,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 CONFIG += c++11 qwt
 DEFINES += QWT_DLL
 
-DEFINES +=USE_CUDA #如果不需要cuda就删除这个
+DEFINES -=USE_CUDA #如果不需要cuda就删除这个
 
 win32:{
     INCLUDEPATH += C:\ProgramFiles\Qt\Qt5.14.2\5.14.2\msvc2017_64\include\Qwt
@@ -18,7 +18,6 @@ win32:{
     CONFIG(debug, debug|release) LIBS += -L"C:\ProgramFiles\opencv\x64\vc16\lib" \
     -lopencv_core430d \
     -lopencv_videoio430d \
-    -lopencv_highgui430d
 
     contains(DEFINES,USE_CUDA){
         message("将使用CUDA加速")
@@ -32,7 +31,6 @@ win32:{
     CONFIG(release, debug|release) LIBS += -L"C:\ProgramFiles\opencv\x64\vc16\lib" \
     -lopencv_core430 \
     -lopencv_videoio430 \
-    -lopencv_highgui430
 
     contains(DEFINES,USE_CUDA){
         message("将使用CUDA加速")
