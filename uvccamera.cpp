@@ -66,10 +66,11 @@ void UVCCamera::CameraLoop()
     clock_t stop;
     QImage img;
     QPixmap pix;
+    qDebug("%d",FPS);
     while(isCapturing)//一直在循环里采集图像
     {
-        start=clock();
         this->Capture->read(this->CaptureBuffer);
+        start=clock();
         img = this->cvMat2QImage(this->CaptureBuffer);
         pix = QPixmap::fromImage(img);
         if(this->isRecording)
@@ -79,7 +80,8 @@ void UVCCamera::CameraLoop()
         emit this->RenewImage(pix);
         stop=clock();
         //qDebug("%d",1000/FPS-stop+start);
-        qDebug("%d",stop-start);
+        //QThread::msleep(1000/FPS-stop+start);
+        //qDebug("%d",stop-start);
     }
 
     if(isRecording)//检查是否还在录像
