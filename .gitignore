@@ -37,6 +37,7 @@ Thumbs.db
 /debug/*
 /release/*
 /armeabi-v7a/*
+msvc_make.bat
 
 # qtcreator generated files
 *.pro.user*
@@ -73,3 +74,7 @@ Thumbs.db
 # --------
 *.exe
 
+
+/.vscode/*
+/.vs/*
+jCvNBm.json

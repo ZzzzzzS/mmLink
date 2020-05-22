@@ -17,11 +17,11 @@ public:
     explicit QwtPlotShow(QwtPlot *Plot,QObject *parent = nullptr);
     ~QwtPlotShow();
 
-    QwtPlotGrid *Grid;
-    QwtPlotCurve *Curve;
+    QwtPlotGrid *Grid; //qwt的网格
+    QwtPlotCurve *Curve;//qwt画笔
 
 public slots:
-    void addNewDataSlot(QVector<double> x,QVector<double> data);
+    void addNewDataSlot(QVector<double> &x,QVector<double> &data);
     void ClearSlot();
 signals:
 

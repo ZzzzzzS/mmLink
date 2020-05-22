@@ -9,6 +9,7 @@
 #include <QUrl>
 #include <QImage>
 #include <QThread>
+#include <QTranslator>
 #include "aboutwindow.h"
 
 #include "mmwaveradar.h"
@@ -56,6 +57,7 @@ private slots:
     void TCPConnectSuccessedSlot();
     void TCPDisconnectSuccessedSlot();
     void TCPReceiveSlot();
+    void RenewRadarDataSlot();
 
     void CameraConnectSlot();
     void CameraRecordSlot();

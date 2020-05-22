@@ -1,8 +1,6 @@
 ﻿#include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-
-
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -15,8 +13,8 @@ MainWindow::MainWindow(QWidget *parent)
     this->ui->CurrentSamplePoint->setReadOnly(true);
     this->ui->ClinetIP->setReadOnly(true);
     this->ui->ClinetPort->setReadOnly(true);
-    this->ui->ClinetIP->setText("连接后显示");
-    this->ui->ClinetPort->setText("不可用");
+    this->ui->ClinetIP->setText(tr("连接后显示"));
+    this->ui->ClinetPort->setText(tr("不可用"));
     this->logo=new QImage("://image/hitlogo.png");
     this->ui->CameraView->resize(this->ui->RadarPhaseData->size());
     this->SetLogo();
@@ -53,7 +51,7 @@ MainWindow::MainWindow(QWidget *parent)
     QObject::connect(this->Camera,SIGNAL(CameraStartFailed()),this,SLOT(CameraErrorSlot()));
     //雷达参数相关信号
     QObject::connect(this->ui->UpdateButton,SIGNAL(clicked()),this,SLOT(UpdateParameterSlot()));
-
+    QObject::connect(this->RadarSocket->FreqDomain,SIGNAL(FFTComplete()),this,SLOT(RenewRadarDataSlot()));
 }
 
 MainWindow::~MainWindow()
@@ -65,7 +63,7 @@ MainWindow::~MainWindow()
 void MainWindow::resizeEvent(QResizeEvent *event)
 {
     this->ui->CameraView->resize(this->ui->RadarPhaseData->size());
-    if(this->ui->CameraConnectButton->text()!="断开")
+    if(this->ui->CameraConnectButton->text()!=tr("断开"))
         this->SetLogo();
 }
 
@@ -85,12 +83,12 @@ void MainWindow::AboutSlot()
 
 void MainWindow::CameraInputSlot(int oldPos, int newPos)
 {
-    if(this->ui->CameraAddress->text()=="输入摄像头编号或视频流地址")
+    if(this->ui->CameraAddress->text()==tr("输入摄像头编号或视频流地址"))
     {
         this->ui->CameraAddress->clear();
         return;
     }
-    else if(this->ui->CameraAddress->text()=="输入摄像头编号或视频流地")
+    else if(this->ui->CameraAddress->text()==tr("输入摄像头编号或视频流地"))
     {
         this->ui->CameraAddress->clear();
         return;

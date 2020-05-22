@@ -5,7 +5,12 @@
 #include <QByteArray>
 #include <QTcpSocket>
 #include <QVector>
-#include <QVector2D>
+#include <vector>
+#include <opencv2/opencv.hpp>
+#include <QThread>
+#include <QtEndian>
+
+#include "mmwaveradarfft.h"
 
 #define MAX_TCPBuffer 65535
 
@@ -15,6 +20,7 @@ class mmWaveRadar : public QTcpSocket
     Q_OBJECT
 public:
 
+    //发送的参数
     typedef struct
     {
         int SampleRate;
@@ -29,6 +35,7 @@ public:
         char TranscodeParameter[16];
     }UnionParamter_t;
 
+    //接收的参数
     typedef struct
     {
         int Length;
@@ -53,31 +60,33 @@ public:
         char ReceiveBuffer[MAX_TCPBuffer];
     }UnionData_t;
 
-
+    std::vector<double> TimeData;//时域数据
 
     mmWaveRadar(QObject *parent = nullptr);
-    QByteArray UpdateRadarParameter();
-    bool isParameterLegal();
-    void ClearRadarCache();
-    void SetRadarParameter(RadarParameter_t value);
+    void UpdateRadarParameter();//更新参数
+    bool isParameterLegal();//判断参数是否合法
+    void ClearRadarCache();//清除缓存
+    void SetRadarParameter(RadarParameter_t value);//设置雷达参数
     bool ReadRadarData();
+    void RadarBufferCompress();//压缩合并多帧雷达数据
     RadarHead_t GetRadarHead();
-    bool RadarBufferProcess();
-    void RadarFFT();
+
+    mmWaveRadarFFT *FreqDomain;
 
 signals:
-
+    void GetFullFrame();
 private:
-    UnionParamter_t Parameter;
-    UnionData_t Data;
 
-    QVector<double> FrameDataBuffer;
 
-    QVector<double> X;
-    QVector<double> TimeData;
+    UnionParamter_t Parameter; //设定的雷达参数
+    UnionData_t Data;//接收的雷达数据
 
-    QVector<double> FreqData;
-    QVector<double> PhaseData;
+    std::vector<short> ReceiveBuffer;//接收缓冲区
+    std::vector<std::vector<short>> AllReceivedData;//保存所有的时域数据
+
+    QThread *FFTThread;
+
+    void ConvertEndian(); //处理大小端问题
 
 };
 

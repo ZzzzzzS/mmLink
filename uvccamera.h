@@ -7,8 +7,6 @@
 #include <QTime>
 #include <QPixmap>
 
-using namespace cv;
-
 class UVCCamera : public QObject
 {
     Q_OBJECT
@@ -28,15 +26,15 @@ public slots:
     void StartCamera(QString);
 
 private:
-    VideoCapture *Capture;
-    VideoWriter *recorder;
-    Size CaptureSize;
+    cv::VideoCapture *Capture;
+    cv::VideoWriter *recorder;
+    cv::Size CaptureSize;
     int FPS;
-    Mat CaptureBuffer;
+    cv::Mat CaptureBuffer;
     bool isCapturing;
     bool isRecording;
     void CameraLoop();
-    QImage cvMat2QImage(const Mat& mat);
+    QImage cvMat2QImage(const cv::Mat& mat);
 };
 
 #endif // UVCCAMERA_H

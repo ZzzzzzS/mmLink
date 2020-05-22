@@ -24,12 +24,12 @@ QwtPlotShow::QwtPlotShow(QwtPlot *Plot,QObject *parent) : QObject(parent)
     this->Grid->setMinorPen(Qt::gray,0,Qt::DotLine);
     this->Grid->enableX(true);
     this->Grid->enableY(true);
-    this->Grid->enableYMin(true);
+    this->Grid->enableYMin(false);
     this->Grid->enableXMin(false);
     this->Grid->attach(Plot);
 
-    this->CurrentPlot->setAxisScale(QwtPlot::xBottom,0,100);
-    this->CurrentPlot->setAxisScale(QwtPlot::yRight,0,1000);
+    //this->CurrentPlot->setAxisScale(QwtPlot::xBottom,0,100);
+    //this->CurrentPlot->setAxisScale(QwtPlot::yRight,0,1000);
 }
 
 QwtPlotShow::~QwtPlotShow()
@@ -37,14 +37,15 @@ QwtPlotShow::~QwtPlotShow()
 
 }
 
-void QwtPlotShow::addNewDataSlot(QVector<double>  x,QVector<double> data)
+void QwtPlotShow::addNewDataSlot(QVector<double>  &x,QVector<double> &data)
 {
     this->Curve->setSamples(x,data);
-    if(x.last()>=100)
+    /*if(x.last()>=100)
     {
         this->CurrentPlot->setAxisScale(QwtPlot::xBottom,x.last()-100,x.last());
-    }
+    }*/
     this->CurrentPlot->replot();
+    this->CurrentPlot->updateAxes();
 }
 
 void QwtPlotShow::ClearSlot()
@@ -53,6 +54,6 @@ void QwtPlotShow::ClearSlot()
     value.clear();
     this->Curve->setSamples(value);
     this->CurrentPlot->setAxisScale(QwtPlot::xBottom,0,100);
-    this->CurrentPlot->setAxisScale(QwtPlot::yRight,0,1000);
+    this->CurrentPlot->setAxisScale(QwtPlot::yRight,0,100);
     this->CurrentPlot->replot();
 }
