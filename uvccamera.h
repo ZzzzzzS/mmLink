@@ -1,9 +1,8 @@
-﻿#ifndef UVCCAMERA_H
+#ifndef UVCCAMERA_H
 #define UVCCAMERA_H
 
 #include <QObject>
 #include <opencv2/opencv.hpp>
-#include <opencv2/cudacodec.hpp>
 #include <QTime>
 #include <QPixmap>
 

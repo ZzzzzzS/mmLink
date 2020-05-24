@@ -1,24 +1,24 @@
-﻿#include "mainwindow.h"
+#include "mainwindow.h"
 #include "ui_mainwindow.h"
 
 void MainWindow::TCPConnectSlot()
 {
-    if(this->ui->RadarConnectButton->text()==QString(tr("连接雷达")))
+    if(this->ui->RadarConnectButton->text()==QString(tr("Connect Radar")))
     {
         if(ui->ServerPort->text().toUInt()>65535||ui->ServerPort->text().toUInt()<=0)
         {
-            QMessageBox::critical(this,tr("错误"),tr("请填写正确的服务器端口"));
+            QMessageBox::critical(this,tr("Error"),tr("Please fill in the correct server port"));
             return;
         }
-        this->ui->RadarConnectButton->setText(tr("正在连接"));
+        this->ui->RadarConnectButton->setText(tr("Connecting"));
         this->ui->RadarConnectButton->setEnabled(false);
         RadarSocket->connectToHost(QHostAddress(ui->ServerIP->text()),ui->ServerPort->text().toUInt());
 
     }
-    else if(this->ui->RadarConnectButton->text()==QString(tr("断开")))
+    else if(this->ui->RadarConnectButton->text()==QString(tr("Disconnect")))
     {
 
-        this->ui->RadarConnectButton->setText(tr("正在断开"));
+        this->ui->RadarConnectButton->setText(tr("Disconnecting"));
         this->ui->RadarConnectButton->setEnabled(false);
         RadarSocket->disconnectFromHost();
     }
@@ -29,37 +29,37 @@ void MainWindow::TCPErrorSlot(QAbstractSocket::SocketError socketError)
     qDebug()<<socketError;
     if(socketError==QAbstractSocket::ConnectionRefusedError)
     {
-        QMessageBox::critical(this,tr("错误"),tr("远程服务器拒绝了连接"));
-        this->ui->RadarConnectButton->setText(tr("连接雷达"));
+        QMessageBox::critical(this,tr("Error"),tr("The remote server rejected the connection"));
+        this->ui->RadarConnectButton->setText(tr("Connect Radar"));
         this->ui->RadarConnectButton->setEnabled(true);
     }
     else if(socketError==QAbstractSocket::HostNotFoundError)
     {
-        QMessageBox::critical(this,tr("错误"),tr("请填写正确的服务器地址"));
-        this->ui->RadarConnectButton->setText(tr("连接雷达"));
+        QMessageBox::critical(this,tr("Error"),tr("Please fill in the correct server address"));
+        this->ui->RadarConnectButton->setText(tr("Connect Radar"));
         this->ui->RadarConnectButton->setEnabled(true);
     }
     else if(socketError==QAbstractSocket::RemoteHostClosedError)
     {
-        QMessageBox::critical(this,tr("连接已断开"),tr("服务器断开连接"));
+        QMessageBox::critical(this,tr("disconnected"),tr("server disconnected"));
     }
     else if(socketError==QAbstractSocket::NetworkError)
     {
-        this->ui->RadarConnectButton->setText(tr("连接雷达"));
+        this->ui->RadarConnectButton->setText(tr("Connect Radar"));
         this->ui->RadarConnectButton->setEnabled(true);
-        QMessageBox::critical(this,tr("错误"),tr("网络错误"));
+        QMessageBox::critical(this,tr("Error"),tr("Network Error"));
     }
     else
     {
-        this->ui->RadarConnectButton->setText(tr("连接雷达"));
+        this->ui->RadarConnectButton->setText(tr("Connect Radar"));
         this->ui->RadarConnectButton->setEnabled(true);
-        QMessageBox::critical(this,tr("错误"),tr("错误代码：")+QString::number(socketError));
+        QMessageBox::critical(this,tr("Error"),tr("Error Number: ")+QString::number(socketError));
     }
 }
 
 void MainWindow::TCPConnectSuccessedSlot()
 {
-    this->ui->RadarConnectButton->setText(tr("断开"));
+    this->ui->RadarConnectButton->setText(tr("Disconnect"));
     this->ui->RadarConnectButton->setEnabled(true);
     this->ui->ClinetIP->setText(this->RadarSocket->localAddress().toString());
     this->ui->ClinetPort->setText(QString::number(this->RadarSocket->localPort()));
@@ -67,7 +67,7 @@ void MainWindow::TCPConnectSuccessedSlot()
 
 void MainWindow::TCPDisconnectSuccessedSlot()
 {
-    this->ui->RadarConnectButton->setText(tr("连接雷达"));
+    this->ui->RadarConnectButton->setText(tr("Connect Radar"));
     this->ui->RadarConnectButton->setEnabled(true);
     qDebug()<<this->RadarSocket->localPort()<<this->RadarSocket->localAddress();
 }
@@ -100,10 +100,8 @@ void MainWindow::UpdateParameterSlot()
     value.Slope=this->ui->Slope->text().toInt();
     this->RadarSocket->SetRadarParameter(value);
 
-    if(this->RadarSocket->isParameterLegal())
-        this->RadarSocket->UpdateRadarParameter();
-    else
-        QMessageBox::warning(this,tr("雷达参数错误"),tr("请填写正确的雷达参数"));
+    if(!this->RadarSocket->UpdateRadarParameter())
+        QMessageBox::warning(this,tr("radar parameter error"),tr("Please fill in the correct radar parameters"));
 }
 
 void MainWindow::CleanCacheSlot()
@@ -129,5 +127,5 @@ void MainWindow::RenewRadarDataSlot()
     this->RadarTimePlot->addNewDataSlot(Xaxis,Time,AutoScale);
     this->RadarFreqPlot->addNewDataSlot(Xaxis,Freq,AutoScale);
     this->RadarPhasePlot->addNewDataSlot(Xaxis,Phase,AutoScale);
-    qDebug()<<"时域:"<<Time<<"幅度:"<<Freq<<"相位:"<<Phase;
+    qDebug()<<"Time:"<<Time<<"Magnitude:"<<Freq<<"Phase:"<<Phase;
 }

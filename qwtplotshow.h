@@ -1,4 +1,4 @@
-﻿#ifndef QWTPLOTSHOW_H
+#ifndef QWTPLOTSHOW_H
 #define QWTPLOTSHOW_H
 
 #include <QObject>

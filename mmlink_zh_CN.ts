@@ -1,137 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="mmlink_zh_CN">
+<TS version="2.1" language="zh_CN">
 <context>
     <name>AboutWindow</name>
     <message>
         <location filename="aboutwindow.ui" line="20"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">关于mmLink</translation>
     </message>
     <message>
         <location filename="aboutwindow.ui" line="56"/>
         <source>mmLink</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">mmLink</translation>
     </message>
     <message>
         <location filename="aboutwindow.ui" line="96"/>
         <location filename="aboutwindow.ui" line="115"/>
-        <location filename="aboutwindow.ui" line="134"/>
-        <location filename="aboutwindow.ui" line="167"/>
-        <location filename="aboutwindow.ui" line="180"/>
-        <location filename="aboutwindow.ui" line="228"/>
+        <location filename="aboutwindow.ui" line="148"/>
+        <location filename="aboutwindow.ui" line="196"/>
         <source>TextLabel</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="aboutwindow.ui" line="247"/>
-        <source>关于Qt</source>
-        <translation type="unfinished"></translation>
+        <location filename="aboutwindow.ui" line="215"/>
+        <source>About Qt</source>
+        <translation>关于Qt</translation>
     </message>
     <message>
         <location filename="aboutwindow.ui" line="266"/>
-        <source>关于CUDA</source>
-        <translation type="unfinished"></translation>
+        <source>Support</source>
+        <translation>帮助和支持</translation>
     </message>
     <message>
-        <location filename="aboutwindow.ui" line="285"/>
-        <source>关于OpenCV</source>
-        <translation type="unfinished"></translation>
+        <location filename="aboutwindow.ui" line="279"/>
+        <source>license</source>
+        <translation>开源声明</translation>
     </message>
     <message>
-        <location filename="aboutwindow.ui" line="317"/>
-        <source>支持和反馈</source>
-        <translation type="unfinished"></translation>
+        <location filename="aboutwindow.ui" line="305"/>
+        <source>ok</source>
+        <translation>确定</translation>
     </message>
     <message>
-        <location filename="aboutwindow.ui" line="330"/>
-        <location filename="aboutwindow.cpp" line="79"/>
-        <location filename="aboutwindow.cpp" line="80"/>
-        <source>开源声明</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="aboutwindow.ui" line="356"/>
-        <source>确定</source>
-        <translation type="unfinished"></translation>
+        <location filename="aboutwindow.ui" line="234"/>
+        <source>About OpenCV</source>
+        <oldsource>关于OpenCV</oldsource>
+        <translation>关于OpenCV</translation>
     </message>
     <message>
         <location filename="aboutwindow.cpp" line="19"/>
-        <source>关于mmLink</source>
-        <translation type="unfinished"></translation>
+        <source>About mmLink</source>
+        <oldsource>关于mmLink</oldsource>
+        <translation>关于mmLink</translation>
     </message>
     <message>
-        <location filename="aboutwindow.cpp" line="94"/>
-        <source>此软件授权给</source>
-        <translation type="unfinished"></translation>
+        <location filename="aboutwindow.cpp" line="63"/>
+        <source>License</source>
+        <translation>开源声明</translation>
     </message>
     <message>
-        <location filename="aboutwindow.cpp" line="94"/>
-        <source>使用</source>
-        <translation type="unfinished"></translation>
+        <location filename="aboutwindow.cpp" line="77"/>
+        <source>This software is licensed to </source>
+        <translation>此软件授权给</translation>
     </message>
     <message>
-        <location filename="aboutwindow.cpp" line="95"/>
-        <source>Qt版本：</source>
-        <translation type="unfinished"></translation>
+        <location filename="aboutwindow.cpp" line="77"/>
+        <source>use</source>
+        <translation>使用</translation>
     </message>
     <message>
-        <location filename="aboutwindow.cpp" line="96"/>
-        <source>OpenCV版本:</source>
-        <translation type="unfinished"></translation>
+        <location filename="aboutwindow.cpp" line="78"/>
+        <source>Qt Version: </source>
+        <translation>Qt版本: </translation>
     </message>
     <message>
-        <location filename="aboutwindow.cpp" line="97"/>
-        <source>操作系统版本：</source>
-        <translation type="unfinished"></translation>
+        <location filename="aboutwindow.cpp" line="79"/>
+        <source>OpenCV Version: </source>
+        <translation>OpenCV版本: </translation>
     </message>
     <message>
-        <location filename="aboutwindow.cpp" line="98"/>
-        <source>内核版本：</source>
-        <translation type="unfinished"></translation>
+        <location filename="aboutwindow.cpp" line="80"/>
+        <source>OS Version: </source>
+        <translation>操作系统版本: </translation>
     </message>
     <message>
-        <location filename="aboutwindow.cpp" line="101"/>
+        <location filename="aboutwindow.cpp" line="81"/>
+        <source>kernal Version: </source>
+        <translation>内核版本: </translation>
+    </message>
+    <message>
+        <location filename="aboutwindow.cpp" line="84"/>
         <source>mmLink1.0
 </source>
-        <translation type="unfinished"></translation>
+        <translation>mmLink1.0
+</translation>
     </message>
     <message>
-        <location filename="aboutwindow.cpp" line="101"/>
+        <location filename="aboutwindow.cpp" line="84"/>
         <source>Copyright©2020
 All Rights Reserved</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="aboutwindow.cpp" line="101"/>
-        <source>哈尔滨工业大学(威海)
-信息科学与工程学院</source>
-        <translation type="unfinished"></translation>
+        <location filename="aboutwindow.cpp" line="84"/>
+        <source>Powered By ZhouZishun</source>
+        <translation>Powered By 周子顺</translation>
     </message>
     <message>
-        <location filename="aboutwindow.cpp" line="101"/>
-        <source>Powered By 周子顺</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="aboutwindow.cpp" line="110"/>
-        <source>当前设备不支持CUDA加速</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="aboutwindow.cpp" line="115"/>
-        <source>显卡型号：</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="aboutwindow.cpp" line="117"/>
-        <source>显存大小：</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="aboutwindow.cpp" line="121"/>
-        <source>CUDA计算能力：</source>
-        <translation type="unfinished"></translation>
+        <location filename="aboutwindow.cpp" line="84"/>
+        <source>School of Information
+Science and Technology,
+HIT at WeiHai</source>
+        <translation>哈尔滨工业大学(威海)
+信息科学与技术学院</translation>
     </message>
 </context>
 <context>
@@ -139,42 +120,232 @@ All Rights Reserved</source>
     <message>
         <location filename="mainwindow.ui" line="20"/>
         <source>MainWindow</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="31"/>
-        <source>连接设置</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="43"/>
-        <source>本地IP</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="53"/>
-        <source>本地端口</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="80"/>
-        <source>远程IP</source>
-        <translation type="unfinished"></translation>
+        <translation>mmLink</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="87"/>
         <source>127.0.0.1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="94"/>
-        <source>远程端口</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="113"/>
         <source>7</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="31"/>
+        <source>Connection Settings</source>
+        <translation>连接设置</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="43"/>
+        <source>Local IP</source>
+        <translation>本机IP</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="53"/>
+        <source>Local Port</source>
+        <translation>本机端口</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="80"/>
+        <source>Remote IP</source>
+        <translation>远程IP</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="94"/>
+        <source>Remote Port</source>
+        <translation>远程端口</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="142"/>
+        <source>Select Camera</source>
+        <translation>选择摄像头</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="178"/>
+        <source>Parameter Settings</source>
+        <translation>参数设置</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="192"/>
+        <location filename="mainwindow.ui" line="452"/>
+        <source>Sample Rate(Mhz)</source>
+        <translation>采样率(Mhz)</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="226"/>
+        <location filename="mainwindow.ui" line="486"/>
+        <source>Sample Point</source>
+        <translation>采样点数</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="260"/>
+        <location filename="mainwindow.ui" line="520"/>
+        <source>Chirp Number</source>
+        <oldsource>chirp个数</oldsource>
+        <translation>Chirp个数</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="294"/>
+        <source>FM Slope(Mhz/us)</source>
+        <oldsource>调频斜率(Mhz/us)</oldsource>
+        <translation>调频斜率(Mhz/us)</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="336"/>
+        <source>Update</source>
+        <translation>更新</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="348"/>
+        <source>Data Management</source>
+        <translation>数据管理</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="384"/>
+        <source>Clean Cache</source>
+        <translation>清除缓存</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="391"/>
+        <source>Auto Scale Axis</source>
+        <translation>自动缩放坐标轴</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="403"/>
+        <source>Flame Rate</source>
+        <translation>转换帧率</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="428"/>
+        <source>Save Data</source>
+        <translation>保存数据</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="442"/>
+        <source>Radar Current Parameter</source>
+        <translation>雷达实时参数</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="192"/>
+        <location filename="mainwindow.ui" line="452"/>
+        <source>Sample Rate(Mhz)</source>
+        <oldsource>SampleRate(Mhz)</oldsource>
+        <translation type="unfinished">采样率(Mhz)</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="554"/>
+        <source>Current Frame Number</source>
+        <translation>当前帧编号</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="669"/>
+        <source>Camera Data</source>
+        <translation>视频数据</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="720"/>
+        <source>Radar Time Data</source>
+        <translation>时域图</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="775"/>
+        <source>Radar Frequency Data</source>
+        <translation>频域图</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="826"/>
+        <source>Radar Phase Data</source>
+        <translation>相位图</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="869"/>
+        <location filename="mainwindow.ui" line="878"/>
+        <source>About</source>
+        <translation>关于</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="593"/>
+        <source>数据</source>
+        <translation>Data</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="626"/>
+        <source>TextLabel</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="158"/>
+        <location filename="CameraConfig.cpp" line="8"/>
+        <location filename="CameraConfig.cpp" line="29"/>
+        <location filename="CameraConfig.cpp" line="48"/>
+        <location filename="CameraConfig.cpp" line="58"/>
+        <source>Connect Camera</source>
+        <translation>连接摄像头</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="149"/>
+        <location filename="CameraConfig.cpp" line="10"/>
+        <location filename="mainwindow.cpp" line="86"/>
+        <source>Enter camera number or video stream address</source>
+        <translation>输入摄像头编号或视频流地址</translation>
+    </message>
+    <message>
+        <location filename="CameraConfig.cpp" line="12"/>
+        <source>Using Default Camera</source>
+        <translation>使用默认摄像头</translation>
+    </message>
+    <message>
+        <location filename="CameraConfig.cpp" line="12"/>
+        <source>No input device specified, the default device will be used</source>
+        <translation>没有指定输入设备，将使用默认设备</translation>
+    </message>
+    <message>
+        <location filename="CameraConfig.cpp" line="23"/>
+        <location filename="RadarConfig.cpp" line="13"/>
+        <source>Connecting</source>
+        <translation>正在连接</translation>
+    </message>
+    <message>
+        <location filename="CameraConfig.cpp" line="26"/>
+        <location filename="CameraConfig.cpp" line="38"/>
+        <location filename="RadarConfig.cpp" line="18"/>
+        <location filename="RadarConfig.cpp" line="62"/>
+        <location filename="mainwindow.cpp" line="66"/>
+        <source>Disconnect</source>
+        <translation>断开</translation>
+    </message>
+    <message>
+        <location filename="CameraConfig.cpp" line="30"/>
+        <location filename="RadarConfig.cpp" line="21"/>
+        <source>Disconnecting</source>
+        <translation>正在断开</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="362"/>
+        <location filename="CameraConfig.cpp" line="42"/>
+        <location filename="CameraConfig.cpp" line="52"/>
+        <location filename="CameraConfig.cpp" line="66"/>
+        <location filename="CameraConfig.cpp" line="74"/>
+        <source>Record Video</source>
+        <translation>录制视频</translation>
+    </message>
+    <message>
+        <location filename="CameraConfig.cpp" line="60"/>
+        <source>fail to open camera</source>
+        <translation>打开摄像头失败</translation>
+    </message>
+    <message>
+        <location filename="CameraConfig.cpp" line="60"/>
+        <source>Please check the camera connection or video stream address</source>
+        <translation>请检查摄像头连接或视频流地址是否正确</translation>
+    </message>
+    <message>
+        <location filename="CameraConfig.cpp" line="69"/>
+        <location filename="CameraConfig.cpp" line="71"/>
+        <source>stop recording</source>
+        <translation>停止录制</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="122"/>
@@ -184,189 +355,8 @@ All Rights Reserved</source>
         <location filename="RadarConfig.cpp" line="48"/>
         <location filename="RadarConfig.cpp" line="54"/>
         <location filename="RadarConfig.cpp" line="70"/>
-        <source>连接雷达</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="142"/>
-        <source>摄像头选择</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="149"/>
-        <location filename="CameraConfig.cpp" line="10"/>
-        <location filename="mainwindow.cpp" line="86"/>
-        <source>输入摄像头编号或视频流地址</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="158"/>
-        <location filename="CameraConfig.cpp" line="8"/>
-        <location filename="CameraConfig.cpp" line="29"/>
-        <location filename="CameraConfig.cpp" line="48"/>
-        <location filename="CameraConfig.cpp" line="58"/>
-        <source>连接摄像头</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="178"/>
-        <source>参数控制</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="226"/>
-        <location filename="mainwindow.ui" line="499"/>
-        <source>采样点数</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="260"/>
-        <location filename="mainwindow.ui" line="533"/>
-        <source>chirp个数</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="294"/>
-        <source>调频斜率(Mhz/us)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="336"/>
-        <source>更新</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="362"/>
-        <location filename="CameraConfig.cpp" line="42"/>
-        <location filename="CameraConfig.cpp" line="52"/>
-        <location filename="CameraConfig.cpp" line="66"/>
-        <location filename="CameraConfig.cpp" line="74"/>
-        <source>录制视频</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="384"/>
-        <source>清除缓存</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="400"/>
-        <source>转换帧率</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="441"/>
-        <source>保存数据</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="455"/>
-        <source>雷达实时参数</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="192"/>
-        <location filename="mainwindow.ui" line="465"/>
-        <source>采样率(Mhz)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="348"/>
-        <source>数据管理</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="391"/>
-        <source>自动缩放坐标轴</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="567"/>
-        <source>当前帧编号</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="606"/>
-        <source>数据</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="639"/>
-        <source>TextLabel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="682"/>
-        <source>视频数据</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="733"/>
-        <source>时域图</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="788"/>
-        <source>频域图</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="839"/>
-        <source>相位图</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="882"/>
-        <location filename="mainwindow.ui" line="891"/>
-        <source>关于</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="CameraConfig.cpp" line="12"/>
-        <source>将使用默认摄像头</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="CameraConfig.cpp" line="12"/>
-        <source>未指定输入设备,将使用默认设备</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="CameraConfig.cpp" line="23"/>
-        <location filename="RadarConfig.cpp" line="13"/>
-        <source>正在连接</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="CameraConfig.cpp" line="26"/>
-        <location filename="CameraConfig.cpp" line="38"/>
-        <location filename="RadarConfig.cpp" line="18"/>
-        <location filename="RadarConfig.cpp" line="62"/>
-        <location filename="mainwindow.cpp" line="66"/>
-        <source>断开</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="CameraConfig.cpp" line="30"/>
-        <location filename="RadarConfig.cpp" line="21"/>
-        <source>正在断开</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="CameraConfig.cpp" line="60"/>
-        <source>摄像头打开失败</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="CameraConfig.cpp" line="60"/>
-        <source>请检查摄像头连接或视频流地址是否正确</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="CameraConfig.cpp" line="69"/>
-        <location filename="CameraConfig.cpp" line="71"/>
-        <source>停止录制</source>
-        <translation type="unfinished"></translation>
+        <source>Connect Radar</source>
+        <translation>连接雷达</translation>
     </message>
     <message>
         <location filename="RadarConfig.cpp" line="10"/>
@@ -374,68 +364,64 @@ All Rights Reserved</source>
         <location filename="RadarConfig.cpp" line="38"/>
         <location filename="RadarConfig.cpp" line="50"/>
         <location filename="RadarConfig.cpp" line="56"/>
-        <source>错误</source>
-        <translation type="unfinished"></translation>
+        <source>Error</source>
+        <translation>错误</translation>
     </message>
     <message>
         <location filename="RadarConfig.cpp" line="10"/>
-        <source>请填写正确的服务器端口</source>
-        <translation type="unfinished"></translation>
+        <source>Please fill in the correct server port</source>
+        <translation>请填写正确的服务器端口</translation>
     </message>
     <message>
         <location filename="RadarConfig.cpp" line="32"/>
-        <source>远程服务器拒绝了连接</source>
-        <translation type="unfinished"></translation>
+        <source>The remote server rejected the connection</source>
+        <translation>服务器拒绝了连接</translation>
     </message>
     <message>
         <location filename="RadarConfig.cpp" line="38"/>
-        <source>请填写正确的服务器地址</source>
-        <translation type="unfinished"></translation>
+        <source>Please fill in the correct server address</source>
+        <translation>请填写正确的服务器地址</translation>
     </message>
     <message>
         <location filename="RadarConfig.cpp" line="44"/>
-        <source>连接已断开</source>
-        <translation type="unfinished"></translation>
+        <source>disconnected</source>
+        <translation>已断开</translation>
     </message>
     <message>
         <location filename="RadarConfig.cpp" line="44"/>
-        <source>服务器断开连接</source>
-        <translation type="unfinished"></translation>
+        <source>server disconnected</source>
+        <translation>连接已断开</translation>
     </message>
     <message>
         <location filename="RadarConfig.cpp" line="50"/>
-        <source>网络错误</source>
-        <translation type="unfinished"></translation>
+        <source>Network Error</source>
+        <translation>网络错误</translation>
     </message>
     <message>
         <location filename="RadarConfig.cpp" line="56"/>
-        <source>错误代码：</source>
-        <translation type="unfinished"></translation>
+        <source>Error Number: </source>
+        <translation>错误代码: </translation>
     </message>
     <message>
-        <location filename="RadarConfig.cpp" line="106"/>
-        <source>雷达参数错误</source>
-        <translation type="unfinished"></translation>
+        <location filename="RadarConfig.cpp" line="104"/>
+        <source>radar parameter error</source>
+        <translation>雷达参数错误</translation>
     </message>
     <message>
-        <location filename="RadarConfig.cpp" line="106"/>
-        <source>请填写正确的雷达参数</source>
-        <translation type="unfinished"></translation>
+        <location filename="RadarConfig.cpp" line="104"/>
+        <source>Please fill in the correct radar parameters</source>
+        <translation>请输入正确的雷达参数</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="16"/>
-        <source>连接后显示</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="mainwindow.cpp" line="17"/>
-        <source>不可用</source>
-        <translation type="unfinished"></translation>
+        <source>N/A</source>
+        <translation></translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="91"/>
-        <source>输入摄像头编号或视频流地</source>
-        <translation type="unfinished"></translation>
+        <source>Enter camera number or video stream addres</source>
+        <translation>输入摄像头编号或视频流地</translation>
     </message>
 </context>
 </TS>

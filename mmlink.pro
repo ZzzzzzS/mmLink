@@ -5,41 +5,21 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 CONFIG += c++11 qwt
 DEFINES += QWT_DLL
 
-DEFINES -=USE_CUDA #如果不需要cuda就删除这个
-
 win32:{
     INCLUDEPATH += C:\ProgramFiles\Qt\Qt5.14.2\5.14.2\msvc2017_64\include\Qwt
-    INCLUDEPATH += C:\ProgramFiles\opencv\include
+    INCLUDEPATH += C:\ProgramFiles\opencv\opencv4.3.0\include
     CONFIG(debug, debug|release) LIBS += -L"C:\ProgramFiles\Qt\Qt5.14.2\5.14.2\msvc2017_64\lib" -lqwtd
     CONFIG(release, debug|release) LIBS += -L"C:\ProgramFiles\Qt\Qt5.14.2\5.14.2\msvc2017_64\lib" -lqwt
 }
 
 win32:{
-    CONFIG(debug, debug|release) LIBS += -L"C:\ProgramFiles\opencv\x64\vc16\lib" \
+    CONFIG(debug, debug|release) LIBS += -L"C:\ProgramFiles\opencv\opencv4.3.0\lib" \
     -lopencv_core430d \
     -lopencv_videoio430d \
 
-    contains(DEFINES,USE_CUDA){
-        message("将使用CUDA加速")
-        CONFIG(debug, debug|release) LIBS += -L"C:\ProgramFiles\opencv\x64\vc16\lib" \
-        -lopencv_cudev430d \
-        -lopencv_cudacodec430d
-    }else{
-        message("不会使用CUDA加速")
-    }
-
-    CONFIG(release, debug|release) LIBS += -L"C:\ProgramFiles\opencv\x64\vc16\lib" \
+    CONFIG(release, debug|release) LIBS += -L"C:\ProgramFiles\opencv\opencv4.3.0\lib" \
     -lopencv_core430 \
     -lopencv_videoio430 \
-
-    contains(DEFINES,USE_CUDA){
-        message("将使用CUDA加速")
-        CONFIG(release, debug|release) LIBS += -L"C:\ProgramFiles\opencv\x64\vc16\lib" \
-        -lopencv_cudev430 \
-        -lopencv_cudacodec430
-    }else{
-        message("不会使用CUDA加速")
-    }
 }
 
 

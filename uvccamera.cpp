@@ -1,4 +1,4 @@
-﻿#include "uvccamera.h"
+#include "uvccamera.h"
 #include <QApplication>
 #include <time.h>
 #include <opencv2/core/cuda.hpp>

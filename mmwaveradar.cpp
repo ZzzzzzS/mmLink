@@ -1,4 +1,4 @@
-﻿#include "mmwaveradar.h"
+#include "mmwaveradar.h"
 
 mmWaveRadar::mmWaveRadar(QObject *parent) : QTcpSocket(parent)
 {
@@ -10,13 +10,22 @@ mmWaveRadar::mmWaveRadar(QObject *parent) : QTcpSocket(parent)
     QObject::connect(this,SIGNAL(GetFullFrame()),this->FreqDomain,SLOT(ProcessFFT()));
 }
 
-void mmWaveRadar::UpdateRadarParameter()
+bool mmWaveRadar::UpdateRadarParameter()
 {
-    qDebug("%s",this->Parameter.TranscodeParameter);
-    QByteArray data(this->Parameter.TranscodeParameter,16);
-    char head=0xBB;
-    QByteArray headArray(&head,1);
-    this->write(QByteArray(headArray+data));
+    if(this->isParameterLegal())
+    {
+        qDebug("%s",this->Parameter.TranscodeParameter);
+        QByteArray data(this->Parameter.TranscodeParameter,16);
+        char head=0xBB;
+        QByteArray headArray(&head,1);
+        this->write(QByteArray(headArray+data));
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+
 }
 
 bool mmWaveRadar::isParameterLegal()

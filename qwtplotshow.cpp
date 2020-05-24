@@ -1,4 +1,4 @@
-﻿#include "qwtplotshow.h"
+#include "qwtplotshow.h"
 
 QwtPlotShow::QwtPlotShow(QwtPlot *Plot,QObject *parent) : QObject(parent)
 {
@@ -17,7 +17,6 @@ QwtPlotShow::QwtPlotShow(QwtPlot *Plot,QObject *parent) : QObject(parent)
 
     this->Curve->attach(Plot);
     this->Curve->setStyle(QwtPlotCurve::Lines);
-    //this->Curve->setCurveAttribute(QwtPlotCurve::Fitted,true);//是曲线更光滑
     this->Curve->setPen(Qt::blue);
 
     this->Grid->setMajorPen(Qt::gray,0,Qt::DotLine);

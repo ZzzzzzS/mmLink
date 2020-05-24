@@ -98,25 +98,6 @@
                 </widget>
                </item>
                <item>
-                <widget class="QLabel" name="CUDAImage">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="minimumSize">
-                  <size>
-                   <width>100</width>
-                   <height>100</height>
-                  </size>
-                 </property>
-                 <property name="text">
-                  <string>TextLabel</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
                 <widget class="QLabel" name="OpenCVImage">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -157,19 +138,6 @@
                </item>
                <item>
                 <widget class="QLabel" name="QtVersion">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="text">
-                  <string>TextLabel</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QLabel" name="CUDAVersion">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
                    <horstretch>0</horstretch>
@@ -244,26 +212,7 @@
                 </font>
                </property>
                <property name="text">
-                <string>关于Qt</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="CUDAButton">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="font">
-                <font>
-                 <family>微软雅黑</family>
-                 <pointsize>9</pointsize>
-                </font>
-               </property>
-               <property name="text">
-                <string>关于CUDA</string>
+                <string>About Qt</string>
                </property>
               </widget>
              </item>
@@ -282,7 +231,7 @@
                 </font>
                </property>
                <property name="text">
-                <string>关于OpenCV</string>
+                <string>About OpenCV</string>
                </property>
               </widget>
              </item>
@@ -314,7 +263,7 @@
               </font>
              </property>
              <property name="text">
-              <string>支持和反馈</string>
+              <string>Support</string>
              </property>
             </widget>
            </item>
@@ -327,7 +276,7 @@
               </font>
              </property>
              <property name="text">
-              <string>开源声明</string>
+              <string>license</string>
              </property>
             </widget>
            </item>
@@ -353,7 +302,10 @@
               </font>
              </property>
              <property name="text">
-              <string>确定</string>
+              <string>ok</string>
+             </property>
+             <property name="default">
+              <bool>true</bool>
              </property>
             </widget>
            </item>
