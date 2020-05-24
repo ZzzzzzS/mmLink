@@ -3,7 +3,6 @@
         <file>hitlogo.png</file>
         <file>qt.png</file>
         <file>opencv.png</file>
-        <file>cuda.png</file>
         <file>logo.ico</file>
     </qresource>
     <qresource prefix="/sound">
