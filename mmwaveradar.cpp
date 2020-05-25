@@ -74,6 +74,10 @@ bool mmWaveRadar::ReadRadarData()
     QByteArray value=this->readAll();//读取收到的所有数据
     qDebug()<<value;
     std::string receive(value.toStdString());
+    if(receive.length()<=20)//数据包长度小于帧头，接收错误
+    {
+        return false;
+    }
     receive.copy(this->Data.ReceiveBuffer,receive.size());//把这些数据复制到接受缓冲区内
     this->ConvertEndian();
     qDebug()<<receive.length()<<this->Data.RadarData.RadarHead.Length;
