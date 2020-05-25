@@ -108,7 +108,10 @@ void mmWaveRadar::RadarBufferCompress()
         {
             this->TimeData.push_back((double)this->ReceiveBuffer[i]);
         }
-        this->AllReceivedData.push_back(this->ReceiveBuffer);//将时域数据保存到存储全部数据的容器中
+        if(!this->ReceiveBuffer.empty())
+        {
+            emit(this->PushBackData(this->ReceiveBuffer));//将时域数据保存到数据库中
+        }
         this->ReceiveBuffer.clear();//清除缓冲区
         if(!this->TimeData.empty())//判断一下到底接收到数据没有，以便后续显示不出错
         {
@@ -135,6 +138,5 @@ void mmWaveRadar::ClearRadarCache()
 {
     this->TimeData.clear();
     this->ReceiveBuffer.clear();
-    this->AllReceivedData.clear();
     this->FreqDomain->ClearCache();
 }

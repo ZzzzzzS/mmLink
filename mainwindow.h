@@ -10,9 +10,12 @@
 #include <QImage>
 #include <QThread>
 #include <QTranslator>
+#include <QMetaType>
+#include <QVector>
 #include "aboutwindow.h"
 
 #include "mmwaveradar.h"
+#include "datamanagement.h"
 
 #include "uvccamera.h"
 
@@ -35,6 +38,8 @@ public:
 private:
     Ui::MainWindow *ui;
     mmWaveRadar *RadarSocket;
+    DataManagement *RadarData;
+    QThread *RadarDataThread;
 
     UVCCamera *Camera;
     QThread *CameraThread;

@@ -75,14 +75,14 @@ public:
 
 signals:
     void GetFullFrame();
+    void PushBackData(QVector<short>);
 private:
 
 
     UnionParamter_t Parameter; //设定的雷达参数
     UnionData_t Data;//接收的雷达数据
 
-    std::vector<short> ReceiveBuffer;//接收缓冲区
-    std::vector<std::vector<short>> AllReceivedData;//保存所有的时域数据
+    QVector<short> ReceiveBuffer;//接收缓冲区
 
     QThread *FFTThread;
 

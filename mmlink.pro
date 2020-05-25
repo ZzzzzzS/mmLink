@@ -1,4 +1,4 @@
-QT       += core gui network multimedia multimediawidgets
+QT       += core gui network sql multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -39,9 +39,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     CameraConfig.cpp \
-    FileConfig.cpp \
     RadarConfig.cpp \
     aboutwindow.cpp \
+    datamanagement.cpp \
     main.cpp \
     mainwindow.cpp \
     mmwaveradar.cpp \
@@ -51,6 +51,7 @@ SOURCES += \
 
 HEADERS += \
     aboutwindow.h \
+    datamanagement.h \
     mainwindow.h \
     mmwaveradar.h \
     mmwaveradarfft.h \

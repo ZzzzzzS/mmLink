@@ -20,10 +20,16 @@ MainWindow::MainWindow(QWidget *parent)
     this->SetLogo();
     //设置雷达
     this->RadarSocket=new mmWaveRadar(this);
+    this->RadarData=new DataManagement();
+    this->RadarDataThread=new QThread();
+    qRegisterMetaType<QVector<short>>("QVector_short");
+    this->RadarData->moveToThread(this->RadarDataThread);
+    this->RadarDataThread->start();
+    this->RadarData->ConnectSQL("aaa.db");
     //设置相机
     this->CameraThread=new QThread();
     this->Camera=new UVCCamera();
-    this->Camera->moveToThread(CameraThread);
+    this->Camera->moveToThread(this->CameraThread);
     this->ui->RecordButton->setEnabled(false);
 
     //设置Qwt
@@ -52,6 +58,7 @@ MainWindow::MainWindow(QWidget *parent)
     //雷达参数相关信号
     QObject::connect(this->ui->UpdateButton,SIGNAL(clicked()),this,SLOT(UpdateParameterSlot()));
     QObject::connect(this->RadarSocket->FreqDomain,SIGNAL(FFTComplete()),this,SLOT(RenewRadarDataSlot()));
+    QObject::connect(this->RadarSocket,SIGNAL(PushBackData(QVector<short>)),this->RadarData,SLOT(SaveData(QVector<short>)));
 }
 
 MainWindow::~MainWindow()
