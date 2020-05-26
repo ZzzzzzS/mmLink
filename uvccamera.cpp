@@ -45,11 +45,11 @@ void UVCCamera::StopCamera()
     this->isCapturing=false;
 }
 
-void UVCCamera::StartRecording()
+void UVCCamera::StartRecording(QString dir)
 {
     this->CaptureSize.width=this->Capture->get(cv::CAP_PROP_FRAME_WIDTH);
     this->CaptureSize.height=this->Capture->get(cv::CAP_PROP_FRAME_HEIGHT);
-    this->recorder->open("CameraCapture.avi",cv::VideoWriter::fourcc('D', 'I', 'V', 'X'),this->FPS,this->CaptureSize);
+    this->recorder->open(dir.toStdString(),cv::VideoWriter::fourcc('D', 'I', 'V', 'X'),this->FPS,this->CaptureSize);
     this->isRecording=true;
 }
 

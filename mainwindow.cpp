@@ -25,7 +25,11 @@ MainWindow::MainWindow(QWidget *parent)
     qRegisterMetaType<QVector<short>>("QVector_short");
     this->RadarData->moveToThread(this->RadarDataThread);
     this->RadarDataThread->start();
-    this->RadarData->ConnectSQL("aaa.db");
+    QDir dir;//创建一个Data目录，用来保证后面创建文件不出错
+    if(!dir.exists(qApp->applicationDirPath()+"/Data"))
+    {
+        dir.mkdir(qApp->applicationDirPath()+"/Data");
+    }
     //设置相机
     this->CameraThread=new QThread();
     this->Camera=new UVCCamera();
@@ -39,7 +43,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     //UI信号
     QObject::connect(this->ui->action_aboutQt,SIGNAL(triggered()),this,SLOT(AboutSlot()));
-    QObject::connect(this->ui->CleanCacheButton,SIGNAL(clicked()),this,SLOT(CleanCacheSlot()));
+    QObject::connect(this->ui->DataFolderButton,SIGNAL(clicked()),this,SLOT(OpenFolderSlot()));
     QObject::connect(this->ui->CameraAddress,SIGNAL(cursorPositionChanged(int,int)),this,SLOT(CameraInputSlot(int,int)));
     //TCP连接相关信号
     QObject::connect(this->ui->RadarConnectButton,SIGNAL(clicked()),this,SLOT(TCPConnectSlot()));
@@ -56,6 +60,7 @@ MainWindow::MainWindow(QWidget *parent)
     QObject::connect(this->Camera,SIGNAL(CameraStopped()),this,SLOT(CameraStoppedSlot()));
     QObject::connect(this->Camera,SIGNAL(CameraStartFailed()),this,SLOT(CameraErrorSlot()));
     //雷达参数相关信号
+    QObject::connect(this->ui->ConvertFrameButton,SIGNAL(clicked()),this,SLOT(ConvertFrameSlot()));
     QObject::connect(this->ui->UpdateButton,SIGNAL(clicked()),this,SLOT(UpdateParameterSlot()));
     QObject::connect(this->RadarSocket->FreqDomain,SIGNAL(FFTComplete()),this,SLOT(RenewRadarDataSlot()));
     QObject::connect(this->RadarSocket,SIGNAL(PushBackData(QVector<short>)),this->RadarData,SLOT(SaveData(QVector<short>)));
@@ -100,4 +105,9 @@ void MainWindow::CameraInputSlot(int oldPos, int newPos)
         this->ui->CameraAddress->clear();
         return;
     }
+}
+
+void MainWindow::OpenFolderSlot()
+{
+    QDesktopServices::openUrl(QUrl(qApp->applicationDirPath()+"/Data"));
 }

@@ -10,6 +10,9 @@
 #include <QSqlError>
 #include <QVariant>
 #include <QtDebug>
+#include <QFile>
+#include <QDataStream>
+#include <QString>
 
 class DataManagement : public QObject
 {
@@ -17,7 +20,10 @@ class DataManagement : public QObject
 public:
     explicit DataManagement(QObject *parent = nullptr);
     bool ConnectSQL(QString DatabaseName);
-    bool ConvertFrame(int Frame);
+    bool ConvertFrame(int Frame, QString FileName="/Data/RadarData.bin");
+    void CloseDatabase();
+    QString DatabaseTime;
+
 public slots:
     void SaveData(QVector<short> Data);
 

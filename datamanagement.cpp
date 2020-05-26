@@ -27,23 +27,56 @@ bool DataManagement::ConnectSQL(QString DatabaseName)
     return true;
 }
 
-bool DataManagement::ConvertFrame(int Frame)
+bool DataManagement::ConvertFrame(int Frame,QString FileName)
 {
+    if(!this->RadarDatabase.isOpen())
+    {
+        qDebug()<<"Database is not open";
+        return false;
+    }
+    QFile file(FileName);
+    bool ok=file.open(QIODevice::WriteOnly);
+    QDataStream stream(&file);
+    if(!this->RadarQuery->exec("SELECT * FROM Data"))
+    {
+        qDebug("fail on sql operation");
+        return false;
+    }
+    int counter=Frame;
+    short var;
+    while(this->RadarQuery->next())
+    {
+        if(counter++>=Frame)
+        {
+            var=this->RadarQuery->value(0).toInt();
+            stream<<var;
+            counter=0;
+        }
+    }
+    file.close();
    return true;
 }
 
 void DataManagement::SaveData(QVector<short> Data)
 {
     QMutexLocker locker(&this->Lock);
+    QByteArray Value;
     bool ok;
-    RadarQuery->prepare("INSERT INTO Data VALUES (NULL, @package)");
+    RadarQuery->prepare("INSERT INTO Data VALUES (NULL,:package)");
     for(QVector<short>::iterator i=Data.begin();i!=Data.end();i++)
     {
-        RadarQuery->bindValue("@package",*i);
+        Value=QByteArray::number(*i);
+        RadarQuery->bindValue(":package",Value);
         ok=RadarQuery->exec();
         if(!ok)
         {
            qDebug()<<RadarQuery->lastError();
         }
     }
+}
+
+void DataManagement::CloseDatabase()
+{
+    if(this->RadarDatabase.isOpen())
+        this->RadarDatabase.close();
 }

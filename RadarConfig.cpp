@@ -12,6 +12,11 @@ void MainWindow::TCPConnectSlot()
         }
         this->ui->RadarConnectButton->setText(tr("Connecting"));
         this->ui->RadarConnectButton->setEnabled(false);
+        this->RadarData->DatabaseTime=QDateTime::currentDateTime().toString("yyyyMMddHHmmss");
+        QString SQLAddr=QString(qApp->applicationDirPath()+"/Data/DataRecords-")+this->RadarData->DatabaseTime+".db";
+        qDebug()<<SQLAddr;
+        this->RadarData->CloseDatabase();//先关闭打开的数据库
+        this->RadarData->ConnectSQL(SQLAddr);
         RadarSocket->connectToHost(QHostAddress(ui->ServerIP->text()),ui->ServerPort->text().toUInt());
 
     }
@@ -104,15 +109,6 @@ void MainWindow::UpdateParameterSlot()
         QMessageBox::warning(this,tr("radar parameter error"),tr("Please fill in the correct radar parameters"));
 }
 
-void MainWindow::CleanCacheSlot()
-{
-    qDebug()<<"clear cache";
-    this->RadarSocket->ClearRadarCache();
-    this->RadarFreqPlot->ClearSlot();
-    this->RadarTimePlot->ClearSlot();
-    this->RadarPhasePlot->ClearSlot();
-}
-
 void MainWindow::RenewRadarDataSlot()
 {
     QVector<double> Xaxis(this->RadarSocket->TimeData.size());
@@ -128,4 +124,18 @@ void MainWindow::RenewRadarDataSlot()
     this->RadarFreqPlot->addNewDataSlot(Xaxis,Freq,AutoScale);
     this->RadarPhasePlot->addNewDataSlot(Xaxis,Phase,AutoScale);
     qDebug()<<"Time:"<<Time<<"Magnitude:"<<Freq<<"Phase:"<<Phase;
+}
+
+void MainWindow::ConvertFrameSlot()
+{
+    int number=this->ui->FlameRate->text().toInt();
+    if(number<=0)//判断帧率是否输入正确
+    {
+        QMessageBox::critical(this,"Frame Rate is Not Correct","Please Input Correct Frame Rate",QMessageBox::Ok);
+        return;
+    }
+    if(!this->RadarData->ConvertFrame(number,qApp->applicationDirPath()+"/Data/"+this->RadarData->DatabaseTime+".bin"))
+    {
+        QMessageBox::critical(this,"Error","Fail to Convert Frame Rate",QMessageBox::Ok);
+    }
 }

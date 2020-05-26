@@ -29,7 +29,7 @@ public slots:
     void ProcessFFT();
 
 private:
-    void RadarFFT(std::vector<double> &TimeData,bool angleInDegrees=false);//计算fft
+    void RadarFFT(std::vector<double> &TimeData, bool Log=true, bool angleInDegrees=false);//计算fft
     std::vector<double>& TimeData;//引用传入的时域数据
     std::vector<cv::Mat> FFTData;//原始fft数据(分离到两个Mat，实部0，虚部1)
     QMutex FFTlock;

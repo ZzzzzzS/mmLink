@@ -12,6 +12,8 @@
 #include <QTranslator>
 #include <QMetaType>
 #include <QVector>
+#include <QDateTime>
+#include <QDir>
 #include "aboutwindow.h"
 
 #include "mmwaveradar.h"
@@ -63,6 +65,7 @@ private slots:
     void TCPDisconnectSuccessedSlot();
     void TCPReceiveSlot();
     void RenewRadarDataSlot();
+    void ConvertFrameSlot();
 
     void CameraConnectSlot();
     void CameraRecordSlot();
@@ -74,7 +77,7 @@ private slots:
 
     void UpdateParameterSlot();
 
-    void CleanCacheSlot();
+    void OpenFolderSlot();
     void AboutSlot();
 };
 

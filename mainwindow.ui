@@ -325,6 +325,19 @@
               </layout>
              </item>
              <item>
+              <spacer name="verticalSpacer">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
               <widget class="QPushButton" name="UpdateButton">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -351,6 +364,26 @@
            <item row="0" column="0">
             <layout class="QVBoxLayout" name="verticalLayout_14">
              <item>
+              <widget class="QPushButton" name="DataFolderButton">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>Open Data Folder</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="Line" name="line_3">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
+             </item>
+             <item>
               <widget class="QPushButton" name="RecordButton">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -364,27 +397,7 @@
               </widget>
              </item>
              <item>
-              <widget class="Line" name="line_3">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-              </widget>
-             </item>
-             <item>
               <layout class="QVBoxLayout" name="verticalLayout_13">
-               <item>
-                <widget class="QPushButton" name="CleanCacheButton">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="text">
-                  <string>Clean Cache</string>
-                 </property>
-                </widget>
-               </item>
                <item>
                 <widget class="QCheckBox" name="AxisBox">
                  <property name="text">
@@ -400,7 +413,7 @@
                  <item>
                   <widget class="QLabel" name="label_20">
                    <property name="text">
-                    <string>Flame Rate</string>
+                    <string>Frame Rate</string>
                    </property>
                   </widget>
                  </item>
@@ -418,14 +431,17 @@
                      <height>16777215</height>
                     </size>
                    </property>
+                   <property name="text">
+                    <string>30</string>
+                   </property>
                   </widget>
                  </item>
                 </layout>
                </item>
                <item>
-                <widget class="QPushButton" name="pushButton_3">
+                <widget class="QPushButton" name="ConvertFrameButton">
                  <property name="text">
-                  <string>Save Data</string>
+                  <string>Convert Frame</string>
                  </property>
                 </widget>
                </item>
@@ -861,7 +877,7 @@
      <x>0</x>
      <y>0</y>
      <width>1136</width>
-     <height>23</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu">

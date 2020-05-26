@@ -203,9 +203,8 @@ HIT at WeiHai</source>
         <translation>数据管理</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="384"/>
         <source>Clean Cache</source>
-        <translation>清除缓存</translation>
+        <translation type="vanished">清除缓存</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="391"/>
@@ -226,13 +225,6 @@ HIT at WeiHai</source>
         <location filename="mainwindow.ui" line="442"/>
         <source>Radar Current Parameter</source>
         <translation>雷达实时参数</translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="192"/>
-        <location filename="mainwindow.ui" line="452"/>
-        <source>Sample Rate(Mhz)</source>
-        <oldsource>SampleRate(Mhz)</oldsource>
-        <translation type="unfinished">采样率(Mhz)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="554"/>
@@ -271,6 +263,11 @@ HIT at WeiHai</source>
         <translation>Data</translation>
     </message>
     <message>
+        <location filename="mainwindow.ui" line="384"/>
+        <source>Open Data Folder</source>
+        <translation>打开数据文件夹</translation>
+    </message>
+    <message>
         <location filename="mainwindow.ui" line="626"/>
         <source>TextLabel</source>
         <translation></translation>
@@ -287,7 +284,7 @@ HIT at WeiHai</source>
     <message>
         <location filename="mainwindow.ui" line="149"/>
         <location filename="CameraConfig.cpp" line="10"/>
-        <location filename="mainwindow.cpp" line="86"/>
+        <location filename="mainwindow.cpp" line="97"/>
         <source>Enter camera number or video stream address</source>
         <translation>输入摄像头编号或视频流地址</translation>
     </message>
@@ -310,15 +307,15 @@ HIT at WeiHai</source>
     <message>
         <location filename="CameraConfig.cpp" line="26"/>
         <location filename="CameraConfig.cpp" line="38"/>
-        <location filename="RadarConfig.cpp" line="18"/>
-        <location filename="RadarConfig.cpp" line="62"/>
-        <location filename="mainwindow.cpp" line="66"/>
+        <location filename="RadarConfig.cpp" line="21"/>
+        <location filename="RadarConfig.cpp" line="66"/>
+        <location filename="mainwindow.cpp" line="77"/>
         <source>Disconnect</source>
         <translation>断开</translation>
     </message>
     <message>
         <location filename="CameraConfig.cpp" line="30"/>
-        <location filename="RadarConfig.cpp" line="21"/>
+        <location filename="RadarConfig.cpp" line="24"/>
         <source>Disconnecting</source>
         <translation>正在断开</translation>
     </message>
@@ -350,20 +347,20 @@ HIT at WeiHai</source>
     <message>
         <location filename="mainwindow.ui" line="122"/>
         <location filename="RadarConfig.cpp" line="6"/>
-        <location filename="RadarConfig.cpp" line="33"/>
-        <location filename="RadarConfig.cpp" line="39"/>
-        <location filename="RadarConfig.cpp" line="48"/>
-        <location filename="RadarConfig.cpp" line="54"/>
-        <location filename="RadarConfig.cpp" line="70"/>
+        <location filename="RadarConfig.cpp" line="37"/>
+        <location filename="RadarConfig.cpp" line="43"/>
+        <location filename="RadarConfig.cpp" line="52"/>
+        <location filename="RadarConfig.cpp" line="58"/>
+        <location filename="RadarConfig.cpp" line="74"/>
         <source>Connect Radar</source>
         <translation>连接雷达</translation>
     </message>
     <message>
         <location filename="RadarConfig.cpp" line="10"/>
-        <location filename="RadarConfig.cpp" line="32"/>
-        <location filename="RadarConfig.cpp" line="38"/>
-        <location filename="RadarConfig.cpp" line="50"/>
-        <location filename="RadarConfig.cpp" line="56"/>
+        <location filename="RadarConfig.cpp" line="36"/>
+        <location filename="RadarConfig.cpp" line="42"/>
+        <location filename="RadarConfig.cpp" line="54"/>
+        <location filename="RadarConfig.cpp" line="60"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
@@ -373,42 +370,42 @@ HIT at WeiHai</source>
         <translation>请填写正确的服务器端口</translation>
     </message>
     <message>
-        <location filename="RadarConfig.cpp" line="32"/>
+        <location filename="RadarConfig.cpp" line="36"/>
         <source>The remote server rejected the connection</source>
         <translation>服务器拒绝了连接</translation>
     </message>
     <message>
-        <location filename="RadarConfig.cpp" line="38"/>
+        <location filename="RadarConfig.cpp" line="42"/>
         <source>Please fill in the correct server address</source>
         <translation>请填写正确的服务器地址</translation>
     </message>
     <message>
-        <location filename="RadarConfig.cpp" line="44"/>
+        <location filename="RadarConfig.cpp" line="48"/>
         <source>disconnected</source>
         <translation>已断开</translation>
     </message>
     <message>
-        <location filename="RadarConfig.cpp" line="44"/>
+        <location filename="RadarConfig.cpp" line="48"/>
         <source>server disconnected</source>
         <translation>连接已断开</translation>
     </message>
     <message>
-        <location filename="RadarConfig.cpp" line="50"/>
+        <location filename="RadarConfig.cpp" line="54"/>
         <source>Network Error</source>
         <translation>网络错误</translation>
     </message>
     <message>
-        <location filename="RadarConfig.cpp" line="56"/>
+        <location filename="RadarConfig.cpp" line="60"/>
         <source>Error Number: </source>
         <translation>错误代码: </translation>
     </message>
     <message>
-        <location filename="RadarConfig.cpp" line="104"/>
+        <location filename="RadarConfig.cpp" line="108"/>
         <source>radar parameter error</source>
         <translation>雷达参数错误</translation>
     </message>
     <message>
-        <location filename="RadarConfig.cpp" line="104"/>
+        <location filename="RadarConfig.cpp" line="108"/>
         <source>Please fill in the correct radar parameters</source>
         <translation>请输入正确的雷达参数</translation>
     </message>
@@ -419,7 +416,7 @@ HIT at WeiHai</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="91"/>
+        <location filename="mainwindow.cpp" line="102"/>
         <source>Enter camera number or video stream addres</source>
         <translation>输入摄像头编号或视频流地</translation>
     </message>

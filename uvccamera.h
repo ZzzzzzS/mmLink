@@ -13,7 +13,7 @@ public:
     explicit UVCCamera(QObject *parent = nullptr);
     ~UVCCamera();
     void StopCamera();
-    void StartRecording();
+    void StartRecording(QString dir);
     void StopRecording();
 
 signals:

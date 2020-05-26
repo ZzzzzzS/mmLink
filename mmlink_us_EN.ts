@@ -326,8 +326,8 @@ HIT at WeiHai</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="384"/>
-        <source>Clean Cache</source>
-        <translation></translation>
+        <source>Open Data Folder</source>
+        <translation type="unfinished">打开数据文件夹</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="391"/>
@@ -348,13 +348,6 @@ HIT at WeiHai</translation>
         <location filename="mainwindow.ui" line="442"/>
         <source>Radar Current Parameter</source>
         <translation></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="192"/>
-        <location filename="mainwindow.ui" line="452"/>
-        <source>Sample Rate(Mhz)</source>
-        <oldsource>SampleRate(Mhz)</oldsource>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="554"/>
@@ -557,7 +550,7 @@ HIT at WeiHai</translation>
     <message>
         <location filename="mainwindow.ui" line="149"/>
         <location filename="CameraConfig.cpp" line="10"/>
-        <location filename="mainwindow.cpp" line="86"/>
+        <location filename="mainwindow.cpp" line="97"/>
         <source>Enter camera number or video stream address</source>
         <translation></translation>
     </message>
@@ -580,15 +573,15 @@ HIT at WeiHai</translation>
     <message>
         <location filename="CameraConfig.cpp" line="26"/>
         <location filename="CameraConfig.cpp" line="38"/>
-        <location filename="RadarConfig.cpp" line="18"/>
-        <location filename="RadarConfig.cpp" line="62"/>
-        <location filename="mainwindow.cpp" line="66"/>
+        <location filename="RadarConfig.cpp" line="21"/>
+        <location filename="RadarConfig.cpp" line="66"/>
+        <location filename="mainwindow.cpp" line="77"/>
         <source>Disconnect</source>
         <translation></translation>
     </message>
     <message>
         <location filename="CameraConfig.cpp" line="30"/>
-        <location filename="RadarConfig.cpp" line="21"/>
+        <location filename="RadarConfig.cpp" line="24"/>
         <source>Disconnecting</source>
         <translation></translation>
     </message>
@@ -620,20 +613,20 @@ HIT at WeiHai</translation>
     <message>
         <location filename="mainwindow.ui" line="122"/>
         <location filename="RadarConfig.cpp" line="6"/>
-        <location filename="RadarConfig.cpp" line="33"/>
-        <location filename="RadarConfig.cpp" line="39"/>
-        <location filename="RadarConfig.cpp" line="48"/>
-        <location filename="RadarConfig.cpp" line="54"/>
-        <location filename="RadarConfig.cpp" line="70"/>
+        <location filename="RadarConfig.cpp" line="37"/>
+        <location filename="RadarConfig.cpp" line="43"/>
+        <location filename="RadarConfig.cpp" line="52"/>
+        <location filename="RadarConfig.cpp" line="58"/>
+        <location filename="RadarConfig.cpp" line="74"/>
         <source>Connect Radar</source>
         <translation></translation>
     </message>
     <message>
         <location filename="RadarConfig.cpp" line="10"/>
-        <location filename="RadarConfig.cpp" line="32"/>
-        <location filename="RadarConfig.cpp" line="38"/>
-        <location filename="RadarConfig.cpp" line="50"/>
-        <location filename="RadarConfig.cpp" line="56"/>
+        <location filename="RadarConfig.cpp" line="36"/>
+        <location filename="RadarConfig.cpp" line="42"/>
+        <location filename="RadarConfig.cpp" line="54"/>
+        <location filename="RadarConfig.cpp" line="60"/>
         <source>Error</source>
         <translation></translation>
     </message>
@@ -643,42 +636,42 @@ HIT at WeiHai</translation>
         <translation></translation>
     </message>
     <message>
-        <location filename="RadarConfig.cpp" line="32"/>
+        <location filename="RadarConfig.cpp" line="36"/>
         <source>The remote server rejected the connection</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="RadarConfig.cpp" line="38"/>
+        <location filename="RadarConfig.cpp" line="42"/>
         <source>Please fill in the correct server address</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="RadarConfig.cpp" line="44"/>
+        <location filename="RadarConfig.cpp" line="48"/>
         <source>disconnected</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="RadarConfig.cpp" line="44"/>
+        <location filename="RadarConfig.cpp" line="48"/>
         <source>server disconnected</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="RadarConfig.cpp" line="50"/>
+        <location filename="RadarConfig.cpp" line="54"/>
         <source>Network Error</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="RadarConfig.cpp" line="56"/>
+        <location filename="RadarConfig.cpp" line="60"/>
         <source>Error Number: </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="RadarConfig.cpp" line="104"/>
+        <location filename="RadarConfig.cpp" line="108"/>
         <source>radar parameter error</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="RadarConfig.cpp" line="104"/>
+        <location filename="RadarConfig.cpp" line="108"/>
         <source>Please fill in the correct radar parameters</source>
         <translation></translation>
     </message>
@@ -689,7 +682,7 @@ HIT at WeiHai</translation>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="91"/>
+        <location filename="mainwindow.cpp" line="102"/>
         <source>Enter camera number or video stream addres</source>
         <translation></translation>
     </message>
