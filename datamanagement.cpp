@@ -36,6 +36,10 @@ bool DataManagement::ConvertFrame(int Frame,QString FileName)
     }
     QFile file(FileName);
     bool ok=file.open(QIODevice::WriteOnly);
+    if(!ok)
+    {
+        return false;
+    }
     QDataStream stream(&file);
     if(!this->RadarQuery->exec("SELECT * FROM Data"))
     {
