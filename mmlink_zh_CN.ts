@@ -16,33 +16,34 @@
     <message>
         <location filename="aboutwindow.ui" line="96"/>
         <location filename="aboutwindow.ui" line="115"/>
-        <location filename="aboutwindow.ui" line="148"/>
-        <location filename="aboutwindow.ui" line="196"/>
+        <location filename="aboutwindow.ui" line="134"/>
+        <location filename="aboutwindow.ui" line="167"/>
+        <location filename="aboutwindow.ui" line="215"/>
         <source>TextLabel</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="aboutwindow.ui" line="215"/>
+        <location filename="aboutwindow.ui" line="234"/>
         <source>About Qt</source>
         <translation>关于Qt</translation>
     </message>
     <message>
-        <location filename="aboutwindow.ui" line="266"/>
+        <location filename="aboutwindow.ui" line="285"/>
         <source>Support</source>
         <translation>帮助和支持</translation>
     </message>
     <message>
-        <location filename="aboutwindow.ui" line="279"/>
+        <location filename="aboutwindow.ui" line="298"/>
         <source>license</source>
         <translation>开源声明</translation>
     </message>
     <message>
-        <location filename="aboutwindow.ui" line="305"/>
+        <location filename="aboutwindow.ui" line="324"/>
         <source>ok</source>
         <translation>确定</translation>
     </message>
     <message>
-        <location filename="aboutwindow.ui" line="234"/>
+        <location filename="aboutwindow.ui" line="253"/>
         <source>About OpenCV</source>
         <oldsource>关于OpenCV</oldsource>
         <translation>关于OpenCV</translation>
@@ -54,60 +55,60 @@
         <translation>关于mmLink</translation>
     </message>
     <message>
-        <location filename="aboutwindow.cpp" line="63"/>
+        <location filename="aboutwindow.cpp" line="66"/>
         <source>License</source>
         <translation>开源声明</translation>
     </message>
     <message>
-        <location filename="aboutwindow.cpp" line="77"/>
+        <location filename="aboutwindow.cpp" line="80"/>
         <source>This software is licensed to </source>
         <translation>此软件授权给</translation>
     </message>
     <message>
-        <location filename="aboutwindow.cpp" line="77"/>
+        <location filename="aboutwindow.cpp" line="80"/>
         <source>use</source>
         <translation>使用</translation>
     </message>
     <message>
-        <location filename="aboutwindow.cpp" line="78"/>
+        <location filename="aboutwindow.cpp" line="81"/>
         <source>Qt Version: </source>
         <translation>Qt版本: </translation>
     </message>
     <message>
-        <location filename="aboutwindow.cpp" line="79"/>
+        <location filename="aboutwindow.cpp" line="82"/>
         <source>OpenCV Version: </source>
         <translation>OpenCV版本: </translation>
     </message>
     <message>
-        <location filename="aboutwindow.cpp" line="80"/>
+        <location filename="aboutwindow.cpp" line="83"/>
         <source>OS Version: </source>
         <translation>操作系统版本: </translation>
     </message>
     <message>
-        <location filename="aboutwindow.cpp" line="81"/>
+        <location filename="aboutwindow.cpp" line="84"/>
         <source>kernal Version: </source>
         <translation>内核版本: </translation>
     </message>
     <message>
-        <location filename="aboutwindow.cpp" line="84"/>
+        <location filename="aboutwindow.cpp" line="87"/>
         <source>mmLink1.0
 </source>
         <translation>mmLink1.0
 </translation>
     </message>
     <message>
-        <location filename="aboutwindow.cpp" line="84"/>
+        <location filename="aboutwindow.cpp" line="87"/>
         <source>Copyright©2020
 All Rights Reserved</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="aboutwindow.cpp" line="84"/>
+        <location filename="aboutwindow.cpp" line="87"/>
         <source>Powered By ZhouZishun</source>
         <translation>Powered By 周子顺</translation>
     </message>
     <message>
-        <location filename="aboutwindow.cpp" line="84"/>
+        <location filename="aboutwindow.cpp" line="87"/>
         <source>School of Information
 Science and Technology,
 HIT at WeiHai</source>
@@ -121,11 +122,6 @@ HIT at WeiHai</source>
         <location filename="mainwindow.ui" line="20"/>
         <source>MainWindow</source>
         <translation>mmLink</translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="87"/>
-        <source>127.0.0.1</source>
-        <translation></translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="113"/>
@@ -151,6 +147,11 @@ HIT at WeiHai</source>
         <location filename="mainwindow.ui" line="80"/>
         <source>Remote IP</source>
         <translation>远程IP</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="87"/>
+        <source>192.168.1.10</source>
+        <translation></translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="94"/>
@@ -436,7 +437,17 @@ HIT at WeiHai</source>
     <message>
         <location filename="RadarConfig.cpp" line="139"/>
         <source>Fail to Convert Frame Rate</source>
-        <translation type="unfinished">帧率转换失败</translation>
+        <translation>帧率转换失败</translation>
+    </message>
+    <message>
+        <location filename="RadarConfig.cpp" line="143"/>
+        <source>Succee</source>
+        <translation>完成</translation>
+    </message>
+    <message>
+        <location filename="RadarConfig.cpp" line="143"/>
+        <source>Convert Complete</source>
+        <translation>转换完成</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="16"/>

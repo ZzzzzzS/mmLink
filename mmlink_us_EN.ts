@@ -16,28 +16,29 @@
     <message>
         <location filename="aboutwindow.ui" line="96"/>
         <location filename="aboutwindow.ui" line="115"/>
-        <location filename="aboutwindow.ui" line="148"/>
-        <location filename="aboutwindow.ui" line="196"/>
+        <location filename="aboutwindow.ui" line="134"/>
+        <location filename="aboutwindow.ui" line="167"/>
+        <location filename="aboutwindow.ui" line="215"/>
         <source>TextLabel</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="aboutwindow.ui" line="215"/>
+        <location filename="aboutwindow.ui" line="234"/>
         <source>About Qt</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="aboutwindow.ui" line="266"/>
+        <location filename="aboutwindow.ui" line="285"/>
         <source>Support</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="aboutwindow.ui" line="279"/>
+        <location filename="aboutwindow.ui" line="298"/>
         <source>license</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="aboutwindow.ui" line="305"/>
+        <location filename="aboutwindow.ui" line="324"/>
         <source>ok</source>
         <translation></translation>
     </message>
@@ -50,7 +51,7 @@
         <translation type="vanished">About CUDA</translation>
     </message>
     <message>
-        <location filename="aboutwindow.ui" line="234"/>
+        <location filename="aboutwindow.ui" line="253"/>
         <source>About OpenCV</source>
         <oldsource>关于OpenCV</oldsource>
         <translation>About OpenCV</translation>
@@ -74,47 +75,47 @@
         <translation type="unfinished">About mmLink</translation>
     </message>
     <message>
-        <location filename="aboutwindow.cpp" line="63"/>
+        <location filename="aboutwindow.cpp" line="66"/>
         <source>License</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="aboutwindow.cpp" line="77"/>
+        <location filename="aboutwindow.cpp" line="80"/>
         <source>This software is licensed to </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="aboutwindow.cpp" line="77"/>
+        <location filename="aboutwindow.cpp" line="80"/>
         <source>use</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="aboutwindow.cpp" line="78"/>
+        <location filename="aboutwindow.cpp" line="81"/>
         <source>Qt Version: </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="aboutwindow.cpp" line="79"/>
+        <location filename="aboutwindow.cpp" line="82"/>
         <source>OpenCV Version: </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="aboutwindow.cpp" line="80"/>
+        <location filename="aboutwindow.cpp" line="83"/>
         <source>OS Version: </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="aboutwindow.cpp" line="81"/>
+        <location filename="aboutwindow.cpp" line="84"/>
         <source>kernal Version: </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="aboutwindow.cpp" line="84"/>
+        <location filename="aboutwindow.cpp" line="87"/>
         <source>Powered By ZhouZishun</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="aboutwindow.cpp" line="84"/>
+        <location filename="aboutwindow.cpp" line="87"/>
         <source>School of Information
 Science and Technology,
 HIT at WeiHai</source>
@@ -145,7 +146,7 @@ HIT at WeiHai</source>
         <translation type="vanished">Kernal Version: </translation>
     </message>
     <message>
-        <location filename="aboutwindow.cpp" line="84"/>
+        <location filename="aboutwindow.cpp" line="87"/>
         <source>mmLink1.0
 </source>
         <translation></translation>
@@ -156,7 +157,7 @@ HIT at WeiHai</source>
         <translation type="obsolete">Powered By ZhouZishun</translation>
     </message>
     <message>
-        <location filename="aboutwindow.cpp" line="84"/>
+        <location filename="aboutwindow.cpp" line="87"/>
         <source>Copyright©2020
 All Rights Reserved</source>
         <translation></translation>
@@ -211,11 +212,6 @@ HIT at WeiHai</translation>
     <message>
         <source>远程IP</source>
         <translation type="vanished">Remote IP</translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="87"/>
-        <source>127.0.0.1</source>
-        <translation></translation>
     </message>
     <message>
         <source>远程端口</source>
@@ -273,6 +269,11 @@ HIT at WeiHai</translation>
         <location filename="mainwindow.ui" line="80"/>
         <source>Remote IP</source>
         <translation></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="87"/>
+        <source>192.168.1.10</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="94"/>
@@ -695,6 +696,16 @@ HIT at WeiHai</translation>
         <location filename="RadarConfig.cpp" line="139"/>
         <source>Fail to Convert Frame Rate</source>
         <translation></translation>
+    </message>
+    <message>
+        <location filename="RadarConfig.cpp" line="143"/>
+        <source>Succee</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="RadarConfig.cpp" line="143"/>
+        <source>Convert Complete</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="16"/>

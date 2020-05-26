@@ -138,4 +138,8 @@ void MainWindow::ConvertFrameSlot()
     {
         QMessageBox::critical(this,tr("Error"),tr("Fail to Convert Frame Rate"),QMessageBox::Ok);
     }
+    else
+    {
+        QMessageBox::information(this,tr("Succee"),tr("Convert Complete"),QMessageBox::Ok);
+    }
 }
