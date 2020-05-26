@@ -4,7 +4,8 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11 qwt
 DEFINES += QWT_DLL
-
+# disable C4819 warning
+QMAKE_CXXFLAGS_WARN_ON += -wd4819
 win32:{
     INCLUDEPATH += C:\ProgramFiles\Qt\Qt5.14.2\5.14.2\msvc2017_64\include\Qwt
     INCLUDEPATH += C:\ProgramFiles\opencv\opencv4.3.0\include

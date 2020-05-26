@@ -45,6 +45,9 @@ void AboutWindow::SetLogo()
     tmp.load("://image/qt.png");
     value=QPixmap::fromImage(tmp);
     this->ui->QtImage->setPixmap(value.scaled(this->ui->QtImage->size(),Qt::KeepAspectRatio));
+    tmp.load("://image/logo.png");
+    value=QPixmap::fromImage(tmp);
+    this->ui->mmLinkImage->setPixmap(value.scaled(this->ui->mmLinkImage->size(),Qt::KeepAspectRatio));
 }
 
 void AboutWindow::OpenCVSlot()
