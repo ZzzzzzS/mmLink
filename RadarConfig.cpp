@@ -131,11 +131,11 @@ void MainWindow::ConvertFrameSlot()
     int number=this->ui->FlameRate->text().toInt();
     if(number<=0)//判断帧率是否输入正确
     {
-        QMessageBox::critical(this,"Frame Rate is Not Correct","Please Input Correct Frame Rate",QMessageBox::Ok);
+        QMessageBox::critical(this,tr("Frame Rate is Not Correct"),tr("Please Input Correct Frame Rate"),QMessageBox::Ok);
         return;
     }
     if(!this->RadarData->ConvertFrame(number,qApp->applicationDirPath()+"/Data/"+this->RadarData->DatabaseTime+".bin"))
     {
-        QMessageBox::critical(this,"Error","Fail to Convert Frame Rate",QMessageBox::Ok);
+        QMessageBox::critical(this,tr("Error"),tr("Fail to Convert Frame Rate"),QMessageBox::Ok);
     }
 }

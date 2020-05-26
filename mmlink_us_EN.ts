@@ -291,19 +291,19 @@ HIT at WeiHai</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="192"/>
-        <location filename="mainwindow.ui" line="452"/>
+        <location filename="mainwindow.ui" line="468"/>
         <source>Sample Rate(Mhz)</source>
         <translation></translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="226"/>
-        <location filename="mainwindow.ui" line="486"/>
+        <location filename="mainwindow.ui" line="502"/>
         <source>Sample Point</source>
         <translation></translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="260"/>
-        <location filename="mainwindow.ui" line="520"/>
+        <location filename="mainwindow.ui" line="536"/>
         <source>Chirp Number</source>
         <oldsource>chirp个数</oldsource>
         <translation>Chirp Number</translation>
@@ -315,68 +315,73 @@ HIT at WeiHai</translation>
         <translation>FM Slope(Mhz/us)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="336"/>
+        <location filename="mainwindow.ui" line="349"/>
         <source>Update</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="348"/>
+        <location filename="mainwindow.ui" line="361"/>
         <source>Data Management</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="384"/>
+        <location filename="mainwindow.ui" line="375"/>
         <source>Open Data Folder</source>
-        <translation type="unfinished">打开数据文件夹</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="391"/>
+        <location filename="mainwindow.ui" line="404"/>
         <source>Auto Scale Axis</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="403"/>
-        <source>Flame Rate</source>
+        <location filename="mainwindow.ui" line="416"/>
+        <source>Frame Rate</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="428"/>
-        <source>Save Data</source>
+        <location filename="mainwindow.ui" line="435"/>
+        <source>30</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="442"/>
+        <location filename="mainwindow.ui" line="444"/>
+        <source>Convert Frame</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="458"/>
         <source>Radar Current Parameter</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="554"/>
+        <location filename="mainwindow.ui" line="570"/>
         <source>Current Frame Number</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="669"/>
+        <location filename="mainwindow.ui" line="685"/>
         <source>Camera Data</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="720"/>
+        <location filename="mainwindow.ui" line="736"/>
         <source>Radar Time Data</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="775"/>
+        <location filename="mainwindow.ui" line="791"/>
         <source>Radar Frequency Data</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="826"/>
+        <location filename="mainwindow.ui" line="842"/>
         <source>Radar Phase Data</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="869"/>
-        <location filename="mainwindow.ui" line="878"/>
+        <location filename="mainwindow.ui" line="885"/>
+        <location filename="mainwindow.ui" line="894"/>
         <source>About</source>
         <translation></translation>
     </message>
@@ -425,12 +430,12 @@ HIT at WeiHai</translation>
         <translation type="vanished">Current Frame Number</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="593"/>
+        <location filename="mainwindow.ui" line="609"/>
         <source>数据</source>
         <translation>Data</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="626"/>
+        <location filename="mainwindow.ui" line="642"/>
         <source>TextLabel</source>
         <translation></translation>
     </message>
@@ -550,7 +555,7 @@ HIT at WeiHai</translation>
     <message>
         <location filename="mainwindow.ui" line="149"/>
         <location filename="CameraConfig.cpp" line="10"/>
-        <location filename="mainwindow.cpp" line="97"/>
+        <location filename="mainwindow.cpp" line="98"/>
         <source>Enter camera number or video stream address</source>
         <translation></translation>
     </message>
@@ -573,20 +578,20 @@ HIT at WeiHai</translation>
     <message>
         <location filename="CameraConfig.cpp" line="26"/>
         <location filename="CameraConfig.cpp" line="38"/>
-        <location filename="RadarConfig.cpp" line="21"/>
-        <location filename="RadarConfig.cpp" line="66"/>
-        <location filename="mainwindow.cpp" line="77"/>
+        <location filename="RadarConfig.cpp" line="23"/>
+        <location filename="RadarConfig.cpp" line="67"/>
+        <location filename="mainwindow.cpp" line="78"/>
         <source>Disconnect</source>
         <translation></translation>
     </message>
     <message>
         <location filename="CameraConfig.cpp" line="30"/>
-        <location filename="RadarConfig.cpp" line="24"/>
+        <location filename="RadarConfig.cpp" line="26"/>
         <source>Disconnecting</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="362"/>
+        <location filename="mainwindow.ui" line="395"/>
         <location filename="CameraConfig.cpp" line="42"/>
         <location filename="CameraConfig.cpp" line="52"/>
         <location filename="CameraConfig.cpp" line="66"/>
@@ -613,20 +618,21 @@ HIT at WeiHai</translation>
     <message>
         <location filename="mainwindow.ui" line="122"/>
         <location filename="RadarConfig.cpp" line="6"/>
-        <location filename="RadarConfig.cpp" line="37"/>
-        <location filename="RadarConfig.cpp" line="43"/>
-        <location filename="RadarConfig.cpp" line="52"/>
-        <location filename="RadarConfig.cpp" line="58"/>
-        <location filename="RadarConfig.cpp" line="74"/>
+        <location filename="RadarConfig.cpp" line="38"/>
+        <location filename="RadarConfig.cpp" line="44"/>
+        <location filename="RadarConfig.cpp" line="53"/>
+        <location filename="RadarConfig.cpp" line="59"/>
+        <location filename="RadarConfig.cpp" line="75"/>
         <source>Connect Radar</source>
         <translation></translation>
     </message>
     <message>
         <location filename="RadarConfig.cpp" line="10"/>
-        <location filename="RadarConfig.cpp" line="36"/>
-        <location filename="RadarConfig.cpp" line="42"/>
-        <location filename="RadarConfig.cpp" line="54"/>
-        <location filename="RadarConfig.cpp" line="60"/>
+        <location filename="RadarConfig.cpp" line="37"/>
+        <location filename="RadarConfig.cpp" line="43"/>
+        <location filename="RadarConfig.cpp" line="55"/>
+        <location filename="RadarConfig.cpp" line="61"/>
+        <location filename="RadarConfig.cpp" line="139"/>
         <source>Error</source>
         <translation></translation>
     </message>
@@ -636,43 +642,58 @@ HIT at WeiHai</translation>
         <translation></translation>
     </message>
     <message>
-        <location filename="RadarConfig.cpp" line="36"/>
+        <location filename="RadarConfig.cpp" line="37"/>
         <source>The remote server rejected the connection</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="RadarConfig.cpp" line="42"/>
+        <location filename="RadarConfig.cpp" line="43"/>
         <source>Please fill in the correct server address</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="RadarConfig.cpp" line="48"/>
+        <location filename="RadarConfig.cpp" line="49"/>
         <source>disconnected</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="RadarConfig.cpp" line="48"/>
+        <location filename="RadarConfig.cpp" line="49"/>
         <source>server disconnected</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="RadarConfig.cpp" line="54"/>
+        <location filename="RadarConfig.cpp" line="55"/>
         <source>Network Error</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="RadarConfig.cpp" line="60"/>
+        <location filename="RadarConfig.cpp" line="61"/>
         <source>Error Number: </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="RadarConfig.cpp" line="108"/>
+        <location filename="RadarConfig.cpp" line="109"/>
         <source>radar parameter error</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="RadarConfig.cpp" line="108"/>
+        <location filename="RadarConfig.cpp" line="109"/>
         <source>Please fill in the correct radar parameters</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="RadarConfig.cpp" line="134"/>
+        <source>Frame Rate is Not Correct</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="RadarConfig.cpp" line="134"/>
+        <source>Please Input Correct Frame Rate</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="RadarConfig.cpp" line="139"/>
+        <source>Fail to Convert Frame Rate</source>
         <translation></translation>
     </message>
     <message>
@@ -682,7 +703,7 @@ HIT at WeiHai</translation>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="102"/>
+        <location filename="mainwindow.cpp" line="103"/>
         <source>Enter camera number or video stream addres</source>
         <translation></translation>
     </message>

@@ -65,7 +65,7 @@ void mmWaveRadar::ConvertEndian()
     for(int i=0;i<(this->Data.RadarData.RadarHead.Length-20)/2;i++)
     {
         this->Data.RadarData.RadarPayload[i]=qFromBigEndian(this->Data.RadarData.RadarPayload[i]);
-        qDebug("%d",this->Data.RadarData.RadarPayload[i]);
+        //qDebug("%d",this->Data.RadarData.RadarPayload[i]);
     }
 }
 
