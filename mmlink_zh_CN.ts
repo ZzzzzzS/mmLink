@@ -376,6 +376,7 @@ HIT at WeiHai</source>
         <location filename="RadarConfig.cpp" line="55"/>
         <location filename="RadarConfig.cpp" line="61"/>
         <location filename="RadarConfig.cpp" line="139"/>
+        <location filename="mainwindow.cpp" line="114"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
@@ -459,6 +460,11 @@ HIT at WeiHai</source>
         <location filename="mainwindow.cpp" line="103"/>
         <source>Enter camera number or video stream addres</source>
         <translation>输入摄像头编号或视频流地</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="114"/>
+        <source>Fail to Open Folder</source>
+        <translation type="unfinished">打开文件夹失败,请检查是否含有中文路径</translation>
     </message>
 </context>
 </TS>

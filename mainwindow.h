@@ -52,6 +52,7 @@ private:
 
     QImage *logo;
 
+
 protected:
     void resizeEvent(QResizeEvent *event);
 

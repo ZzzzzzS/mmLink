@@ -109,5 +109,8 @@ void MainWindow::CameraInputSlot(int oldPos, int newPos)
 
 void MainWindow::OpenFolderSlot()
 {
-    QDesktopServices::openUrl(QUrl(qApp->applicationDirPath()+"/Data"));
+    if(!QDesktopServices::openUrl(QUrl("/Data")))
+    {
+        QMessageBox::critical(this,tr("Error"),tr("Fail to Open Folder"),QMessageBox::Ok);
+    }
 }

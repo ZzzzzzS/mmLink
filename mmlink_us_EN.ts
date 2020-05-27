@@ -634,6 +634,7 @@ HIT at WeiHai</translation>
         <location filename="RadarConfig.cpp" line="55"/>
         <location filename="RadarConfig.cpp" line="61"/>
         <location filename="RadarConfig.cpp" line="139"/>
+        <location filename="mainwindow.cpp" line="114"/>
         <source>Error</source>
         <translation></translation>
     </message>
@@ -717,6 +718,11 @@ HIT at WeiHai</translation>
         <location filename="mainwindow.cpp" line="103"/>
         <source>Enter camera number or video stream addres</source>
         <translation></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="114"/>
+        <source>Fail to Open Folder</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
