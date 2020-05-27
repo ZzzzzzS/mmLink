@@ -65,7 +65,7 @@ void MainWindow::CameraRecordSlot()
 {
     if(this->ui->RecordButton->text()==tr("Record Video"))
     {
-        this->Camera->StartRecording(qApp->applicationDirPath()+"/Data/VideoRecord-"+QDateTime::currentDateTime().toString("yyyyMMddHHmmss")+".avi");
+        this->Camera->StartRecording("./Data/VideoRecord-"+QDateTime::currentDateTime().toString("yyyyMMddHHmmss")+".avi");
         this->ui->RecordButton->setText(tr("stop recording"));
     }
     else if(this->ui->RecordButton->text()==tr("stop recording"))
