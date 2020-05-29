@@ -93,7 +93,7 @@ private:
 
     QThread *FFTThread;
 
-    void ConvertEndian(); //处理大小端问题
+    void ConvertEndian(int Length); //处理大小端问题
     bool isParameterLegal();//判断参数是否合法
 };
 

@@ -39,6 +39,7 @@ Thumbs.db
 /release/*
 /armeabi-v7a/*
 msvc_make.bat
+DataRecords*.db
 
 # qtcreator generated files
 *.pro.user*

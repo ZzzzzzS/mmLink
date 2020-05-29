@@ -63,7 +63,7 @@ void mmWaveRadar::SetRadarParameter(RadarParameter_t value)
 }
 
 //转换大小端模式，默认接收数据是大端模式，但是在x86系统上是使用的小端模式，所以需要转换
-void mmWaveRadar::ConvertEndian()
+void mmWaveRadar::ConvertEndian(int Length)
 {
     if(this->RadarEndian==mmWaveRadar::BigEndian)
     {
@@ -75,7 +75,7 @@ void mmWaveRadar::ConvertEndian()
         this->Data.RadarData.RadarHead.SamplePoint=qFromBigEndian(this->Data.RadarData.RadarHead.SamplePoint);
         this->Data.RadarData.RadarHead.ChirpNumber=qFromBigEndian(this->Data.RadarData.RadarHead.ChirpNumber);
         this->Data.RadarData.RadarHead.FrameNumber=qFromBigEndian(this->Data.RadarData.RadarHead.FrameNumber);
-        for(int i=0;i<(this->Data.RadarData.RadarHead.Length-20)/2;i++)
+        for(int i=0;i<(Length-20)/2;i++)
         {
             this->Data.RadarData.RadarPayload[i]=qFromBigEndian(this->Data.RadarData.RadarPayload[i]);
             //qDebug("%d",this->Data.RadarData.RadarPayload[i]);
@@ -91,10 +91,9 @@ void mmWaveRadar::ConvertEndian()
         this->Data.RadarData.RadarHead.SamplePoint=qFromLittleEndian(this->Data.RadarData.RadarHead.SamplePoint);
         this->Data.RadarData.RadarHead.ChirpNumber=qFromLittleEndian(this->Data.RadarData.RadarHead.ChirpNumber);
         this->Data.RadarData.RadarHead.FrameNumber=qFromLittleEndian(this->Data.RadarData.RadarHead.FrameNumber);
-        for(int i=0;i<(this->Data.RadarData.RadarHead.Length-20)/2;i++)
+        for(int i=0;i<(Length-20)/2;i++)
         {
             this->Data.RadarData.RadarPayload[i]=qFromLittleEndian(this->Data.RadarData.RadarPayload[i]);
-            //qDebug("%d",this->Data.RadarData.RadarPayload[i]);
         }
     }
 
@@ -104,15 +103,13 @@ bool mmWaveRadar::ReadRadarData()
 {
     QByteArray value=this->readAll();//读取收到的所有数据
     qDebug()<<value;
-    std::string receive(value.toStdString());
-    if(receive.length()<=20)//数据包长度小于帧头，接收错误
+
+    for(int i=0;i<value.size();i++)
     {
-        return false;
+        this->Data.ReceiveBuffer[i]=*(value.data()+i);
     }
-    receive.copy(this->Data.ReceiveBuffer,receive.size());//把这些数据复制到接受缓冲区内
-    this->ConvertEndian();
-    qDebug()<<receive.length()<<this->Data.RadarData.RadarHead.Length;
-    if(receive.length()==this->Data.RadarData.RadarHead.Length) //验证长度正确
+    this->ConvertEndian(value.length());
+    if(value.length()==this->Data.RadarData.RadarHead.Length) //验证长度正确
     {
         char ok=0xaa;
         this->write(&ok,1);
