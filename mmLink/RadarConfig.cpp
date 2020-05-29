@@ -138,4 +138,36 @@ void MainWindow::ConvertFrameSlot()
     {
         QMessageBox::critical(this,tr("Error"),tr("Fail to Convert Frame Rate"),QMessageBox::Ok);
     }
+    else
+    {
+        QMessageBox::information(this,tr("Succee"),tr("Convert Complete"),QMessageBox::Ok);
+    }
+}
+
+void MainWindow::SetEndianSlot()
+{
+    if(this->ui->EndianButton->text()==tr("Set Big Endian"))
+    {
+        this->RadarSocket->RadarEndian=mmWaveRadar::BigEndian;
+        this->ui->EndianButton->setText(tr("Set Little Endian"));
+        QMessageBox::information(this,tr("Big Endian"),tr("Currently in big endian mode"),QMessageBox::Ok);
+    }
+    else if(this->ui->EndianButton->text()==tr("Set Little Endian"))
+    {
+        this->RadarSocket->RadarEndian=mmWaveRadar::LittleEndian;
+        this->ui->EndianButton->setText(tr("Set Big Endian"));
+        QMessageBox::information(this,tr("Little Endian"),tr("Currently in little endian mode"),QMessageBox::Ok);
+    }
+}
+
+void MainWindow::GetRadarEndian()
+{
+    if(this->RadarSocket->RadarEndian==mmWaveRadar::BigEndian)
+    {
+        this->ui->EndianButton->setText(tr("Set Little Endian"));
+    }
+    else
+    {
+        this->ui->EndianButton->setText(tr("Set Big Endian"));
+    }
 }

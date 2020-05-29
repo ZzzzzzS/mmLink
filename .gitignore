@@ -27,17 +27,19 @@ Makefile*
 *.prl
 *.app
 moc_*.cpp
+moc_*.h
 ui_*.h
 qrc_*.cpp
 Thumbs.db
 *.res
 *.rc
-/.qmake.cache
-/.qmake.stash
+*.qmake.cache
+*.qmake.stash
 /debug/*
 /release/*
 /armeabi-v7a/*
 msvc_make.bat
+DataRecords*.db
 
 # qtcreator generated files
 *.pro.user*

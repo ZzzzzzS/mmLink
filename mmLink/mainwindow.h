@@ -52,6 +52,8 @@ private:
 
     QImage *logo;
 
+    void GetRadarEndian();
+
 protected:
     void resizeEvent(QResizeEvent *event);
 
@@ -66,6 +68,7 @@ private slots:
     void TCPReceiveSlot();
     void RenewRadarDataSlot();
     void ConvertFrameSlot();
+    void SetEndianSlot();
 
     void CameraConnectSlot();
     void CameraRecordSlot();
