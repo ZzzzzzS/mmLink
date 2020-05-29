@@ -8,6 +8,7 @@ mmWaveRadar::mmWaveRadar(QObject *parent) : QTcpSocket(parent)
     this->FreqDomain->moveToThread(this->FFTThread);
     this->FFTThread->start();
     QObject::connect(this,SIGNAL(GetFullFrame()),this->FreqDomain,SLOT(ProcessFFT()));
+    this->RadarEndian=mmWaveRadar::BigEndian;//设置默认大端模式
 }
 
 bool mmWaveRadar::UpdateRadarParameter()
@@ -45,28 +46,58 @@ bool mmWaveRadar::isParameterLegal()
 
 void mmWaveRadar::SetRadarParameter(RadarParameter_t value)
 {
-    this->Parameter.RadarParameter.SampleRate=value.SampleRate;
-    this->Parameter.RadarParameter.SamplePoint=value.SamplePoint;
-    this->Parameter.RadarParameter.ChirpNumber=value.ChirpNumber;
-    this->Parameter.RadarParameter.Slope=value.Slope;
+    if(this->RadarEndian==mmWaveRadar::BigEndian)
+    {
+        qToBigEndian(value.SampleRate,&this->Parameter.RadarParameter.SampleRate);
+        qToBigEndian(value.SamplePoint,&this->Parameter.RadarParameter.SamplePoint);
+        qToBigEndian(value.ChirpNumber,&this->Parameter.RadarParameter.ChirpNumber);
+        qToBigEndian(value.Slope,&this->Parameter.RadarParameter.Slope);
+    }
+    else
+    {
+        qToLittleEndian(value.SampleRate,&this->Parameter.RadarParameter.SampleRate);
+        qToLittleEndian(value.SamplePoint,&this->Parameter.RadarParameter.SamplePoint);
+        qToLittleEndian(value.ChirpNumber,&this->Parameter.RadarParameter.ChirpNumber);
+        qToLittleEndian(value.Slope,&this->Parameter.RadarParameter.Slope);
+    }
 }
 
 //转换大小端模式，默认接收数据是大端模式，但是在x86系统上是使用的小端模式，所以需要转换
 void mmWaveRadar::ConvertEndian()
 {
-    this->Data.RadarData.RadarHead.Length=qFromBigEndian(this->Data.RadarData.RadarHead.Length);
-    this->Data.RadarData.RadarHead.Slope=qFromBigEndian(this->Data.RadarData.RadarHead.Slope);
-    this->Data.RadarData.RadarHead.DataID=qFromBigEndian(this->Data.RadarData.RadarHead.DataID);
-    this->Data.RadarData.RadarHead.FirstFlag=qFromBigEndian(this->Data.RadarData.RadarHead.FirstFlag);
-    this->Data.RadarData.RadarHead.SampleRate=qFromBigEndian(this->Data.RadarData.RadarHead.SampleRate);
-    this->Data.RadarData.RadarHead.SamplePoint=qFromBigEndian(this->Data.RadarData.RadarHead.SamplePoint);
-    this->Data.RadarData.RadarHead.ChirpNumber=qFromBigEndian(this->Data.RadarData.RadarHead.ChirpNumber);
-    this->Data.RadarData.RadarHead.FrameNumber=qFromBigEndian(this->Data.RadarData.RadarHead.FrameNumber);
-    for(int i=0;i<(this->Data.RadarData.RadarHead.Length-20)/2;i++)
+    if(this->RadarEndian==mmWaveRadar::BigEndian)
     {
-        this->Data.RadarData.RadarPayload[i]=qFromBigEndian(this->Data.RadarData.RadarPayload[i]);
-        //qDebug("%d",this->Data.RadarData.RadarPayload[i]);
+        this->Data.RadarData.RadarHead.Length=qFromBigEndian(this->Data.RadarData.RadarHead.Length);
+        this->Data.RadarData.RadarHead.Slope=qFromBigEndian(this->Data.RadarData.RadarHead.Slope);
+        this->Data.RadarData.RadarHead.DataID=qFromBigEndian(this->Data.RadarData.RadarHead.DataID);
+        this->Data.RadarData.RadarHead.FirstFlag=qFromBigEndian(this->Data.RadarData.RadarHead.FirstFlag);
+        this->Data.RadarData.RadarHead.SampleRate=qFromBigEndian(this->Data.RadarData.RadarHead.SampleRate);
+        this->Data.RadarData.RadarHead.SamplePoint=qFromBigEndian(this->Data.RadarData.RadarHead.SamplePoint);
+        this->Data.RadarData.RadarHead.ChirpNumber=qFromBigEndian(this->Data.RadarData.RadarHead.ChirpNumber);
+        this->Data.RadarData.RadarHead.FrameNumber=qFromBigEndian(this->Data.RadarData.RadarHead.FrameNumber);
+        for(int i=0;i<(this->Data.RadarData.RadarHead.Length-20)/2;i++)
+        {
+            this->Data.RadarData.RadarPayload[i]=qFromBigEndian(this->Data.RadarData.RadarPayload[i]);
+            //qDebug("%d",this->Data.RadarData.RadarPayload[i]);
+        }
     }
+    else
+    {
+        this->Data.RadarData.RadarHead.Length=qFromLittleEndian(this->Data.RadarData.RadarHead.Length);
+        this->Data.RadarData.RadarHead.Slope=qFromLittleEndian(this->Data.RadarData.RadarHead.Slope);
+        this->Data.RadarData.RadarHead.DataID=qFromLittleEndian(this->Data.RadarData.RadarHead.DataID);
+        this->Data.RadarData.RadarHead.FirstFlag=qFromLittleEndian(this->Data.RadarData.RadarHead.FirstFlag);
+        this->Data.RadarData.RadarHead.SampleRate=qFromLittleEndian(this->Data.RadarData.RadarHead.SampleRate);
+        this->Data.RadarData.RadarHead.SamplePoint=qFromLittleEndian(this->Data.RadarData.RadarHead.SamplePoint);
+        this->Data.RadarData.RadarHead.ChirpNumber=qFromLittleEndian(this->Data.RadarData.RadarHead.ChirpNumber);
+        this->Data.RadarData.RadarHead.FrameNumber=qFromLittleEndian(this->Data.RadarData.RadarHead.FrameNumber);
+        for(int i=0;i<(this->Data.RadarData.RadarHead.Length-20)/2;i++)
+        {
+            this->Data.RadarData.RadarPayload[i]=qFromLittleEndian(this->Data.RadarData.RadarPayload[i]);
+            //qDebug("%d",this->Data.RadarData.RadarPayload[i]);
+        }
+    }
+
 }
 
 bool mmWaveRadar::ReadRadarData()

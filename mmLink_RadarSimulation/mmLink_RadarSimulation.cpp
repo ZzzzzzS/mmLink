@@ -107,59 +107,51 @@ void mmLink_RadarSimulation::on_btnConnect_clicked()
 
 void mmLink_RadarSimulation::ConstructSendbuffer()
 {
+    short i=this->SendData.RadarData.RadarHead.FrameNumber;
     memset(&this->SendData,0,sizeof(UnionData_t));
+    this->SendData.RadarData.RadarHead.FrameNumber=i;
     QString Payload=this->ui->Payload->text();
     QStringList Payloadlist=Payload.split(",");
-    qToBigEndian((20+2*Payloadlist.size()),&this->SendData.RadarData.RadarHead.Length);
-    qToBigEndian(this->ui->Slope->text().toInt(),&this->SendData.RadarData.RadarHead.Slope);
-    qToBigEndian((short)this->ui->SampleRate->text().toInt(),&this->SendData.RadarData.RadarHead.SampleRate);
-    qToBigEndian((short)this->ui->SamplePoint->text().toInt(),&this->SendData.RadarData.RadarHead.SamplePoint);
-    qToBigEndian((short)this->ui->ChirpNumber->text().toInt(),&this->SendData.RadarData.RadarHead.ChirpNumber);
+    qToLittleEndian((20+2*Payloadlist.size()),&this->SendData.RadarData.RadarHead.Length);
+    qToLittleEndian(this->ui->Slope->text().toInt(),&this->SendData.RadarData.RadarHead.Slope);
+    qToLittleEndian((short)this->ui->SampleRate->text().toInt(),&this->SendData.RadarData.RadarHead.SampleRate);
+    qToLittleEndian((short)this->ui->SamplePoint->text().toInt(),&this->SendData.RadarData.RadarHead.SamplePoint);
+    qToLittleEndian((short)this->ui->ChirpNumber->text().toInt(),&this->SendData.RadarData.RadarHead.ChirpNumber);
     if(this->ui->FirstFlag->isChecked())
     {
-        qToBigEndian((short)1,&this->SendData.RadarData.RadarHead.FirstFlag);
+        qToLittleEndian((short)1,&this->SendData.RadarData.RadarHead.FirstFlag);
+        this->SendData.RadarData.RadarHead.FrameNumber=(short)1;
     }
     else
     {
-        qToBigEndian((short)0,&this->SendData.RadarData.RadarHead.FirstFlag);
+        qToLittleEndian((short)0,&this->SendData.RadarData.RadarHead.FirstFlag);
+        this->SendData.RadarData.RadarHead.FrameNumber++;
     }
 
     int j=0;
     for (QStringList::Iterator i=Payloadlist.begin();i!=Payloadlist.end();i++)
     {
-        qToBigEndian((short)i->toInt(),&this->SendData.RadarData.RadarPayload[j++]);
+        qToLittleEndian((short)i->toInt(),&this->SendData.RadarData.RadarPayload[j++]);
         //qDebug("%d",this->SendData.RadarData.RadarPayload[j]);
     }
-    for(j=0;j<qFromBigEndian(this->SendData.RadarData.RadarHead.Length);j++)
-    {
-        qDebug("%d",this->SendData.SendBuffer[j]);
-    }
     this->ui->Length->setText(QString::number(20+2*Payloadlist.size()));
+    this->ui->FrameNumber->setText(QString::number((int)this->SendData.RadarData.RadarHead.FrameNumber));
+    qDebug()<<"FrameNumber:"<<this->SendData.RadarData.RadarHead.FrameNumber;
 }
 
 void mmLink_RadarSimulation::on_btnSend_clicked()
 {
     this->ConstructSendbuffer();
-    QByteArray data2(this->SendData.SendBuffer,qFromBigEndian(this->SendData.RadarData.RadarHead.Length));
-
-    for (int i=0;i<data2.length();i++)
-    {
-        if(data2[i]>='0'&&data2[i]<='9')
-        {
-            data2[i]=data2[i]-'0';
-            qDebug("ok");
-        }
-        if(data2[i]>='a'&&data2[i]<='f')
-        {
-            data2[i]=data2[i]-'a'+10;
-        }
-    }
-    data2[3]=data2.length();
+    QByteArray data(this->SendData.Buffer.SendHead,20);
+    QByteArray data2(this->SendData.Buffer.SendPayload,qFromLittleEndian(this->SendData.RadarData.RadarHead.Length-20));
 
     if(ui->cbxConnection->currentIndex() == 0)
     {
         for(int i=0; i<tcpClient.length(); i++)
+        {
+            tcpClient[i]->write(data);
             tcpClient[i]->write(data2); //qt5除去了.toAscii()
+        }
     }
     //指定连接
     else
@@ -173,6 +165,7 @@ void mmLink_RadarSimulation::on_btnSend_clicked()
             if(tcpClient[i]->peerAddress().toString().split("::ffff:")[1]==clientIP\
                             && tcpClient[i]->peerPort()==clientPort)
             {
+                tcpClient[i]->write(data);
                 tcpClient[i]->write(data2);
                 return; //ip:port唯一，无需继续检索
             }

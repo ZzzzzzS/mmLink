@@ -25,29 +25,36 @@ private:
     QTcpSocket *currentClient;
 
     //发送的参数
-        typedef struct
-        {
-            int Length;
-            int Slope;
-            short DataID;
-            short FirstFlag;
-            short SampleRate;
-            short SamplePoint;
-            short ChirpNumber;
-            short FrameNumber;
-        }RadarHead_t;
+    typedef struct
+    {
+        int Length;
+        int Slope;
+        short DataID;
+        short FirstFlag;
+        short SampleRate;
+        short SamplePoint;
+        short ChirpNumber;
+        short FrameNumber;
+    }RadarHead_t;
 
-        typedef struct
-        {
-            RadarHead_t RadarHead;
-            short RadarPayload[(65535-20)/2+1];
-        }RadarData_t;
+    typedef struct
+    {
+        RadarHead_t RadarHead;
+        short RadarPayload[(65535-20)/2+1];
+    }RadarData_t;
 
-        typedef union
-        {
-            RadarData_t RadarData;
-            char SendBuffer[65535];
-        }UnionData_t;
+    typedef struct
+    {
+        char SendHead[20];
+        char SendPayload[65535-20];
+    }SendBuffer_t;
+
+    typedef union
+    {
+        RadarData_t RadarData;
+        char SendBuffer[65535];
+        SendBuffer_t Buffer;
+    }UnionData_t;
 
     UnionData_t SendData;
     void ConstructSendbuffer();

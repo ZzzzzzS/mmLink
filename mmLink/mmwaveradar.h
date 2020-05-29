@@ -73,11 +73,18 @@ public:
 
     mmWaveRadarFFT *FreqDomain;
 
+    enum Endian //设置大端小端模式
+    {
+        BigEndian=0,
+        LittleEndian=1
+    };
+
+    Endian RadarEndian;
+
 signals:
     void GetFullFrame();
     void PushBackData(QVector<short>);
 private:
-
 
     UnionParamter_t Parameter; //设定的雷达参数
     UnionData_t Data;//接收的雷达数据

@@ -30,6 +30,7 @@ MainWindow::MainWindow(QWidget *parent)
     {
         dir.mkdir(qApp->applicationDirPath()+"/Data");
     }
+    this->GetRadarEndian();
     //设置相机
     this->CameraThread=new QThread();
     this->Camera=new UVCCamera();
@@ -45,6 +46,7 @@ MainWindow::MainWindow(QWidget *parent)
     QObject::connect(this->ui->action_aboutQt,SIGNAL(triggered()),this,SLOT(AboutSlot()));
     QObject::connect(this->ui->DataFolderButton,SIGNAL(clicked()),this,SLOT(OpenFolderSlot()));
     QObject::connect(this->ui->CameraAddress,SIGNAL(cursorPositionChanged(int,int)),this,SLOT(CameraInputSlot(int,int)));
+    QObject::connect(this->ui->EndianButton,SIGNAL(clicked()),this,SLOT(SetEndianSlot()));
     //TCP连接相关信号
     QObject::connect(this->ui->RadarConnectButton,SIGNAL(clicked()),this,SLOT(TCPConnectSlot()));
     QObject::connect(this->RadarSocket,SIGNAL(error(QAbstractSocket::SocketError)),this,SLOT(TCPErrorSlot(QAbstractSocket::SocketError)));

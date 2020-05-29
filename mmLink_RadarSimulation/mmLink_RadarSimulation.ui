@@ -188,6 +188,16 @@
                  </property>
                 </widget>
                </item>
+               <item>
+                <widget class="QLabel" name="label_9">
+                 <property name="text">
+                  <string>FrameNumber</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="FrameNumber"/>
+               </item>
               </layout>
              </item>
              <item>
@@ -336,7 +346,7 @@
      <x>0</x>
      <y>0</y>
      <width>631</width>
-     <height>22</height>
+     <height>23</height>
     </rect>
    </property>
   </widget>
