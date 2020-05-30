@@ -85,8 +85,16 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-RESOURCES += \
-    resource.qrc
+win32:{
+    RESOURCES += \
+        windows_resource.qrc
+}
+
+unix:{
+    RESOURCES += \
+        unix_resource.qrc
+}
+
 
 DISTFILES += \
     mmlink_us_EN.ts

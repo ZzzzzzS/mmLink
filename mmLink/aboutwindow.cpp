@@ -25,11 +25,13 @@ AboutWindow::AboutWindow(QWidget *parent) :
     QObject::connect(ui->FeedBackButton,SIGNAL(clicked(bool)),this,SLOT(FeedBackSlot()));
     QObject::connect(ui->OpenSourceButton,SIGNAL(clicked(bool)),this,SLOT(OpenSourceSlot()));
 
+#ifdef Q_OS_WIN
     this->Music=new QMediaPlayer(this);
     this->Music->setMedia(QUrl("qrc:/sound/aboutwindow"));
+    this->Music->play();
+#endif
     this->SetLogo();
     this->SetInformation();
-    this->Music->play();
 }
 
 AboutWindow::~AboutWindow()

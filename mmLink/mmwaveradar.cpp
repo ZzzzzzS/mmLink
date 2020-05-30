@@ -8,7 +8,7 @@ mmWaveRadar::mmWaveRadar(QObject *parent) : QTcpSocket(parent)
     this->FreqDomain->moveToThread(this->FFTThread);
     this->FFTThread->start();
     QObject::connect(this,SIGNAL(GetFullFrame()),this->FreqDomain,SLOT(ProcessFFT()));
-    this->RadarEndian=mmWaveRadar::BigEndian;//设置默认大端模式
+    this->RadarEndian=mmWaveRadar::LittleEndian;//设置默认大端模式
 }
 
 bool mmWaveRadar::UpdateRadarParameter()

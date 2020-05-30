@@ -76,12 +76,12 @@ void mmLink_RadarSimulation::disconnectedSlot()
 // 监听--断开
 void mmLink_RadarSimulation::on_btnConnect_clicked()
 {
-    if(ui->btnConnect->text()=="监听")
+    if(ui->btnConnect->text()=="listen")
     {
         bool ok = tcpServer->listen(QHostAddress::Any, ui->edtPort->text().toInt());
         if(ok)
         {
-            ui->btnConnect->setText("断开");
+            ui->btnConnect->setText("disconnect");
             ui->btnSend->setEnabled(true);
         }
     }
@@ -98,7 +98,7 @@ void mmLink_RadarSimulation::on_btnConnect_clicked()
             tcpClient.removeAt(i);  //从保存的客户端列表中取去除
         }
         tcpServer->close();     //不再监听端口
-        ui->btnConnect->setText("监听");
+        ui->btnConnect->setText("listen");
         ui->btnSend->setEnabled(false);
     }
 }

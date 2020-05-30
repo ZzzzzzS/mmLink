@@ -25,7 +25,10 @@ private slots:
 
 private:
     Ui::AboutWindow *ui;
+
+#ifdef Q_OS_WIN
     QMediaPlayer *Music;
+#endif
     void SetLogo();
     void SetInformation();
 
