@@ -2,12 +2,12 @@
 #define QWTPLOTSHOW_H
 
 #include <QObject>
-#include <Qwt/qwt_plot.h>
-#include <Qwt/qwt_plot_grid.h>
-#include <Qwt/qwt_plot_curve.h>
-#include <Qwt/qwt_plot_item.h>
-#include <Qwt/qwt_plot_magnifier.h>
-#include <Qwt/qwt_plot_panner.h>
+#include <qwt_plot.h>
+#include <qwt_plot_grid.h>
+#include <qwt_plot_curve.h>
+#include <qwt_plot_item.h>
+#include <qwt_plot_magnifier.h>
+#include <qwt_plot_panner.h>
 #include <QPointF>
 
 class QwtPlotShow : public QObject

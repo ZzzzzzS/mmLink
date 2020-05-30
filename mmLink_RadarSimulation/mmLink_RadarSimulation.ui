@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>631</width>
+    <width>661</width>
     <height>497</height>
    </rect>
   </property>
@@ -20,7 +20,7 @@
       <item>
        <widget class="QGroupBox" name="groupBox">
         <property name="title">
-         <string>接收窗口</string>
+         <string>Receive</string>
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout_2">
          <item>
@@ -48,7 +48,7 @@
          </sizepolicy>
         </property>
         <property name="title">
-         <string>网络设置</string>
+         <string>Network Settings</string>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <item>
@@ -56,7 +56,7 @@
            <item>
             <widget class="QLabel" name="label">
              <property name="text">
-              <string>1）本机IP地址</string>
+              <string>local ip</string>
              </property>
             </widget>
            </item>
@@ -70,7 +70,7 @@
            <item>
             <widget class="QLabel" name="label_2">
              <property name="text">
-              <string>2）本地端口号</string>
+              <string>local port</string>
              </property>
             </widget>
            </item>
@@ -84,7 +84,7 @@
            <item>
             <widget class="QPushButton" name="btnConnect">
              <property name="text">
-              <string>监听</string>
+              <string>listen</string>
              </property>
             </widget>
            </item>
@@ -93,14 +93,14 @@
              <item>
               <widget class="QCheckBox" name="ckbHexShow">
                <property name="text">
-                <string>Hex显示</string>
+                <string>Hex Display</string>
                </property>
               </widget>
              </item>
              <item>
               <widget class="QPushButton" name="btnClear">
                <property name="text">
-                <string>清除窗口</string>
+                <string>clear</string>
                </property>
               </widget>
              </item>
@@ -110,7 +110,7 @@
             <widget class="QComboBox" name="cbxConnection">
              <item>
               <property name="text">
-               <string>全部连接</string>
+               <string>All Connection</string>
               </property>
              </item>
             </widget>
@@ -118,7 +118,7 @@
            <item>
             <widget class="QCheckBox" name="ckbHexSend">
              <property name="text">
-              <string>Hex发送</string>
+              <string>Hex Send</string>
              </property>
             </widget>
            </item>
@@ -163,7 +163,7 @@
        </size>
       </property>
       <property name="title">
-       <string>发送窗口</string>
+       <string>Send</string>
       </property>
       <layout class="QGridLayout" name="gridLayout">
        <item row="0" column="0">
@@ -329,7 +329,7 @@
             </size>
            </property>
            <property name="text">
-            <string>发送</string>
+            <string>Send</string>
            </property>
           </widget>
          </item>
@@ -345,8 +345,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>631</width>
-     <height>23</height>
+     <width>661</width>
+     <height>20</height>
     </rect>
    </property>
   </widget>

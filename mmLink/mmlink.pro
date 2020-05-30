@@ -4,16 +4,17 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11 qwt
 DEFINES += QWT_DLL
-# disable C4819 warning
-QMAKE_CXXFLAGS_WARN_ON += -wd4819
+
 win32:{
+
+    # disable C4819 warning
+    QMAKE_CXXFLAGS_WARN_ON += -wd4819
+
     INCLUDEPATH += C:\ProgramFiles\Qt\Qt5.14.2\5.14.2\msvc2017_64\include\Qwt
     INCLUDEPATH += C:\ProgramFiles\opencv\opencv4.3.0\include
     CONFIG(debug, debug|release) LIBS += -L"C:\ProgramFiles\Qt\Qt5.14.2\5.14.2\msvc2017_64\lib" -lqwtd
     CONFIG(release, debug|release) LIBS += -L"C:\ProgramFiles\Qt\Qt5.14.2\5.14.2\msvc2017_64\lib" -lqwt
-}
 
-win32:{
     CONFIG(debug, debug|release) LIBS += -L"C:\ProgramFiles\opencv\opencv4.3.0\lib" \
     -lopencv_core430d \
     -lopencv_videoio430d \
@@ -22,6 +23,18 @@ win32:{
     -lopencv_core430 \
     -lopencv_videoio430 \
 }
+
+unix:{
+    INCLUDEPATH+= /usr/local/include/opencv4
+    INCLUDEPATH+= /usr/local/qwt-6.1.4/include
+
+    LIBS += -L"/usr/local/qwt-6.1.4/lib" -lqwt
+    LIBS += -L"/usr/local/lib" \
+    -lopencv_core \
+    -lopencv_videoio \
+
+}
+
 
 
 
@@ -72,8 +85,16 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-RESOURCES += \
-    resource.qrc
+win32:{
+    RESOURCES += \
+        windows_resource.qrc
+}
+
+unix:{
+    RESOURCES += \
+        unix_resource.qrc
+}
+
 
 DISTFILES += \
     mmlink_us_EN.ts
