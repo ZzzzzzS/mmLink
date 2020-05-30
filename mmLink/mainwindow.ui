@@ -128,7 +128,7 @@
                  <item>
                   <widget class="QPushButton" name="EndianButton">
                    <property name="text">
-                    <string>Set Big Endian</string>
+                    <string>Set Little Endian</string>
                    </property>
                   </widget>
                  </item>
