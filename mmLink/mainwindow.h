@@ -15,6 +15,7 @@
 #include <QDateTime>
 #include <QDir>
 #include "aboutwindow.h"
+#include <QDesktopServices>
 
 #include "mmwaveradar.h"
 #include "datamanagement.h"
