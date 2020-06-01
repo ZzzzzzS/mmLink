@@ -1,3 +1,27 @@
+/****************************************************************************
+MIT License
+
+Copyright (c) 2020 ZhouZishun
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*****************************************************************************/
+
 #include "uvccamera.h"
 #include <QApplication>
 #include <time.h>
@@ -59,6 +83,11 @@ void UVCCamera::StopRecording()
     this->recorder->release();
 }
 
+
+//摄像头采集和视频录制就在这个死循环里进行，没出现图像撕裂的情况，就没有加锁保护
+//理论上来说应该需要采集一帧后延时，延时=1/fps-(采集需要的时间)，这样才能保证采集到的视频的时间长度的正确性
+//但是事实上这样效果并不好，我也不太明白为什么，反正不延时效果最好了，但是长时间录制视频还是时间会差几秒
+//猜测原因是摄像头实际曝光所用的时间和fps不相同，所以导致误差，这现象在光线较暗的情况下非常明显，整个视频都比较卡
 void UVCCamera::CameraLoop()
 {
     clock_t start=clock();
@@ -68,8 +97,8 @@ void UVCCamera::CameraLoop()
     qDebug("%d",FPS);
     while(isCapturing)//一直在循环里采集图像
     {
+        start=clock();//计算处理图像用时
         this->Capture->read(this->CaptureBuffer);
-        start=clock();
         img = this->cvMat2QImage(this->CaptureBuffer);
         pix = QPixmap::fromImage(img);
         if(this->isRecording)
@@ -77,7 +106,7 @@ void UVCCamera::CameraLoop()
             this->recorder->write(this->CaptureBuffer);
         }
         emit this->RenewImage(pix);
-        stop=clock();
+        stop=clock();//计算处理图像用时
         //qDebug("%d",1000/FPS-stop+start);
         //QThread::msleep(1000/FPS-stop+start);
         //qDebug("%d",stop-start);

@@ -1,3 +1,27 @@
+/****************************************************************************
+MIT License
+
+Copyright (c) 2020 ZhouZishun
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*****************************************************************************/
+
 #include "mmwaveradar.h"
 
 mmWaveRadar::mmWaveRadar(QObject *parent) : QTcpSocket(parent)
@@ -78,7 +102,6 @@ void mmWaveRadar::ConvertEndian(int Length)
         for(int i=0;i<(Length-20)/2;i++)
         {
             this->Data.RadarData.RadarPayload[i]=qFromBigEndian(this->Data.RadarData.RadarPayload[i]);
-            //qDebug("%d",this->Data.RadarData.RadarPayload[i]);
         }
     }
     else
@@ -127,6 +150,8 @@ mmWaveRadar::RadarHead_t mmWaveRadar::GetRadarHead()
     return this->Data.RadarData.RadarHead;
 }
 
+
+//将多帧TCP数据合并成一帧雷达数据
 void mmWaveRadar::RadarBufferCompress()
 {
     if(this->Data.RadarData.RadarHead.FirstFlag!=0)
@@ -143,7 +168,7 @@ void mmWaveRadar::RadarBufferCompress()
         this->ReceiveBuffer.clear();//清除缓冲区
         if(!this->TimeData.empty())//判断一下到底接收到数据没有，以便后续显示不出错
         {
-            emit(this->GetFullFrame());
+            emit(this->GetFullFrame());//发送信号，找到一帧完整数据，方便在后续做fft
         }
         else
         {

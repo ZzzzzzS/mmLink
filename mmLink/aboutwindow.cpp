@@ -1,3 +1,27 @@
+/****************************************************************************
+MIT License
+
+Copyright (c) 2020 ZhouZishun
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*****************************************************************************/
+
 #include "aboutwindow.h"
 #include "ui_aboutwindow.h"
 #include <QUrl>
@@ -25,7 +49,7 @@ AboutWindow::AboutWindow(QWidget *parent) :
     QObject::connect(ui->FeedBackButton,SIGNAL(clicked(bool)),this,SLOT(FeedBackSlot()));
     QObject::connect(ui->OpenSourceButton,SIGNAL(clicked(bool)),this,SLOT(OpenSourceSlot()));
 
-#ifdef Q_OS_WIN
+#ifdef Q_OS_WIN //用的WSL2编译Linux，不支持播放声音
     this->Music=new QMediaPlayer(this);
     this->Music->setMedia(QUrl("qrc:/sound/aboutwindow"));
     this->Music->play();
@@ -86,6 +110,6 @@ void AboutWindow::SetInformation()
     QtVersion+=("\n"+tr("kernal Version: ")+QSysInfo::kernelType()+" "+QSysInfo::kernelVersion());
     this->ui->QtVersion->setText(QtVersion);
     QString mmLinkVersion;
-    mmLinkVersion=tr("mmLink1.0\n")+tr("Powered By ZhouZishun")+"\n"+tr("Copyright©2020\nAll Rights Reserved")+"\n"+tr("School of Information\nScience and Technology,\nHIT at WeiHai");
+    mmLinkVersion=tr("mmLink\n")+tr("Powered By ZhouZishun")+"\n"+tr("Copyright©2020\nAll Rights Reserved")+"\n"+tr("School of Information\nScience and Technology,\nHIT at WeiHai");
     this->ui->mmLinkVersion->setText(mmLinkVersion);
 }
