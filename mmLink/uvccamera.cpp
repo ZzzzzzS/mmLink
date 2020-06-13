@@ -25,7 +25,6 @@ SOFTWARE.
 #include "uvccamera.h"
 #include <QApplication>
 #include <time.h>
-#include <opencv2/core/cuda.hpp>
 #include <QThread>
 
 UVCCamera::UVCCamera(QObject *parent) : QObject(parent)
